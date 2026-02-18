@@ -36,7 +36,7 @@ export default function Navbar() {
           <a className="nav-link active" onClick={() => handleNav('/about')}>About</a>
         </div>
       </div>
-      <div className="nav-right"></div>
+      <div className="nav-right" style={{ pointerEvents: 'none' }}></div>
     </nav>
   );
 }
