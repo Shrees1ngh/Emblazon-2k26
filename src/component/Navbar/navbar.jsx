@@ -1,15 +1,29 @@
-import { useNavigate } from 'react-router-dom';
-import { useCallback } from 'react';
+import { useNavigate, NavLink } from 'react-router-dom';
+import { useCallback, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import heroImage from '../../assets/fest/emblazon logo.png';
+
 import './navbar.css';
+
+const REGISTER_URL = '#'; // Replace with Google Form link when ready
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [portalContainer, setPortalContainer] = useState(null);
 
   const handleNav = useCallback((path) => {
+    // If already on this route, just scroll to top — don't kill animations
+    if (location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsMenuOpen(false);
+      return;
+    }
+
     // Kill all GSAP ScrollTriggers and revert pin-spacer DOM changes
     ScrollTrigger.getAll().forEach((st) => st.kill(true));
     gsap.globalTimeline.clear();
@@ -18,25 +32,77 @@ export default function Navbar() {
     document.body.style.width = '';
     document.documentElement.style.width = '';
     window.scrollTo(0, 0);
+    setIsMenuOpen(false);
     navigate(path);
-  }, [navigate]);
+  }, [navigate, location.pathname]);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => {
+      const next = !prev;
+      // lock body scroll when menu opens
+      if (next) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    const el = document.createElement('div');
+    document.body.appendChild(el);
+    setPortalContainer(el);
+    return () => {
+      document.body.removeChild(el);
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   return (
-    <nav className="navbar">
-      <div className="nav-left">
-        <a className="nav-logo" onClick={() => handleNav('/')}>Mayank.</a>
-      </div>
-      <div className="nav-center">
-        <div className="main-links">
-          <a className="nav-link active" onClick={() => handleNav('/')}>Home</a>
-          <a className="nav-link active" onClick={() => handleNav('/gallery')}>Gallery</a>
-          <a className="nav-link active" onClick={() => handleNav('/team')}>Team</a>
-          <a className="nav-link active" onClick={() => handleNav('/events')}>Events</a>
-          <a className="nav-link active" onClick={() => handleNav('/sponsors')}>Sponsors</a>
-          <a className="nav-link active" onClick={() => handleNav('/about')}>About</a>
+    <>
+      {(portalContainer && isMenuOpen) && (createPortal(
+        <div className="menu-backdrop" onClick={toggleMenu}></div>,
+        portalContainer
+      ))}
+      <nav className="navbar">
+        <div className="nav-left">
+          <button className="nav-logo" onClick={() => handleNav('/')} aria-label="Go to home">
+            <img src={heroImage} alt="Emblazon 2k26 Logo" className="logo-img" />
+          </button>
         </div>
-      </div>
-      <div className="nav-right" style={{ pointerEvents: 'none' }}></div>
-    </nav>
+        <div className="nav-center">
+          <div className="main-links">
+            <NavLink to="/" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/'); }}>Home</NavLink>
+            <NavLink to="/gallery" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/gallery'); }}>Gallery</NavLink>
+            <NavLink to="/team" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/team'); }}>Team</NavLink>
+            <NavLink to="/events" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/events'); }}>Events</NavLink>
+            <NavLink to="/sponsors" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/sponsors'); }}>Sponsors</NavLink>
+            <NavLink to="/about" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/about'); }}>About</NavLink>
+          </div>
+        </div>
+        <div className="nav-right">
+          <a href={REGISTER_URL} className="register-btn" target="_blank" rel="noopener noreferrer">Register</a>
+          <button className="hamburger-menu" onClick={toggleMenu} aria-label="Toggle menu">
+            <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+            <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+            <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+          </button>
+        </div>
+      </nav>
+
+      {(portalContainer && isMenuOpen) && (createPortal(
+        <div className="main-links mobile-open" aria-hidden={!isMenuOpen} role="menu">
+          <NavLink to="/" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/'); }}>Home</NavLink>
+          <NavLink to="/gallery" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/gallery'); }}>Gallery</NavLink>
+          <NavLink to="/team" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/team'); }}>Team</NavLink>
+          <NavLink to="/events" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/events'); }}>Events</NavLink>
+          <NavLink to="/sponsors" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/sponsors'); }}>Sponsors</NavLink>
+          <NavLink to="/about" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/about'); }}>About</NavLink>
+          <a href={REGISTER_URL} className="register-btn mobile" target="_blank" rel="noopener noreferrer">Register</a>
+        </div>,
+        portalContainer
+      ))}
+    </>
   );
 }

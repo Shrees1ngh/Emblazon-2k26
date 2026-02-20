@@ -273,6 +273,20 @@ export default function DomeGallery({
         }
     }, [pointerFollow])
 
+    // Visibility tracking for auto-rotate pause
+    const isVisibleRef = useRef(true)
+
+    useEffect(() => {
+        const el = rootRef.current
+        if (!el) return
+        const io = new IntersectionObserver(
+            ([entry]) => { isVisibleRef.current = entry.isIntersecting },
+            { threshold: 0 }
+        )
+        io.observe(el)
+        return () => io.disconnect()
+    }, [])
+
     useEffect(() => {
         if (!autoRotate && !pointerFollow) return
         let lastTime = performance.now()
@@ -280,6 +294,12 @@ export default function DomeGallery({
         const tick = now => {
             const dt = Math.max(0, now - lastTime)
             lastTime = now
+
+            // Skip expensive work when off-screen
+            if (!isVisibleRef.current) {
+                autoRotateRAF.current = requestAnimationFrame(tick)
+                return
+            }
 
             if (
                 !draggingRef.current &&
@@ -736,7 +756,7 @@ export default function DomeGallery({
                                     onClick={onTileClick}
                                     onPointerUp={onTilePointerUp}
                                 >
-                                    <img src={it.src} draggable={false} alt={it.alt} />
+                                    <img src={it.src} draggable={false} alt={it.alt} loading="lazy" decoding="async" />
                                 </div>
                             </div>
                         ))}

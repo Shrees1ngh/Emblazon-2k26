@@ -1,0 +1,115 @@
+.dock-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.dock {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    padding: 12px 14px;
+    background: rgba(20, 20, 25, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    pointer-events: auto;
+    transition: width 0.3s ease;
+}
+
+.dock-icon {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transform-origin: bottom center;
+    transition: transform 0.1s ease-out;
+    /* Fallback */
+}
+
+.dock-icon__inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.3s ease, border-color 0.3s ease;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.dock-icon:hover .dock-icon__inner,
+.dock-icon.active .dock-icon__inner {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+.dock-dot {
+    position: absolute;
+    bottom: -6px;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    /* Active indicator */
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+.dock-tooltip {
+    position: absolute;
+    top: -40px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #fff;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dock-icon:hover .dock-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .dock-container {
+        bottom: 1.5rem;
+    }
+
+    .dock {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .dock-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .dock-icon__inner {
+        font-size: 1.2rem;
+    }
+}

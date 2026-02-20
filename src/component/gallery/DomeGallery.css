@@ -87,6 +87,8 @@ main.sphere-main {
     transform-origin: 50% 50%;
     backface-visibility: hidden;
     transition: transform 300ms;
+    will-change: transform;
+    contain: layout style paint;
     transform: rotateY(calc(var(--rot-y) * (var(--offset-x) + ((var(--item-size-x) - 1) / 2)) + var(--rot-y-delta, 0deg))) rotateX(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2)) + var(--rot-x-delta, 0deg))) translateZ(var(--radius));
 }
 
@@ -124,6 +126,7 @@ main.sphere-main {
     pointer-events: none;
     backface-visibility: hidden;
     filter: var(--image-filter, none);
+    content-visibility: auto;
 }
 
 .viewer {
@@ -155,11 +158,10 @@ main.sphere-main {
     position: absolute;
     inset: 0;
     z-index: 10;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
     pointer-events: none;
     opacity: 0;
     transition: opacity 500ms ease;
-    backdrop-filter: blur(3px);
 }
 
 .sphere-root[data-enlarging='true'] .viewer .scrim {

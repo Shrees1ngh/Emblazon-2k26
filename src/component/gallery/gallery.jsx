@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import { Flip, ScrollTrigger } from 'gsap/all';
+import DotGrid from '../DotGrid';
 import './gallery.css';
 import DomeGallery from './DomeGallery';
 import Starfield from './Starfield';
@@ -102,6 +103,20 @@ export default function Gallery() {
 
   return (
     <div className="gallery-page">
+      <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
+        <DotGrid
+          dotSize={4}
+          gap={18}
+          baseColor="#271E37"
+          activeColor="#5227FF"
+          proximity={120}
+          shockRadius={240}
+          shockStrength={4}
+          resistance={700}
+          returnDuration={1.2}
+        />
+      </div>
+
       <section className="header-container">
         <div className="title">
           <h1>EMBLAZON <span>GALLERY</span> </h1>

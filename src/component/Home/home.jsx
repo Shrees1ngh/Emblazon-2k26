@@ -31,9 +31,9 @@ export default function Home() {
     tl.to('.section1', { backgroundColor: 'black' }, 'hello')
       .to('.section1 p', { opacity: 1, scale: 1 }, 'hello')
       .to('.section1 img', { opacity: 0 }, 'hello2')
-      .to('.content h4', { opacity: 0 }, 'hello2')
-      .to('.content ul', { opacity: 0 }, 'hello2')
-      .to('.content h1', { scale: 1.3, opacity: 0 })
+      .to('.hero-ghost', { opacity: 0 }, 'hello2')
+      .to('.hero-subtitle', { opacity: 0 }, 'hello2')
+      .to('.hero-title', { scale: 1.3, opacity: 0 })
       .to('.section1 p', { scale: 0.8, opacity: 0 });
 
     const tl1 = gsap.timeline({
@@ -174,18 +174,25 @@ export default function Home() {
     <>
       <div className="section1">
         <img src="https://via.placeholder.com/1200x1000?text=Placeholder" alt="" loading="lazy" decoding="async" />
-        <div className="content">
-          <h4>Design Agency®</h4>
-          <h1>Creative</h1>
-          <ul type="none">
-            <li>UX/UI Design</li>
-            <li>Development</li>
-            <li>Problem Solving</li>
-          </ul>
+
+        {/* ── Big ghost outline text (background) ── */}
+        <div className="hero-ghost" aria-hidden="true">
+          EMBLAZON
         </div>
+
+        {/* ── Main hero content ── */}
+        <div className="content">
+          <div className="hero-title-block">
+            <h1 className="hero-title">
+              <span className="hero-title__main">EMBLAZON</span>
+              <span className="hero-title__year">2K26</span>
+            </h1>
+            <p className="hero-subtitle">THE ANNUAL CULTURAL FEST OF HMRITM</p>
+          </div>
+        </div>
+
         <p>
-          For over a decade, we've partnered worldwide with founders to shape bold
-          identities that redefine markets.
+          Where creativity meets celebration — Emblazon 2K26 awaits you.
         </p>
       </div>
 

@@ -1,30 +1,34 @@
 import { useEffect, useRef } from 'react';
 
-export default function Starfield({ starCount = 200, speed = 0.3 }) {
+export default function Starfield({ starCount = 120, speed = 0.3 }) {
     const canvasRef = useRef(null);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
-        const ctx = canvas.getContext('2d');
+        const ctx = canvas.getContext('2d', { alpha: true });
         let animId;
         let stars = [];
+        let w = 0;
+        let h = 0;
+        let isVisible = true;
 
         const resize = () => {
-            const dpr = window.devicePixelRatio || 1;
+            const dpr = Math.min(window.devicePixelRatio || 1, 2); // cap at 2x for perf
             const rect = canvas.parentElement.getBoundingClientRect();
-            canvas.width = rect.width * dpr;
-            canvas.height = rect.height * dpr;
-            canvas.style.width = rect.width + 'px';
-            canvas.style.height = rect.height + 'px';
+            w = rect.width;
+            h = rect.height;
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         };
 
         const initStars = () => {
-            const rect = canvas.parentElement.getBoundingClientRect();
             stars = Array.from({ length: starCount }, () => ({
-                x: Math.random() * rect.width,
-                y: Math.random() * rect.height,
+                x: Math.random() * w,
+                y: Math.random() * h,
                 z: Math.random() * 3 + 0.5,
                 opacity: Math.random() * 0.7 + 0.3,
                 pulse: Math.random() * Math.PI * 2,
@@ -33,12 +37,14 @@ export default function Starfield({ starCount = 200, speed = 0.3 }) {
         };
 
         const draw = () => {
-            const rect = canvas.parentElement.getBoundingClientRect();
-            const w = rect.width;
-            const h = rect.height;
+            if (!isVisible) {
+                animId = requestAnimationFrame(draw);
+                return;
+            }
             ctx.clearRect(0, 0, w, h);
 
-            for (const star of stars) {
+            for (let i = 0; i < stars.length; i++) {
+                const star = stars[i];
                 star.pulse += star.pulseSpeed;
                 const twinkle = 0.5 + 0.5 * Math.sin(star.pulse);
                 const alpha = star.opacity * twinkle;
@@ -56,27 +62,22 @@ export default function Starfield({ starCount = 200, speed = 0.3 }) {
                 if (star.x < -5) star.x = w + 5;
                 if (star.x > w + 5) star.x = -5;
 
-                // Glow
-                const gradient = ctx.createRadialGradient(
-                    star.x, star.y, 0,
-                    star.x, star.y, radius * 3
-                );
-                gradient.addColorStop(0, `rgba(200, 220, 255, ${alpha})`);
-                gradient.addColorStop(0.4, `rgba(180, 200, 255, ${alpha * 0.4})`);
-                gradient.addColorStop(1, `rgba(150, 180, 255, 0)`);
-
+                // Glow — simple larger circle (no gradient, much faster)
+                ctx.globalAlpha = alpha * 0.25;
+                ctx.fillStyle = 'rgb(190, 210, 255)';
                 ctx.beginPath();
-                ctx.arc(star.x, star.y, radius * 3, 0, Math.PI * 2);
-                ctx.fillStyle = gradient;
+                ctx.arc(star.x, star.y, radius * 2, 0, Math.PI * 2);
                 ctx.fill();
 
                 // Core dot
+                ctx.globalAlpha = alpha;
+                ctx.fillStyle = 'rgb(235, 240, 255)';
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, radius * 0.5, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(235, 240, 255, ${alpha})`;
                 ctx.fill();
             }
 
+            ctx.globalAlpha = 1;
             animId = requestAnimationFrame(draw);
         };
 
@@ -84,14 +85,20 @@ export default function Starfield({ starCount = 200, speed = 0.3 }) {
         initStars();
         draw();
 
-        const ro = new ResizeObserver(() => {
-            resize();
-        });
+        // Pause when off-screen
+        const io = new IntersectionObserver(
+            ([entry]) => { isVisible = entry.isIntersecting; },
+            { threshold: 0 }
+        );
+        io.observe(canvas);
+
+        const ro = new ResizeObserver(() => { resize(); });
         ro.observe(canvas.parentElement);
 
         return () => {
             cancelAnimationFrame(animId);
             ro.disconnect();
+            io.disconnect();
         };
     }, [starCount, speed]);
 
