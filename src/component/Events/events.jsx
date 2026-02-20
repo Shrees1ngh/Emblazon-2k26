@@ -8,6 +8,8 @@ import './events.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const REGISTER_URL = 'https://google.com'; // Replace with Google Form link when ready
+
 /* Category config: accent colours, emojis, and Unsplash banner images
    Palette: warm coral → amber → rose → indigo → fuchsia → teal → gold */
 const categoryConfig = {
@@ -132,6 +134,15 @@ const EventCard = ({ event, index, onImageClick }) => {
           <span>{event.location}</span>
         </div>
       </div>
+      <a
+        href={REGISTER_URL}
+        className="ev-card__register-btn"
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={(e) => e.stopPropagation()}
+      >
+        Register →
+      </a>
     </div>
   );
 };

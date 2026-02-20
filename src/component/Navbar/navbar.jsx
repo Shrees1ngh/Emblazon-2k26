@@ -7,7 +7,7 @@ import heroImage from '../../assets/fest/emblazon logo.png';
 
 import './navbar.css';
 
-const REGISTER_URL = '#'; // Replace with Google Form link when ready
+const REGISTER_URL = 'https://google.com'; // Replace with Google Form link when ready
 
 gsap.registerPlugin(ScrollTrigger);
 

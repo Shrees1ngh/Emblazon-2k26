@@ -331,6 +331,39 @@
     opacity: 0.5;
 }
 
+/* ── Card Register Button ── */
+.ev-card__register-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    align-self: flex-start;
+    padding: 8px 18px;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 0.4rem;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.ev-card__register-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(231, 76, 60, 0.4);
+    filter: brightness(1.1);
+}
+
+.ev-card__register-btn:active {
+    transform: translateY(0) scale(0.97);
+}
+
 /* ── Image Modal ── */
 .ev-modal {
     position: fixed;
