@@ -1,425 +1,583 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './home.css';
 
 gsap.registerPlugin(ScrollTrigger);
-ScrollTrigger.config({ ignoreMobileResize: true });
-if (window.matchMedia('(max-width: 768px)').matches) {
-  gsap.ticker.lagSmoothing(1000, 16);
+
+const REGISTER_URL = 'https://google.com';
+const FEST_DATE = '2026-03-15T00:00:00';
+
+/* ═══ Countdown ═══ */
+function useCountdown(target) {
+  const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 });
+  useEffect(() => {
+    const tick = () => {
+      const diff = Math.max(0, new Date(target) - new Date());
+      setT({
+        d: Math.floor(diff / 86400000),
+        h: Math.floor((diff % 86400000) / 3600000),
+        m: Math.floor((diff % 3600000) / 60000),
+        s: Math.floor((diff % 60000) / 1000),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [target]);
+  return t;
 }
 
-export default function Home() {
-  useEffect(() => {
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-    window.scrollTo(0, 0);
+/* ═══ Floating 3D Geometric Shapes ═══ */
+function Shapes3D() {
+  return (
+    <div className="shapes3d" aria-hidden="true">
+      <div className="shape shape--cube">
+        <div className="shape__face shape__face--front" />
+        <div className="shape__face shape__face--back" />
+        <div className="shape__face shape__face--left" />
+        <div className="shape__face shape__face--right" />
+        <div className="shape__face shape__face--top" />
+        <div className="shape__face shape__face--bottom" />
+      </div>
+      <div className="shape shape--ring" />
+      <div className="shape shape--pyramid">
+        <div className="pyramid__face pyramid__face--1" />
+        <div className="pyramid__face pyramid__face--2" />
+        <div className="pyramid__face pyramid__face--3" />
+        <div className="pyramid__face pyramid__face--4" />
+      </div>
+      <div className="shape shape--ring shape--ring2" />
+      <div className="shape shape--sphere" />
+    </div>
+  );
+}
 
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+/* ═══ Sunburst Clock ═══ */
+function SunburstClock() {
+  const numRays = 60;
+  const innerR = 45;
+  const outerR = 120;
+  const cx = 150;
+  const cy = 150;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.section1',
-        start: '50% 50%',
-        end: '300% 50%',
-        scrub: isMobile ? 0.5 : 1,
-        pin: true,
-      },
-    });
-
-    tl.to('.section1', { backgroundColor: 'black' }, 'hello')
-      .to('.section1 p', { opacity: 1, scale: 1 }, 'hello')
-      .to('.section1 img', { opacity: 0 }, 'hello2')
-      .to('.hero-ghost', { opacity: 0 }, 'hello2')
-      .to('.hero-subtitle', { opacity: 0 }, 'hello2')
-      .to('.hero-title', { scale: 1.3, opacity: 0 })
-      .to('.section1 p', { scale: 0.8, opacity: 0 });
-
-    const tl1 = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.section2',
-        start: '10% 90%',
-        end: '60% 60%',
-        scrub: isMobile ? 1.5 : 3,
-      },
-    });
-
-    tl1
-      .to('.content1', { scale: 1 }, 'da')
-      .to('.para p', { filter: 'blur(0px)' }, 'da')
-      .to('.paragraph1', { transform: ' translateX(0px)' }, 'da')
-      .to('.paragraph2', { transform: ' translateX(0px)' }, 'da');
-
-    const tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.section3',
-        start: '25% 80%',
-        end: '80% 80%',
-        scrub: isMobile ? 1.5 : 3,
-      },
-    });
-
-    tl2
-      .to('.mid-one', { transform: 'translateX(60px)', opacity: '1' }, 'yaya')
-      .to('.mid-two', { transform: 'translateX(60px)' }, 'yaya')
-      .to('.paras', { color: 'black' }, 'yya2')
-      .to('.section3', { backgroundColor: 'white' }, 'yya2');
-
-    const tl3ka = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.forheading',
-        start: '30% 50%',
-        end: '100% 50%',
-        scrub: 2,
-      },
-    });
-
-    tl3ka.to('#creativehead', { xPercent: -35 });
-
-    const tl4kanext = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.section4',
-        start: '5% 0%',
-        end: '120% 50%',
-        scrub: 2,
-        pin: true,
-      },
-    });
-
-    tl4kanext
-      .to('#Branding', { transform: ' translateX(0px)', opacity: ' 1' })
-      .to('#Design', { transform: ' translateX(0px)', opacity: ' 1' })
-      .to('#Marketing', { transform: ' translateX(0px)', opacity: ' 1' }, 'hellobhai')
-      .to('.section4', { backgroundColor: 'black' }, 'hellobhai')
-      .to('.section4-cont', { color: 'white' }, 'hellobhai')
-      .to('.section4', { backgroundColor: 'white' }, 'forinter')
-      .to('.section4-cont', { color: 'black' }, 'forinter');
-
-    const tl5 = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.main-blank',
-        start: '50% 50%',
-        end: '200% 60%',
-        scrub: isMobile ? 1 : 2,
-        pin: true,
-      },
-    });
-
-    tl5
-      .to('.card1', {
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%,-50%) rotateX(0deg)',
-      }, 'forheading')
-      .to('.card2', {
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%,-50%)',
-      }, 'forone')
-      .to('.card1', {
-        scale: 0.7,
-        transform: 'translate(-50%,-50%) rotate(3deg)',
-        opacity: 0,
-      }, 'forone')
-      .to('.card3', {
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%,-50%)',
-      }, 'fortwo')
-      .to('.card2', {
-        scale: 0.7,
-        transform: 'translate(-50%,-50%) rotate(-3deg)',
-        opacity: 0,
-      }, 'fortwo')
-      .to('.card4', {
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%,-50%)',
-      }, 'forthree')
-      .to('.card3', {
-        scale: 0.7,
-        transform: 'translate(-50%,-50%) rotate(3deg)',
-        opacity: 0,
-      }, 'forthree')
-      .to('.card4', { scale: 0.8, opacity: 0.4 });
-
-    const tl6 = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.section7',
-        start: '65% 50%',
-        end: '110% 50%',
-        pin: true,
-        scrub: isMobile ? 1.5 : 3,
-      },
-    });
-
-    tl6
-      .to('.left', { filter: 'blur(0px)', opacity: 1, y: 0 }, 'apit')
-      .to('.right', { filter: 'blur(0px)', opacity: 1, y: 0 }, 'apit');
-
-    ScrollTrigger.refresh();
-
-    return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill(true));
-      gsap.globalTimeline.clear();
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-      document.body.style.width = '';
-      document.documentElement.style.width = '';
-    };
-  }, []);
+  const rays = [];
+  for (let i = 0; i < numRays; i++) {
+    const angle = (i / numRays) * 360;
+    const rad = (angle * Math.PI) / 180;
+    const x1 = cx + innerR * Math.cos(rad);
+    const y1 = cy + innerR * Math.sin(rad);
+    const x2 = cx + outerR * Math.cos(rad);
+    const y2 = cy + outerR * Math.sin(rad);
+    rays.push(<line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(255,255,255,0.4)" strokeWidth="1" />);
+  }
 
   return (
-    <>
-      <div className="section1">
-        <img src="https://via.placeholder.com/1200x1000?text=Placeholder" alt="" loading="lazy" decoding="async" />
+    <div className="sunburst-clock" aria-hidden="true">
+      <svg viewBox="0 0 300 300" className="sunburst-clock__svg">
+        {/* Rays */}
+        <g className="sunburst-clock__rays">{rays}</g>
 
-        {/* ── Big ghost outline text (background) ── */}
-        <div className="hero-ghost" aria-hidden="true">
-          EMBLAZON
-        </div>
+        {/* Orbit Path */}
+        <ellipse cx={cx} cy={cy} rx="140" ry="25" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1" transform={`rotate(-15 ${cx} ${cy})`} />
 
-        {/* ── Main hero content ── */}
-        <div className="content">
-          <div className="hero-title-block">
-            <h1 className="hero-title">
-              <span className="hero-title__main">EMBLAZON</span>
-              <span className="hero-title__year">2K26</span>
-            </h1>
-            <p className="hero-subtitle">THE ANNUAL CULTURAL FEST OF HMRITM</p>
-          </div>
-        </div>
+        {/* Inner ring */}
+        <circle cx={cx} cy={cy} r={innerR} fill="#030014" />
+        <circle cx={cx} cy={cy} r={innerR} fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
 
-        <p>
-          Where creativity meets celebration — Emblazon 2K26 awaits you.
-        </p>
+        {/* Gradient orb (Sun) */}
+        <defs>
+          <radialGradient id="orbGrad" cx="30%" cy="30%">
+            <stop offset="0%" stopColor="#ec4899" />
+            <stop offset="70%" stopColor="#f97316" />
+            <stop offset="100%" stopColor="#f59e0b" />
+          </radialGradient>
+        </defs>
+        <circle cx={cx - 50} cy={cy + 10} r="32" fill="url(#orbGrad)" className="sunburst-clock__orb" />
+
+        {/* Orbit Moon */}
+        <circle cx={cx - 60} cy={cy - 80} r="8" fill="#fff" className="sunburst-clock__moon" />
+
+        {/* Clock hand */}
+        <line
+          x1={cx} y1={cy}
+          x2={cx} y2={cy - outerR - 10}
+          stroke="rgba(255,255,255,0.9)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          className="sunburst-clock__hand"
+        />
+        {/* tiny center dot */}
+        <circle cx={cx} cy={cy} r="3" fill="rgba(255,255,255,0.9)" />
+      </svg>
+      {/* Scattered stars */}
+      <div className="sunburst-clock__stars">
+        {[...Array(12)].map((_, i) => (
+          <span key={i} className="sunburst-star" style={{
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+            animationDelay: `${Math.random() * 3}s`,
+            width: `${Math.random() * 2 + 1}px`,
+            height: `${Math.random() * 2 + 1}px`,
+          }} />
+        ))}
       </div>
+    </div>
+  );
+}
 
-      <div className="section2">
-        <div className="content1">
-          <h4>Profile</h4>
-          <h1>
-            We transform bold ideas into standout brands through strategy, design,
-            and marketing — all seamlessly integrated
-          </h1>
-          <div className="para">
-            <p className="paragraph1">
-              From day one, our mission has been to craft timeless identities that
-              cut through the noise. Each year we collaborate with five teams to
-              ensure unrivaled attention and dedication
-            </p>
-            <p className="paragraph2">
-              For over a decade, we've partnered worldwide with founders to shape
-              bold identities that redefine markets.
-            </p>
-          </div>
-        </div>
+/* ═══ Marquee ═══ */
+function Marquee({ children, speed = 30 }) {
+  return (
+    <div className="marquee" style={{ '--speed': `${speed}s` }}>
+      <div className="marquee__track">
+        <span className="marquee__content">{children}</span>
+        <span className="marquee__content" aria-hidden="true">{children}</span>
       </div>
+    </div>
+  );
+}
 
-      <div className="section3">
-        <div className="top">
-          <h5>Expertise</h5>
-          <h1>Expertise speaks volumes.</h1>
-          <p>2025®</p>
-        </div>
-        <div className="mid">
-          <div className="mid-one"></div>
-          <div className="mid-two"></div>
-        </div>
-        <div className="botom">
-          <div className="paras">
-            <p id="paras1">
-              Our approach blends strategy and design to build brands that stand
-              <br />the test of time. We dive deep into every detail to create
-              <br />
-              meaningful, lasting connections.
-            </p>
-            <p id="paras2">
-              Driven by precision and purpose, we shape bold <br />
-              visual systems that empower brands to lead. Every <br />
-              project reflects our passion for clarity and excellence.
-            </p>
-          </div>
-        </div>
-      </div>
+/* ═══ 3D Tilt Card Hook ═══ */
+function useTilt3D(ref, strength = 15) {
+  const handleMove = useCallback((e) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
+    const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
+    gsap.to(el, {
+      rotationY: x * strength,
+      rotationX: -y * strength,
+      duration: 0.4,
+      ease: 'power2.out',
+      transformPerspective: 800,
+    });
+  }, [ref, strength]);
 
-      <div className="forheading">
-        <h1 id="creativehead">Creative ® Studio Creative ® Studio</h1>
-      </div>
+  const handleLeave = useCallback(() => {
+    if (!ref.current) return;
+    gsap.to(ref.current, {
+      rotationY: 0, rotationX: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)',
+    });
+  }, [ref]);
 
-      <div className="section4">
-        <div className="section4-cont">
-          <h2 id="Branding">Branding</h2>
-          <h2 id="Design">Design</h2>
-          <h2 id="Marketing">Marketing</h2>
-        </div>
-      </div>
+  return { onMouseMove: handleMove, onMouseLeave: handleLeave };
+}
 
-      <div className="blank blank1"></div>
-      <div className="main-blank">
-        <h6>Featured Works</h6>
-        <div className="card card1">
-          <h1>Reisfel</h1>
-          <div className="fordate">
-            <p>Branding</p>
-            <p>December 30, 2025</p>
-          </div>
-        </div>
-        <div className="card card2">
-          <h1>Delvyes</h1>
-          <div className="fordate">
-            <p>Branding</p>
-            <p>December 30, 2025</p>
-          </div>
-        </div>
-        <div className="card card3">
-          <h1>Clairvy</h1>
-          <div className="fordate">
-            <p>Branding</p>
-            <p>December 30, 2025</p>
-          </div>
-        </div>
-        <div className="card card4">
-          <h1>Racely</h1>
-          <div className="fordate">
-            <p>Branding</p>
-            <p>December 30, 2025</p>
-          </div>
-        </div>
-      </div>
+/* ═══ 3D Category Card ═══ */
+function CatCard3D({ cat }) {
+  const ref = useRef(null);
+  const tilt = useTilt3D(ref, 12);
+  return (
+    <Link
+      to="/events"
+      ref={ref}
+      className="cat-card"
+      style={{ '--c': cat.color }}
+      {...tilt}
+    >
+      <div className="cat-card__shine" />
+      <div className="cat-card__glow" />
+      <div className="cat-card__icon">{cat.icon}</div>
+      <h3 className="cat-card__name">{cat.name}</h3>
+      <p className="cat-card__tagline">{cat.tagline}</p>
+      <span className="cat-card__count">{cat.events} events →</span>
+    </Link>
+  );
+}
 
-      <div className="section6">
-        <h3>Trusted by Clients</h3>
+/* ═══ 3D Schedule Card ═══ */
+function SchedCard3D({ day, date, theme, desc, items, variant }) {
+  const ref = useRef(null);
+  const tilt = useTilt3D(ref, 8);
+  return (
+    <div ref={ref} className={`sched-card sched-card--${variant}`} {...tilt}>
+      <div className="sched-card__badge">Day {day}</div>
+      <span className="sched-card__date">{date}</span>
+      <h3 className="sched-card__theme">{theme}</h3>
+      <p className="sched-card__desc">{desc}</p>
+      <ul className="sched-card__list">
+        {items.map(e => <li key={e}>{e}</li>)}
+      </ul>
+    </div>
+  );
+}
 
-        <div className="prof">
-          <div className="cardsp cardsp1">
-            <div className="img"></div>
-            <p>
-              "The team is efficient and reliable. They delivered everything they
-              promised. I will definitely hire them again for future projects."
-            </p>
-            <h3>H. Rackham, Carrot</h3>
-          </div>
-          <div className="cardsp cardsp2">
-            <div className="img"></div>
-            <p>
-              "The team is efficient and reliable. They delivered everything they
-              promised. I will definitely hire them again for future projects."
-            </p>
-            <h3>H. Rackham, Carrot</h3>
-          </div>
-          <div className="cardsp cardsp3">
-            <div className="img"></div>
-            <p>
-              "The team is efficient and reliable. They delivered everything they
-              promised. I will definitely hire them again for future projects."
-            </p>
-            <h3>H. Rackham, Carrot</h3>
-          </div>
+/* ═══ Data ═══ */
+const categories = [
+  { name: 'Cultural', icon: '🎭', events: 5, color: '#F97066', tagline: 'Fashion · Rap · Personality' },
+  { name: 'Music', icon: '🎵', events: 5, color: '#818CF8', tagline: 'Solo · Duet · Buzz to Sing' },
+  { name: 'Dance', icon: '💃', events: 3, color: '#E879F9', tagline: 'Solo · Duet · Group Battle' },
+  { name: 'Drama', icon: '🎬', events: 3, color: '#FB7185', tagline: 'Street · One Act · Mono' },
+  { name: 'Literary & Arts', icon: '🎨', events: 12, color: '#2DD4BF', tagline: 'Debate · Poetry · Rangoli' },
+  { name: 'Star Evening', icon: '⭐', events: 1, color: '#FCD34D', tagline: 'The Grand Finale Night' },
+];
+
+const stats = [
+  { num: '30+', label: 'Events', icon: '🎪' },
+  { num: '2', label: 'Epic Days', icon: '📅' },
+  { num: '6', label: 'Categories', icon: '🏷️' },
+  { num: '1000+', label: 'Participants', icon: '👥' },
+];
+
+/* ═══════════════════════════════════════════
+   HOME
+   ═══════════════════════════════════════════ */
+export default function Home() {
+  const cd = useCountdown(FEST_DATE);
+  const heroRef = useRef(null);
+  const heroContentRef = useRef(null);
+  const aboutRef = useRef(null);
+  const catRef = useRef(null);
+  const statsRef = useRef(null);
+  const schedRef = useRef(null);
+  const ctaRef = useRef(null);
+  const cursorRef = useRef(null);
+
+  /* ── 3D Hero parallax tilt on mouse ── */
+  const handleHeroMouse = useCallback((e) => {
+    if (!heroContentRef.current) return;
+    const { innerWidth: w, innerHeight: h } = window;
+    const x = (e.clientX / w - 0.5) * 2;
+    const y = (e.clientY / h - 0.5) * 2;
+    gsap.to(heroContentRef.current, {
+      rotationY: x * 4,
+      rotationX: -y * 3,
+      duration: 0.8,
+      ease: 'power2.out',
+      transformPerspective: 1200,
+    });
+    if (cursorRef.current) {
+      cursorRef.current.style.left = `${e.clientX}px`;
+      cursorRef.current.style.top = `${e.clientY}px`;
+    }
+  }, []);
+
+  const handleHeroLeave = useCallback(() => {
+    if (!heroContentRef.current) return;
+    gsap.to(heroContentRef.current, {
+      rotationY: 0, rotationX: 0, duration: 1.2, ease: 'elastic.out(1, 0.3)',
+    });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('mousemove', (e) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.left = `${e.clientX}px`;
+        cursorRef.current.style.top = `${e.clientY}px`;
+      }
+    });
+  }, []);
+
+  /* ── GSAP ── */
+  useEffect(() => {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+
+    const ctx = gsap.context(() => {
+      /* Hero cinematic entrance */
+      const heroTl = gsap.timeline({ delay: 0.3 });
+      heroTl
+        .from('.hero__badge', { opacity: 0, y: 30, scale: 0.9, duration: 0.6, ease: 'back.out(1.8)' })
+        .from('.hero__letter', {
+          opacity: 0, y: 100, rotationX: -90, scale: 0.5,
+          duration: 0.9, ease: 'power4.out', stagger: 0.06,
+        }, '-=0.3')
+        .from('.sunburst-clock', {
+          opacity: 0, scale: 0, rotation: 360,
+          duration: 1.2, ease: 'back.out(1.5)',
+        }, '-=0.6')
+        .from('.hero__year', {
+          opacity: 0, scale: 0, rotation: -360, z: -200,
+          duration: 1, ease: 'back.out(2)',
+        }, '-=0.8')
+        .from('.hero__tagline', { opacity: 0, y: 30, filter: 'blur(10px)', duration: 0.7 }, '-=0.4')
+        .from('.cd-box', {
+          opacity: 0, y: 50, rotationX: -45, scale: 0.7,
+          duration: 0.6, stagger: 0.08, ease: 'back.out(1.8)',
+          transformPerspective: 600,
+        }, '-=0.3')
+        .from('.hero__cta', {
+          opacity: 0, y: 30, scale: 0.8,
+          duration: 0.5, stagger: 0.12, ease: 'back.out(2)',
+        }, '-=0.2')
+        .from('.hero__scroll', { opacity: 0, duration: 0.8 }, '-=0.1')
+        .from('.shape', {
+          opacity: 0, scale: 0, rotation: 180,
+          duration: 1, stagger: 0.15, ease: 'back.out(1.5)',
+        }, '-=1.2');
+
+      /* Hero scroll parallax */
+      gsap.to('.hero__content', {
+        scrollTrigger: { trigger: heroRef.current, start: 'top top', end: 'bottom top', scrub: 1 },
+        y: -150, opacity: 0, scale: 0.85, rotationX: 10,
+        transformPerspective: 1000,
+      });
+
+      gsap.to('.shapes3d', {
+        scrollTrigger: { trigger: heroRef.current, start: 'top top', end: 'bottom top', scrub: 1 },
+        y: -100, opacity: 0,
+      });
+
+      /* Marquee */
+      gsap.from('.marquee-section', {
+        scrollTrigger: { trigger: '.marquee-section', start: 'top 92%' },
+        opacity: 0, scaleX: 0.8, duration: 1, ease: 'power3.out',
+      });
+
+      /* About */
+      const aboutTl = gsap.timeline({
+        scrollTrigger: { trigger: aboutRef.current, start: 'top 75%' },
+      });
+      aboutTl
+        .from('.about__label', { opacity: 0, x: -40, duration: 0.5 })
+        .from('.about__title', { opacity: 0, y: 50, rotationX: -15, duration: 0.7, transformPerspective: 800 }, '-=0.2')
+        .from('.about__text', {
+          opacity: 0, y: 40, filter: 'blur(6px)',
+          duration: 0.6, stagger: 0.15,
+        }, '-=0.3')
+        .from('.about__feature', {
+          opacity: 0, y: 40, scale: 0.8, rotationY: 20,
+          duration: 0.5, stagger: 0.08, ease: 'back.out(1.5)',
+          transformPerspective: 600,
+        }, '-=0.2');
+
+      /* Categories - 3D entrance */
+      gsap.from('.cat-card', {
+        scrollTrigger: { trigger: catRef.current, start: 'top 80%' },
+        opacity: 0, z: -200, rotationY: 25, y: 80,
+        duration: 0.8, stagger: 0.1, ease: 'power3.out',
+        transformPerspective: 1000,
+      });
+
+      /* Stats - 3D flip in */
+      gsap.from('.stat-item', {
+        scrollTrigger: { trigger: statsRef.current, start: 'top 82%' },
+        opacity: 0, rotationX: -60, y: 60, scale: 0.7,
+        duration: 0.7, stagger: 0.12, ease: 'back.out(1.6)',
+        transformPerspective: 800,
+      });
+
+      /* Schedule - 3D slide up */
+      gsap.from('.sched-card', {
+        scrollTrigger: { trigger: schedRef.current, start: 'top 80%' },
+        opacity: 0, y: 100, rotationX: -20, z: -100,
+        duration: 0.9, stagger: 0.25, ease: 'power3.out',
+        transformPerspective: 1000,
+      });
+
+      /* CTA - 3D scale pop */
+      gsap.from('.cta-box', {
+        scrollTrigger: { trigger: ctaRef.current, start: 'top 85%' },
+        opacity: 0, y: 80, rotationX: -15, scale: 0.9,
+        duration: 1, ease: 'power3.out',
+        transformPerspective: 1000,
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  const titleLetters = 'EMBLAZON'.split('');
+
+  return (
+    <div className="hm">
+      <div ref={cursorRef} className="cursor-glow" />
+
+      {/* ═══════════ HERO ═══════════ */}
+      <section
+        ref={heroRef}
+        className="hero"
+        onMouseMove={handleHeroMouse}
+        onMouseLeave={handleHeroLeave}
+      >
+        <div className="hero__glow-orbs" aria-hidden="true">
+          <div className="glow-orb glow-orb--1" />
+          <div className="glow-orb glow-orb--2" />
+          <div className="glow-orb glow-orb--3" />
         </div>
-      </div>
+        <div className="hero__noise" />
+        <div className="hero__stars-bg" />
+        <div className="hero__corner-glow hero__corner-glow--left" />
+        <div className="hero__corner-glow hero__corner-glow--right" />
+        <Shapes3D />
 
-      <div className="section7">
-        <h3>Pricing Plans</h3>
-        <p>Clear, transparent pricing for every stage.</p>
-        <div className="pricecart">
-          <div className="left">
-            <h4>Initial</h4>
-            <h1>$750</h1>
-            <p>
-              Perfect for entrepreneurs or small brands building their identity
-              from scratch.
-            </p>
-            <h3>What's included ?</h3>
-            <div className="list">
-              <p><i className="ri-add-line"></i>Basic visual identity</p>
-              <p><i className="ri-add-line"></i>Very light market research</p>
-              <p><i className="ri-add-line"></i>UX/UI layout for up to 1 pages</p>
-              <p><i className="ri-add-line"></i>Simple landing page</p>
-              <p><i className="ri-add-line"></i>Simple website setup</p>
-              <p><i className="ri-add-line"></i>One monthly support message via email</p>
-              <p><i className="ri-add-line"></i>Simple intro micro-animation (5–8 seconds)</p>
-              <p><i className="ri-add-line"></i>No brand strategy or additional assets included</p>
-              <p><i className="ri-add-line"></i>Limited revisions and adjustments</p>
+        <div ref={heroContentRef} className="hero__content">
+          <div className="hero__main-row">
+            <div className="hero__title-box">
+              <div className="hero__title-wrapper">
+                <div className="hero__title-outline" aria-hidden="true">
+                  EMBLAZON<br />2K26
+                </div>
+                <h1 className="hero__title" aria-label="EMBLAZON 2K26">
+                  <div className="hero__title-line">
+                    {titleLetters.map((l, i) => (
+                      <span key={i} className="hero__letter" style={{ '--i': i }}>{l}</span>
+                    ))}
+                  </div>
+                </h1>
+                <div className="hero__year">2K26</div>
+              </div>
+
+              <p className="hero__tagline">
+                THE ANNUAL CULTURAL FEST OF HMRITM
+              </p>
+            </div>
+
+            <div className="hero__clock-box">
+              <SunburstClock />
             </div>
           </div>
-          <div className="right">
-            <h4>Custom Project</h4>
-            <h1>$1.499</h1>
-            <p>
-              Ideal for established brands or corporations needing full-scale
-              strategic support.
-            </p>
-            <h3>What's included ?</h3>
-            <div className="list">
-              <p><i className="ri-add-line"></i>Full brand strategy + identity system</p>
-              <p><i className="ri-add-line"></i>Comprehensive market research</p>
-              <p><i className="ri-add-line"></i>UX/UI design for complete website experience</p>
-              <p><i className="ri-add-line"></i>Full development (Webflow or custom)</p>
-              <p><i className="ri-add-line"></i>Advanced motion design & animations</p>
-              <p><i className="ri-add-line"></i>3D visual assets or product renders</p>
-              <p><i className="ri-add-line"></i>Marketing strategy & content direction</p>
-              <p><i className="ri-add-line"></i>Dedicated account manager</p>
-              <p><i className="ri-add-line"></i>Priority support & weekly progress reviews</p>
+
+          <div className="hero__bottom-row">
+            <div className="hero__countdown-wrap">
+              {[
+                { v: cd.d, l: 'days' },
+                { v: cd.h, l: 'hours' },
+                { v: cd.m, l: 'mins' },
+                { v: cd.s, l: 'secs' },
+              ].map(({ v, l }) => (
+                <div key={l} className="cd-box cd-box--giant">
+                  <span className="cd-num">{String(v).padStart(2, '0')}</span>
+                  <span className="cd-lbl">{l}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="hero__cta-row">
+              <a href={REGISTER_URL} className="hero__cta hero__cta--primary" target="_blank" rel="noopener noreferrer">
+                <span>Register Now</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+              </a>
+              <Link to="/events" className="hero__cta hero__cta--ghost">
+                Explore Events
+              </Link>
             </div>
           </div>
+
+          <div className="hero__scroll">
+            <div className="hero__scroll-mouse"><div className="hero__scroll-wheel" /></div>
+            <span>Scroll</span>
+          </div>
         </div>
+      </section>
+
+      {/* ═══════════ MARQUEE ═══════════ */}
+      <div className="marquee-section">
+        <Marquee speed={25}>
+          CULTURAL &nbsp;✦&nbsp; MUSIC &nbsp;✦&nbsp; DANCE &nbsp;✦&nbsp; DRAMA &nbsp;✦&nbsp; LITERARY &nbsp;✦&nbsp; STAR EVENING &nbsp;✦&nbsp; FASHION PARADE &nbsp;✦&nbsp; RAPPING &nbsp;✦&nbsp; SOLO SINGING &nbsp;✦&nbsp; GROUP DANCE &nbsp;✦&nbsp;
+        </Marquee>
       </div>
 
-      <div className="section8">
-        <h2>Why Work With Us</h2>
-        <div className="container">
-          <div className="lft">
-            <h1>Why us?</h1>
-
-            <p>
-              Elevate your brand with a studio that brings strategy, design,
-              motion, and technology together — delivering visuals that stand out,
-              stories that resonate, and digital experiences built to perform.
-            </p>
-            <h2 className="horn">
-              Choosing the right studio matters — especially when your brand needs
-              to stand out, move, and perform. We combine design, motion, and web
-              to deliver work that makes an instant impact and keeps your audience
-              engaged.
-            </h2>
-          </div>
-          <div className="rht">
-            <h1>Metrics</h1>
-            <div className="img"></div>
-            <div className="imgbottom">
-              <div className="peop peop1"></div>
-              <div className="peop peop2"></div>
-              <div className="peop peop3"></div>
-              <p>2M+ Happy Clients</p>
-            </div>
+      {/* ═══════════ ABOUT ═══════════ */}
+      <section ref={aboutRef} className="about">
+        <div className="about__inner">
+          <span className="about__label section-label">About The Fest</span>
+          <h2 className="about__title section-title">
+            Where Talent Meets <span>Celebration</span>
+          </h2>
+          <p className="about__text">
+            Emblazon is not just a fest — it's a two-day hurricane of energy, talent, and unforgettable
+            moments. From electrifying dance battles to soulful musical performances, from intense debates
+            to the glamour of the fashion parade — every corner of HMRITM comes alive.
+          </p>
+          <p className="about__text">
+            Open to all colleges across Delhi-NCR, Emblazon 2K26 is your stage to compete, perform,
+            create, and celebrate the best of what college life has to offer.
+          </p>
+          <div className="about__features">
+            {['🎤 Live Performances', '🏆 30+ Competitions', '🎨 Art & Poetry', '⭐ Star Evening', '🎪 Open to All', '📸 Memories Forever'].map(f => (
+              <div key={f} className="about__feature">{f}</div>
+            ))}
           </div>
         </div>
+      </section>
+
+      {/* ═══════════ CATEGORIES ═══════════ */}
+      <section ref={catRef} className="cats">
+        <span className="section-label">What&apos;s On</span>
+        <h2 className="section-title">Event <span>Categories</span></h2>
+        <div className="cat-grid">
+          {categories.map((c) => <CatCard3D key={c.name} cat={c} />)}
+        </div>
+      </section>
+
+      {/* ═══════════ STATS ═══════════ */}
+      <section ref={statsRef} className="stats-section">
+        <div className="stats-grid">
+          {stats.map(s => (
+            <div key={s.label} className="stat-item">
+              <span className="stat-item__icon">{s.icon}</span>
+              <span className="stat-item__num">{s.num}</span>
+              <span className="stat-item__label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══════════ MARQUEE 2 ═══════════ */}
+      <div className="marquee-section marquee-section--reverse">
+        <Marquee speed={35}>
+          EMBLAZON 2K26 &nbsp;✦&nbsp; HMRITM DELHI &nbsp;✦&nbsp; MARCH 15–16 &nbsp;✦&nbsp; REGISTER NOW &nbsp;✦&nbsp; EMBLAZON 2K26 &nbsp;✦&nbsp; HMRITM DELHI &nbsp;✦&nbsp; MARCH 15–16 &nbsp;✦&nbsp;
+        </Marquee>
       </div>
 
-      <div className="section9">
-        <div className="top">
-          <h1>Let's Talk</h1>
-          <button>Start</button>
+      {/* ═══════════ SCHEDULE ═══════════ */}
+      <section ref={schedRef} className="schedule">
+        <span className="section-label">The Lineup</span>
+        <h2 className="section-title">Two Days of <span>Pure Energy</span></h2>
+        <div className="sched-grid">
+          <SchedCard3D day={1} date="March 15, 2026" theme="Ignite" variant="1"
+            desc="The opening day sets the stage on fire with solo performances, literary competitions, and crowd favourites."
+            items={['Fashion Parade', 'Rapping Battle', 'Solo Singing & Dance', 'Debate Competition', 'Treasure Hunt', 'Street Play', 'Poetria & Shayari', '+ many more']}
+          />
+          <SchedCard3D day={2} date="March 16, 2026" theme="Blaze" variant="2"
+            desc="The grand finale — group acts, dramatic performances, creative showcases, and the legendary Star Evening."
+            items={['Mr. & Ms. Emblazon', 'Group Dance Battle', 'One Act Play', 'Rangoli & Tech Art', 'Bollywood Faceoff', 'Nach Baliye (Duet)', '⭐ Star Evening']}
+          />
         </div>
-        <div className="bottom">
-          <h1>Veauly Studio</h1>
-          <div className="footercontent">
-            <div className="left">
-              <a href="#">Nicodev</a>
-              <a href="#">From Webflow</a>
-              <a href="#">Licences</a>
-            </div>
-            <div className="rht">
-              <div className="point"><i className="ri-instagram-line"></i></div>
-              <div className="point"><i className="ri-youtube-line"></i></div>
-              <div className="point"><i className="ri-facebook-fill"></i></div>
-              <div className="point"><i className="ri-twitter-fill"></i></div>
-            </div>
+      </section>
+
+      {/* ═══════════ CTA ═══════════ */}
+      <section ref={ctaRef} className="cta-section">
+        <div className="cta-box">
+          <div className="cta-box__orbs" aria-hidden="true">
+            <div className="cta-orb cta-orb--1" />
+            <div className="cta-orb cta-orb--2" />
+          </div>
+          <h2>Ready to be part of something <span>extraordinary</span>?</h2>
+          <p>March 15–16, 2026 · HMRITM, Delhi</p>
+          <a href={REGISTER_URL} className="hero__cta hero__cta--primary hero__cta--lg" target="_blank" rel="noopener noreferrer">
+            <span>Register Now</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+          </a>
+        </div>
+      </section>
+
+      {/* ═══════════ FOOTER ═══════════ */}
+      <footer className="footer">
+        <div className="footer__inner">
+          <div className="footer__brand">
+            <h3>EMBLAZON<span>2K26</span></h3>
+            <p>HMR Institute of Technology & Management, Delhi</p>
+          </div>
+          <div className="footer__links">
+            <Link to="/events">Events</Link>
+            <Link to="/gallery">Gallery</Link>
+            <Link to="/team">Team</Link>
+            <Link to="/sponsors">Sponsors</Link>
+          </div>
+          <div className="footer__social">
+            <a href="#" aria-label="Instagram"><i className="ri-instagram-line"></i></a>
+            <a href="#" aria-label="YouTube"><i className="ri-youtube-line"></i></a>
+            <a href="#" aria-label="Facebook"><i className="ri-facebook-fill"></i></a>
+            <a href="#" aria-label="Twitter"><i className="ri-twitter-fill"></i></a>
           </div>
         </div>
-      </div>
-    </>
+        <p className="footer__copy">© 2026 Emblazon · HMRITM, Delhi. All rights reserved.</p>
+      </footer>
+    </div>
   );
 }
