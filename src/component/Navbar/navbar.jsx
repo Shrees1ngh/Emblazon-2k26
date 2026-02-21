@@ -7,7 +7,7 @@ import heroImage from '../../assets/fest/emblazon logo.png';
 
 import './navbar.css';
 
-const REGISTER_URL = 'https://google.com'; // Replace with Google Form link when ready
+const REGISTER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSceQNyjkvTdnhg_4XZfMQJypM5svwxLRJWI77HHnO1OGL7PdQ/viewform'; // Replace with Google Form link when ready
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -73,12 +73,24 @@ export default function Navbar() {
         </div>
         <div className="nav-center">
           <div className="main-links">
-            <NavLink to="/" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/'); }}>Home</NavLink>
-            <NavLink to="/gallery" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/gallery'); }}>Gallery</NavLink>
-            <NavLink to="/team" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/team'); }}>Team</NavLink>
-            <NavLink to="/events" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/events'); }}>Events</NavLink>
-            <NavLink to="/sponsors" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/sponsors'); }}>Sponsors</NavLink>
-            <NavLink to="/about" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/about'); }}>About</NavLink>
+            {[
+              { path: '/', name: 'Home', icon: '🏠' },
+              { path: '/gallery', name: 'Gallery', icon: '📸' },
+              { path: '/team', name: 'Team', icon: '🚀' },
+              { path: '/events', name: 'Events', icon: '🎭' },
+              { path: '/sponsors', name: 'Sponsors', icon: '🤝' },
+              { path: '/about', name: 'About', icon: '✨' }
+            ].map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
+                onClick={(e) => { e.preventDefault(); handleNav(item.path); }}
+              >
+                <span className="nav-icon">{item.icon}</span>
+                <span className="nav-text">{item.name}</span>
+              </NavLink>
+            ))}
           </div>
         </div>
         <div className="nav-right">
@@ -93,12 +105,24 @@ export default function Navbar() {
 
       {(portalContainer && isMenuOpen) && (createPortal(
         <div className="main-links mobile-open" aria-hidden={!isMenuOpen} role="menu">
-          <NavLink to="/" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/'); }}>Home</NavLink>
-          <NavLink to="/gallery" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/gallery'); }}>Gallery</NavLink>
-          <NavLink to="/team" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/team'); }}>Team</NavLink>
-          <NavLink to="/events" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/events'); }}>Events</NavLink>
-          <NavLink to="/sponsors" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/sponsors'); }}>Sponsors</NavLink>
-          <NavLink to="/about" className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')} onClick={(e) => { e.preventDefault(); handleNav('/about'); }}>About</NavLink>
+          {[
+            { path: '/', name: 'Home', icon: '🏠' },
+            { path: '/gallery', name: 'Gallery', icon: '📸' },
+            { path: '/team', name: 'Team', icon: '🚀' },
+            { path: '/events', name: 'Events', icon: '🎭' },
+            { path: '/sponsors', name: 'Sponsors', icon: '🤝' },
+            { path: '/about', name: 'About', icon: '✨' }
+          ].map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
+              onClick={(e) => { e.preventDefault(); handleNav(item.path); }}
+            >
+              <span className="nav-icon">{item.icon}</span>
+              <span className="nav-text">{item.name}</span>
+            </NavLink>
+          ))}
           <a href={REGISTER_URL} className="register-btn mobile" target="_blank" rel="noopener noreferrer">Register</a>
         </div>,
         portalContainer

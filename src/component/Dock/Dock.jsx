@@ -10,7 +10,6 @@ const Dock = ({ items, activeItem, onItemClick }) => {
         if (!dock) return;
 
         const icons = dock.querySelectorAll('.dock-icon');
-        const dockRect = dock.getBoundingClientRect();
         const mouseX = e.clientX;
 
         icons.forEach((icon) => {
@@ -18,16 +17,22 @@ const Dock = ({ items, activeItem, onItemClick }) => {
             const iconCenterX = rect.left + rect.width / 2;
             const dist = Math.abs(mouseX - iconCenterX);
 
-            // Calculate scale based on distance (macOS style)
-            // Max scale 1.5 at center, dropping to 1 at 150px distance
             let scale = 1;
+            // Less extreme scaling for pills (1.15x instead of 1.3x)
             if (dist < 150) {
-                scale = 1 + (1.5 - 1) * (1 - dist / 150);
+                scale = 1 + (1.15 - 1) * Math.cos((dist / 150) * (Math.PI / 2));
             }
+
+            const baseWidth = icon.offsetWidth || 60;
+            const marginX = (scale - 1) * baseWidth / 2;
 
             gsap.to(icon, {
                 scale: scale,
-                duration: 0.1,
+                marginLeft: marginX,
+                marginRight: marginX,
+                y: -(scale - 1) * 15,
+                duration: 0.15,
+                ease: 'power2.out',
                 overwrite: 'auto'
             });
         });
@@ -40,8 +45,11 @@ const Dock = ({ items, activeItem, onItemClick }) => {
 
         gsap.to(icons, {
             scale: 1,
-            duration: 0.2,
-            ease: 'power2.out',
+            marginLeft: 0,
+            marginRight: 0,
+            y: 0,
+            duration: 0.4,
+            ease: 'elastic.out(1, 0.5)',
             overwrite: 'auto'
         });
     };

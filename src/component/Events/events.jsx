@@ -8,7 +8,7 @@ import './events.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const REGISTER_URL = 'https://google.com'; // Replace with Google Form link when ready
+const REGISTER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSceQNyjkvTdnhg_4XZfMQJypM5svwxLRJWI77HHnO1OGL7PdQ/viewform'; // Replace with Google Form link when ready
 
 /* Category config: accent colours, emojis, and Unsplash banner images
    Palette: warm coral → amber → rose → indigo → fuchsia → teal → gold */
@@ -134,15 +134,17 @@ const EventCard = ({ event, index, onImageClick }) => {
           <span>{event.location}</span>
         </div>
       </div>
-      <a
-        href={REGISTER_URL}
-        className="ev-card__register-btn"
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={(e) => e.stopPropagation()}
-      >
-        Register →
-      </a>
+      {event.category !== 'Star Evening' && (
+        <a
+          href={REGISTER_URL}
+          className="ev-card__register-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+        >
+          Register →
+        </a>
+      )}
     </div>
   );
 };
@@ -153,53 +155,49 @@ const EventSection = ({ title, events: sectionEvents, bannerUrl, accent, onImage
 
   useLayoutEffect(() => {
     const el = sectionRef.current;
-    if (!el) return;
-
-    const banner = el.querySelector('.ev-section__banner');
-    const heading = el.querySelector('.ev-section__title');
-
-    // Setup static elements only once
-    if (banner) gsap.set(banner, { opacity: 0, y: 30 });
-    if (heading) gsap.set(heading, { opacity: 0, x: -30 });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse',
-      },
-    });
-
-    if (banner) tl.to(banner, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' });
-    if (heading) tl.to(heading, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
-
-    return () => tl.kill();
-  }, []);
-
-  useLayoutEffect(() => {
-    const el = sectionRef.current;
     if (!el || !sectionEvents.length) return;
 
-    const cards = el.querySelectorAll('.ev-card');
-    gsap.fromTo(
-      cards,
-      { opacity: 0, y: 40, scale: 0.95 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.5,
-        ease: 'back.out(1.2)',
-        stagger: 0.08,
+    let ctx = gsap.context(() => {
+      const banner = el.querySelector('.ev-section__banner');
+      const heading = el.querySelector('.ev-section__title');
+
+      if (banner) gsap.set(banner, { opacity: 0, y: 30 });
+      if (heading) gsap.set(heading, { opacity: 0, x: -30 });
+
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
           start: 'top 85%',
           toggleActions: 'play none none reverse',
         },
-      }
-    );
+      });
 
-    return () => ScrollTrigger.getAll().forEach(t => t.trigger === el && t.vars.onUpdate && t.kill());
+      if (banner) tl.to(banner, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' });
+      if (heading) tl.to(heading, { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
+
+      const cards = el.querySelectorAll('.ev-card');
+      if (cards.length > 0) {
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 40, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.5,
+            ease: 'back.out(1.2)',
+            stagger: 0.08,
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      }
+    }, el);
+
+    return () => ctx.revert();
   }, [sectionEvents]);
 
   if (!sectionEvents.length) return null;
@@ -268,16 +266,20 @@ const Event = () => {
   useEffect(() => {
     const el = heroRef.current;
     if (!el) return;
-    const t = el.querySelector('.ev-hero__title');
-    const s = el.querySelector('.ev-hero__sub');
-    const l = el.querySelector('.ev-hero__line');
-    gsap.set([t, s], { opacity: 0, y: 40 });
-    gsap.set(l, { scaleX: 0 });
-    const tl = gsap.timeline({ delay: 0.15 });
-    tl.to(t, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' });
-    tl.to(s, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
-    tl.to(l, { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.2');
-    return () => tl.kill();
+
+    let ctx = gsap.context(() => {
+      const t = el.querySelector('.ev-hero__title');
+      const s = el.querySelector('.ev-hero__sub');
+      const l = el.querySelector('.ev-hero__line');
+      gsap.set([t, s], { opacity: 0, y: 40 });
+      gsap.set(l, { scaleX: 0 });
+      const tl = gsap.timeline({ delay: 0.15 });
+      tl.to(t, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' });
+      tl.to(s, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
+      tl.to(l, { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.2');
+    }, el);
+
+    return () => ctx.revert();
   }, []);
 
   useEffect(() => {

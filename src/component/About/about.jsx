@@ -122,7 +122,8 @@ export default function About() {
             color: '#e8e8ef',
             lineHeight: 1.8,
             fontSize: 'clamp(0.95rem, 2.8vw, 1.06rem)',
-            boxShadow: '0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)'
+            boxShadow: '0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)',
+            textAlign: 'justify'
           }}
         >
           <h1 className="about-animate" style={{ marginBottom: '1rem', color: '#ff7eb3', fontSize: 'clamp(1.5rem, 6vw, 2.5rem)', textShadow: '0 2px 12px rgba(255,126,179,0.35)' }}>About</h1>

@@ -50,14 +50,14 @@ const coreTeam = [
   },
   {
     id: 3,
-    name: 'Deepansha Arya',
+    name: 'Team Member 3',
     role: 'Cultural Head',
     image: 'https://via.placeholder.com/300x300?text=Deepansha',
     socials: { linkedin: '#', instagram: '#', email: '#' },
   },
   {
     id: 4,
-    name: 'Jaypal Rangeela',
+    name: 'Team Member 4',
     role: 'SAC Treasurer',
     image: 'https://via.placeholder.com/300x300?text=Jaypal',
     socials: { linkedin: '#', instagram: '#', email: '#' },
