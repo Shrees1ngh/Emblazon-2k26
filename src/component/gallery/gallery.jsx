@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import { Flip, ScrollTrigger } from 'gsap/all';
+import { motion } from 'motion/react';
 import DotGrid from '../DotGrid';
 import './gallery.css';
 import DomeGallery from './DomeGallery';
@@ -118,11 +119,22 @@ export default function Gallery() {
       </div>
 
       <section className="header-container">
-        <div className="title">
+        <motion.div
+          className="title"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <h1>EMBLAZON <span>GALLERY</span> </h1>
           <p>Where every frame tells a story.</p>
-        </div>
-        <div className="scroll-hint">
+        </motion.div>
+
+        <motion.div
+          className="scroll-hint"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        >
           <span>Keep Scrolling!</span>
           <div className="scroll-hint__arrows">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -132,7 +144,7 @@ export default function Gallery() {
               <polyline points="6 9 12 15 18 9" />
             </svg>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <section className="gallery-container" ref={sectionRef}>
@@ -153,10 +165,22 @@ export default function Gallery() {
 
       <section className="dome-section">
         <Starfield starCount={250} speed={0.4} />
-        <div className="dome-section__title">
+        <motion.div
+          className="dome-section__title"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <h1>Memories of <span>Emblazon</span></h1>
-        </div>
-        <div className="dome-section__gallery">
+        </motion.div>
+        <motion.div
+          className="dome-section__gallery"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+        >
           <DomeGallery
             images={domeImages}
             grayscale={false}
@@ -167,7 +191,7 @@ export default function Gallery() {
             fit={0.85}
             minRadius={700}
           />
-        </div>
+        </motion.div>
       </section>
     </div>
   );

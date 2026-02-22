@@ -1,6 +1,7 @@
 import { useNavigate, NavLink } from 'react-router-dom';
 import { useCallback, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { motion } from 'motion/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import heroImage from '../../assets/fest/logo.svg';
@@ -20,7 +21,7 @@ const NAV_ITEMS = [
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Navbar() {
+export default function Navbar({ appState }) {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [portalContainer, setPortalContainer] = useState(null);
@@ -76,12 +77,16 @@ export default function Navbar() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          if (window.scrollY > 200) {
+          const currentScrollY = window.scrollY;
+
+          // Only show navbar when at the very top (scrollY <= 50)
+          if (currentScrollY > 50) {
             setIsScrolled(true);
+            setIsFolderOpen(false);
           } else {
             setIsScrolled(false);
-            setIsFolderOpen(false);
           }
+
           ticking = false;
         });
         ticking = true;
@@ -97,10 +102,18 @@ export default function Navbar() {
         <div className="menu-backdrop" onClick={toggleMenu}></div>,
         portalContainer
       ))}
-      <nav className={`navbar ${isScrolled ? 'hidden' : ''}`}>
+      <nav className={`navbar ${isScrolled ? 'hidden' : ''} ${appState !== 'ready' ? 'navbar-transparent' : ''}`}>
         <div className="nav-left">
           <button className="nav-logo" onClick={() => handleNav('/')} aria-label="Go to home">
-            <img src={heroImage} alt="Emblazon 2k26 Logo" className="logo-img" />
+            {appState !== 'loading' && (
+              <motion.img
+                layoutId="flight-logo"
+                src={heroImage}
+                alt="Emblazon 2k26 Logo"
+                className="logo-img"
+                transition={{ type: "spring", stiffness: 60, damping: 14, mass: 0.8 }}
+              />
+            )}
           </button>
         </div>
         <div className="nav-center">

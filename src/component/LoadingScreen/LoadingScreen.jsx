@@ -1,27 +1,25 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { motion } from 'motion/react'
 import CircularText from './CircularText'
 import logo from '../../assets/fest/logo.svg'
 import './LoadingScreen.css'
 
-function LoadingScreen({ onLoadComplete }) {
-    const [isVisible, setIsVisible] = useState(true)
+function LoadingScreen({ appState, setAppState }) {
 
     useEffect(() => {
-        // Hide loading screen after 2.5 seconds
+        // Trigger fade out on the background, while simultaneously launching the logo to navbar
         const timer = setTimeout(() => {
-            setIsVisible(false)
+            setAppState('fading')
             setTimeout(() => {
-                if (onLoadComplete) onLoadComplete()
+                setAppState('ready')
             }, 600) // Wait for fade out animation
-        }, 2500)
+        }, 2200)
 
         return () => clearTimeout(timer)
-    }, [onLoadComplete])
-
-    if (!isVisible) return null
+    }, [setAppState])
 
     return (
-        <div className={`loading-screen ${!isVisible ? 'fade-out' : ''}`}>
+        <div className={`loading-screen ${appState === 'fading' ? 'fade-out' : ''}`}>
             <div className="loading-content">
                 {/* Outer Circle */}
                 <div className="loading-circle-outer">
@@ -43,7 +41,17 @@ function LoadingScreen({ onLoadComplete }) {
 
                 {/* Center Logo */}
                 <div className="loading-center">
-                    <img src={logo} alt="Emblazon Logo" className="loading-logo" />
+                    <div className="loading-logo-wrapper">
+                        {appState === 'loading' && (
+                            <motion.img
+                                layoutId="flight-logo"
+                                src={logo}
+                                alt="Emblazon Logo"
+                                className="loading-logo"
+                                transition={{ type: "spring", stiffness: 60, damping: 14, mass: 0.8 }}
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

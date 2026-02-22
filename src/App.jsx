@@ -11,13 +11,15 @@ import Sponsors from './component/sponsors/sponsors';
 import LoadingScreen from './component/LoadingScreen/LoadingScreen';
 
 function AppContent() {
-  const [loading, setLoading] = useState(true);
+  const [appState, setAppState] = useState('loading'); // 'loading', 'fading', 'ready'
 
   return (
     <>
       <ScrollToTop />
-      {loading && <LoadingScreen onLoadComplete={() => setLoading(false)} />}
-      <Navbar />
+      {appState !== 'ready' && (
+        <LoadingScreen appState={appState} setAppState={setAppState} />
+      )}
+      <Navbar appState={appState} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

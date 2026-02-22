@@ -113,33 +113,49 @@ export default function About() {
             width: '100%',
             maxWidth: '1100px',
             margin: '0 auto',
-            background: 'linear-gradient(135deg, rgba(15,10,40,0.78) 0%, rgba(30,15,60,0.72) 100%)',
-            backdropFilter: 'blur(22px)',
-            WebkitBackdropFilter: 'blur(22px)',
-            border: '1px solid rgba(255,255,255,0.15)',
+            background: 'linear-gradient(135deg, rgba(25, 10, 5, 0.82) 0%, rgba(45, 15, 5, 0.76) 100%)',
+            backdropFilter: 'blur(30px)',
+            WebkitBackdropFilter: 'blur(30px)',
+            border: '1px solid rgba(255, 160, 0, 0.25)',
+            borderTop: '1px solid rgba(255, 180, 0, 0.4)',
             borderRadius: 'clamp(12px, 3vw, 22px)',
             padding: 'clamp(1rem, 5vw, 2.6rem)',
-            color: '#e8e8ef',
+            color: '#f8f8fc',
             lineHeight: 1.8,
             fontSize: 'clamp(0.95rem, 2.8vw, 1.06rem)',
-            boxShadow: '0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)',
-            textAlign: 'justify'
+            boxShadow: '0 20px 60px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255, 160, 0, 0.15)',
+            textAlign: 'justify',
+            transform: 'translateZ(0)',
+            transition: 'border-color 0.4s ease, box-shadow 0.4s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = 'rgba(255, 160, 0, 0.5)';
+            e.currentTarget.style.boxShadow = '0 30px 80px rgba(0,0,0,0.9), inset 0 2px 30px rgba(255, 160, 0, 0.25), 0 0 40px rgba(255, 160, 0, 0.2)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'rgba(255, 160, 0, 0.25)';
+            e.currentTarget.style.boxShadow = '0 20px 60px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255, 160, 0, 0.15)';
           }}
         >
-          <h1 className="about-animate" style={{ marginBottom: '1rem', color: '#ff7eb3', fontSize: 'clamp(1.5rem, 6vw, 2.5rem)', textShadow: '0 2px 12px rgba(255,126,179,0.35)' }}>About</h1>
-          <p className="about-animate" style={{ marginBottom: '0.9rem' }}>
-            HMR Institute of Technology &amp; Management was established in the year 2002. It is spread over a sprawling lush green campus 5 acres of land.
+          <h1 className="about-animate" style={{ marginBottom: '1rem', background: 'linear-gradient(135deg, #ffc107, #ff5722)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', fontSize: 'clamp(2rem, 6vw, 3rem)', fontWeight: '900', letterSpacing: '0.05em' }}>About Us</h1>
+          <p className="about-animate" style={{ marginBottom: '1.2rem', color: 'rgba(255, 255, 255, 0.85)', fontSize: '1.05em' }}>
+            HMR Institute of Technology &amp; Management was established in the year 2002. It is spread over a sprawling lush green campus of 5 acres of land in the heart of Delhi.
           </p>
-          <p className="about-animate" style={{ marginBottom: '0.9rem' }}>
-            HMRITM exists for nurturing the Technical Spirit – conceived in 2002, to provide exceptional facilities for students of Engineering and Technology, the HMR Institute of Technology and Management boasts of being among the reputed institutes even in its early stages. The Institute recognises the need for bringing up a new age cerebral workforce in today&apos;s highly competitive environment.
+          <p className="about-animate" style={{ marginBottom: '1.2rem', color: 'rgba(255, 255, 255, 0.75)' }}>
+            <strong style={{ color: '#ffc107' }}>Nurturing the Technical Spirit</strong> – Conceived as a premier hub for engineering excellence, the HMR Institute of Technology and Management boasts of being among the reputed institutes. We recognize the absolute necessity for bringing up a new-age cerebral workforce in today's highly competitive environment.
           </p>
-          <p className="about-animate" style={{ marginBottom: '0.9rem' }}>
-            The name HMR stands for the founders of this institution Late Sh. Hiralal, Late Smt. Mohan Devi and Late Smt. Rita Gupta. The Institute provides an atmosphere that ensures academic excellence and industry exposure that helps equip the students with the technical skills and emotional intelligence to successfully grapple with the complexities of a dynamic technology-driven environment. This endeavour is greatly aided by the local location of the institute in Delhi that is home to several corporate houses and industries.
+          <p className="about-animate" style={{ marginBottom: '1.2rem', color: 'rgba(255, 255, 255, 0.75)' }}>
+            The name HMR stands for the visionaries behind this institution: Late Sh. Hiralal, Late Smt. Mohan Devi, and Late Smt. Rita Gupta. The Institute provides an atmosphere ensuring rigorous academic excellence and unrivaled industry exposure. We equip our students with raw technical skills and profound emotional intelligence to grapple with the complexities of a dynamic technology-driven environment.
           </p>
-          <p className="about-animate" style={{ marginBottom: '1rem' }}>
-            The institute stands for quality embedded higher education at par with global standard and an excellent learning environment backed by innovative state-of-the-art infrastructure. Further, it aims to add greater value to the world of crucial engineering developments and technological breakthroughs through an active focus on research and development activities. With a bird&apos;s eye-view of all-encompassing development, it strives to achieve faster progress for students, and for itself.
+          <p className="about-animate" style={{ marginBottom: '1.8rem', color: 'rgba(255, 255, 255, 0.75)' }}>
+            The institute stands for quality-embedded higher education on par with global standards, backed by state-of-the-art infrastructure. We aim to add immense value to crucial engineering developments through an unwavering focus on research and development.
           </p>
-          <Link className="about-animate" to="/" style={{ color: '#ffb347', fontWeight: 600, textDecoration: 'none', display: 'inline-block' }}>← Back to Home</Link>
+          <Link className="about-animate" to="/" style={{ color: '#1a1a2e', background: 'linear-gradient(135deg, #ffc107, #ff9800)', padding: '10px 24px', borderRadius: '30px', fontWeight: 800, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 15px rgba(255, 152, 0, 0.3)', transition: 'transform 0.2s, box-shadow 0.2s' }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px) scale(1.05)'; e.currentTarget.style.boxShadow = '0 8px 25px rgba(255, 152, 0, 0.5)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0) scale(1)'; e.currentTarget.style.boxShadow = '0 4px 15px rgba(255, 152, 0, 0.3)'; }}
+          >
+            ← Back to Home
+          </Link>
         </div>
       </div>
     </div>
