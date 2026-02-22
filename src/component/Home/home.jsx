@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import emblazonTextImg from '../../assets/fest/emblazon text.png';
 import './home.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -281,9 +282,9 @@ export default function Home() {
       const heroTl = gsap.timeline({ delay: 0.3 });
       heroTl
         .from('.hero__badge', { opacity: 0, y: 30, scale: 0.9, duration: 0.6, ease: 'back.out(1.8)' })
-        .from('.hero__letter', {
-          opacity: 0, y: 100, rotationX: -90, scale: 0.5,
-          duration: 0.9, ease: 'power4.out', stagger: 0.06,
+        .from('.hero__title-image', {
+          opacity: 0, y: 100, rotationX: -30, scale: 0.7,
+          duration: 1.2, ease: 'power4.out',
         }, '-=0.3')
         .from('.sunburst-clock', {
           opacity: 0, scale: 0, rotation: 360,
@@ -380,8 +381,6 @@ export default function Home() {
     return () => ctx.revert();
   }, []);
 
-  const titleLetters = 'EMBLAZON'.split('');
-
   return (
     <div className="hm">
       <div ref={cursorRef} className="cursor-glow" />
@@ -408,16 +407,7 @@ export default function Home() {
           <div className="hero__main-row">
             <div className="hero__title-box">
               <div className="hero__title-wrapper">
-                <div className="hero__title-outline" aria-hidden="true">
-                  EMBLAZON<br />2K26
-                </div>
-                <h1 className="hero__title" aria-label="EMBLAZON 2K26">
-                  <div className="hero__title-line">
-                    {titleLetters.map((l, i) => (
-                      <span key={i} className="hero__letter" style={{ '--i': i }}>{l}</span>
-                    ))}
-                  </div>
-                </h1>
+                <img src={emblazonTextImg} alt="EMBLAZON" className="hero__title-image" />
                 <div className="hero__year">2K26</div>
               </div>
 

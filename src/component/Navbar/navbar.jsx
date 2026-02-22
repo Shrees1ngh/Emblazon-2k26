@@ -3,11 +3,20 @@ import { useCallback, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import heroImage from '../../assets/fest/emblazon logo.png';
+import heroImage from '../../assets/fest/logo.svg';
 
 import './navbar.css';
 
 const REGISTER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSceQNyjkvTdnhg_4XZfMQJypM5svwxLRJWI77HHnO1OGL7PdQ/viewform'; // Replace with Google Form link when ready
+
+const NAV_ITEMS = [
+  { path: '/', name: 'Home'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   , icon: '🏠' },
+  { path: '/gallery', name: 'Gallery', icon: '📸' },
+  { path: '/team', name: 'Team', icon: '🚀' },
+  { path: '/events', name: 'Events', icon: '🎭' },
+  { path: '/sponsors', name: 'Sponsors', icon: '🤝' },
+  { path: '/about', name: 'About', icon: '✨' }
+];
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,6 +58,9 @@ export default function Navbar() {
     });
   };
 
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isFolderOpen, setIsFolderOpen] = useState(false);
+
   useEffect(() => {
     const el = document.createElement('div');
     document.body.appendChild(el);
@@ -59,13 +71,33 @@ export default function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY > 200) {
+            setIsScrolled(true);
+          } else {
+            setIsScrolled(false);
+            setIsFolderOpen(false);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       {(portalContainer && isMenuOpen) && (createPortal(
         <div className="menu-backdrop" onClick={toggleMenu}></div>,
         portalContainer
       ))}
-      <nav className="navbar">
+      <nav className={`navbar ${isScrolled ? 'hidden' : ''}`}>
         <div className="nav-left">
           <button className="nav-logo" onClick={() => handleNav('/')} aria-label="Go to home">
             <img src={heroImage} alt="Emblazon 2k26 Logo" className="logo-img" />
@@ -73,14 +105,7 @@ export default function Navbar() {
         </div>
         <div className="nav-center">
           <div className="main-links">
-            {[
-              { path: '/', name: 'Home', icon: '🏠' },
-              { path: '/gallery', name: 'Gallery', icon: '📸' },
-              { path: '/team', name: 'Team', icon: '🚀' },
-              { path: '/events', name: 'Events', icon: '🎭' },
-              { path: '/sponsors', name: 'Sponsors', icon: '🤝' },
-              { path: '/about', name: 'About', icon: '✨' }
-            ].map((item) => (
+            {NAV_ITEMS.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
@@ -105,14 +130,7 @@ export default function Navbar() {
 
       {(portalContainer && isMenuOpen) && (createPortal(
         <div className="main-links mobile-open" aria-hidden={!isMenuOpen} role="menu">
-          {[
-            { path: '/', name: 'Home', icon: '🏠' },
-            { path: '/gallery', name: 'Gallery', icon: '📸' },
-            { path: '/team', name: 'Team', icon: '🚀' },
-            { path: '/events', name: 'Events', icon: '🎭' },
-            { path: '/sponsors', name: 'Sponsors', icon: '🤝' },
-            { path: '/about', name: 'About', icon: '✨' }
-          ].map((item) => (
+          {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
@@ -127,6 +145,35 @@ export default function Navbar() {
         </div>,
         portalContainer
       ))}
+
+      {/* Floating Folder Menu */}
+      <div
+        className={`floating-folder ${isScrolled ? 'visible' : ''} ${isFolderOpen ? 'open' : ''}`}
+        onClick={() => setIsFolderOpen(!isFolderOpen)}
+      >
+        <div className="folder-back">
+          <div className="folder-tab"></div>
+        </div>
+        <div className="folder-papers">
+          {NAV_ITEMS.map((item, index) => (
+            <div
+              key={item.path}
+              className="folder-paper"
+              style={{ '--i': index }}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleNav(item.path);
+                setIsFolderOpen(false);
+              }}
+            >
+              <div className="paper-icon">{item.icon}</div>
+              <div className="paper-text">{item.name}</div>
+            </div>
+          ))}
+        </div>
+        <div className="folder-front">
+        </div>
+      </div>
     </>
   );
 }
