@@ -113,31 +113,27 @@ export default function About() {
             width: '100%',
             maxWidth: '1100px',
             margin: '0 auto',
-            background: 'linear-gradient(135deg, rgba(25, 10, 5, 0.82) 0%, rgba(45, 15, 5, 0.76) 100%)',
-            backdropFilter: 'blur(30px)',
-            WebkitBackdropFilter: 'blur(30px)',
-            border: '1px solid rgba(255, 160, 0, 0.25)',
-            borderTop: '1px solid rgba(255, 180, 0, 0.4)',
+            background: 'linear-gradient(160deg, rgba(20, 15, 45, 0.95), rgba(10, 8, 30, 0.98))',
+            border: '1px solid rgba(255, 255, 255, 0.06)',
             borderRadius: 'clamp(12px, 3vw, 22px)',
             padding: 'clamp(1rem, 5vw, 2.6rem)',
             color: '#f8f8fc',
             lineHeight: 1.8,
             fontSize: 'clamp(0.95rem, 2.8vw, 1.06rem)',
-            boxShadow: '0 20px 60px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255, 160, 0, 0.15)',
+            boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 20px rgba(0, 0, 0, 0.2)',
             textAlign: 'justify',
-            transform: 'translateZ(0)',
             transition: 'border-color 0.4s ease, box-shadow 0.4s ease'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(255, 160, 0, 0.5)';
-            e.currentTarget.style.boxShadow = '0 30px 80px rgba(0,0,0,0.9), inset 0 2px 30px rgba(255, 160, 0, 0.25), 0 0 40px rgba(255, 160, 0, 0.2)';
+            e.currentTarget.style.borderColor = 'rgba(255, 215, 0, 0.4)';
+            e.currentTarget.style.boxShadow = 'inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.15)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(255, 160, 0, 0.25)';
-            e.currentTarget.style.boxShadow = '0 20px 60px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255, 160, 0, 0.15)';
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.06)';
+            e.currentTarget.style.boxShadow = 'inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 20px rgba(0, 0, 0, 0.2)';
           }}
         >
-          <h1 className="about-animate" style={{ marginBottom: '1rem', background: 'linear-gradient(135deg, #ffc107, #ff5722)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', fontSize: 'clamp(2rem, 6vw, 3rem)', fontWeight: '900', letterSpacing: '0.05em' }}>About Us</h1>
+          <h1 className="about-animate" style={{ marginBottom: '1rem', background: 'linear-gradient(135deg, #FFD700, #FFA500)', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent', fontSize: 'clamp(2rem, 6vw, 3rem)', fontWeight: '900', letterSpacing: '0.05em' }}>About Us</h1>
           <p className="about-animate" style={{ marginBottom: '1.2rem', color: 'rgba(255, 255, 255, 0.85)', fontSize: '1.05em' }}>
             HMR Institute of Technology &amp; Management was established in the year 2002. It is spread over a sprawling lush green campus of 5 acres of land in the heart of Delhi.
           </p>

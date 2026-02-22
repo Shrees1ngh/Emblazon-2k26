@@ -187,10 +187,11 @@ const EventSection = ({ title, events: sectionEvents, bannerUrl, accent, onImage
             duration: 0.5,
             ease: 'back.out(1.2)',
             stagger: 0.08,
+            clearProps: 'opacity,y,scale',
             scrollTrigger: {
               trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
+              start: 'top 90%',
+              toggleActions: 'play none none none',
             },
           }
         );
@@ -241,19 +242,19 @@ const Event = () => {
     },
     {
       id: 'day1',
-      label: 'Day 1 (Mar 15)',
+      label: 'Day 1 (Mar 17)',
       icon: <span style={{ fontSize: '0.8rem', fontWeight: 700, whiteSpace: 'nowrap' }}>DAY 1</span>,
     },
     {
       id: 'day2',
-      label: 'Day 2 (Mar 16)',
+      label: 'Day 2 (Mar 18)',
       icon: <span style={{ fontSize: '0.8rem', fontWeight: 700, whiteSpace: 'nowrap' }}>DAY 2</span>,
     },
   ];
 
   const filterByDay = (list) => {
     if (activeDay === 'all') return list;
-    const targetDate = activeDay === 'day1' ? '2026-03-15' : '2026-03-16';
+    const targetDate = activeDay === 'day1' ? '2026-03-17' : '2026-03-18';
     return list.filter((e) => e.date === targetDate);
   };
 
