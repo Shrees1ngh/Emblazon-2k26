@@ -132,9 +132,11 @@
 
 /* .img – higher specificity, so it overrides the nth-child(1) match */
 .gallery-page .gallery div:nth-child(5) .img {
-  background-image: url("../../assets/fest/emblazon logo.png");
+  background-image: url("../../assets/fest/emblazon2k26.png");
+  background-color: #050510;
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   transform: scale(2);
 }
 
