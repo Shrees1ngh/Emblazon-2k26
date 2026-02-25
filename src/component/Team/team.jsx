@@ -5,6 +5,25 @@ import DotGrid from '../DotGrid';
 import './OrganisingCommitee.css';
 import shreeImg from '../../assets/team/shree.jpeg';
 import shashankImg from '../../assets/team/shashank.jpeg';
+import AbhinavJha from '../../assets/team/abhinavJha.jpeg';
+import AdityaKumar from '../../assets/team/adityaKumar.jpeg';
+import Harshita from '../../assets/team/harshita.jpeg';
+import Ishika from '../../assets/team/Ishika.jpeg';
+import IshPandey from '../../assets/team/ishpandey.jpeg';
+import Junaid from '../../assets/team/Junaid.jpeg';
+import Kanak from '../../assets/team/Kanak.jpeg';
+import Manya from '../../assets/team/Manya.jpeg';
+import Mayank from '../../assets/team/Mayank.jpeg';
+import MayankAggarwal from '../../assets/team/MayankAggarwal.jpeg';
+import Palak from '../../assets/team/Palak.jpeg';
+import Parth from '../../assets/team/parth.jpeg';
+import Priyanshu from '../../assets/team/Priyanshu.jpeg';
+import Rachit from '../../assets/team/Rachit.jpeg';
+import Sarthak from '../../assets/team/Sarthak.jpeg';
+import Anmol from '../../assets/team/AnmolJangra.jpeg';
+
+
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,14 +50,14 @@ const EmailIcon = () => (
 
 const coreTeam = [
   {
-    id: 2,
+    id: 1,
     name: 'Shree Bhagwan',
     role: 'Website Developer',
     image: shreeImg,
     socials: { linkedin: 'https://www.linkedin.com/in/shreebhagwan/', instagram: 'https://www.instagram.com/shree_s1ngh/', email: 'helloshreebhagwan@gmail.com' },
   },
   {
-    id: 1,
+    id: 2,
     name: 'Shashank Pandey',
     role: 'Website Developer',
     image: shashankImg,
@@ -48,46 +67,116 @@ const coreTeam = [
       email: 'shashankp846@gmail.com',
     },
   },
+    {
+    id: 3,
+    name: 'Anmol Jangra',
+    role: 'Website Developer',
+    image: Anmol,
+    socials: { linkedin: 'https://www.linkedin.com/in/anmol-jangra-5b2786322?utm_source=share_via&utm_content=profile&utm_medium=member_android', instagram: "", email: "" },
+  },
   {
     id: 3,
-    name: 'Team Member 3',
-    role: 'Cultural Head',
-    image: 'https://via.placeholder.com/300x300?text=Deepansha',
-    socials: { linkedin: '#', instagram: '#', email: '#' },
+    name: 'Palak',
+    role: 'Core Team Member',
+    image: Palak,
+    socials: { linkedin: 'https://www.linkedin.com/in/palak-goyal-924741319', instagram: 'https://www.instagram.com/p_goyal01?igsh=MWs5NGdyazl3MWdlZw==', email: 'Palakgoyal0119@gmail.com' },
   },
   {
     id: 4,
-    name: 'Team Member 4',
-    role: 'SAC Treasurer',
-    image: 'https://via.placeholder.com/300x300?text=Jaypal',
+    name: 'Abhinav Jha',
+    role: 'Marketing Lead',
+    image: AbhinavJha,
     socials: { linkedin: '#', instagram: '#', email: '#' },
   },
   {
     id: 5,
-    name: 'Team Member 5',
-    role: 'Event Coordinator',
-    image: 'https://via.placeholder.com/300x300?text=Coordinator',
+    name: 'Aditya Kumar',
+    role: 'Anchoring Lead',
+    image: AdityaKumar,
     socials: { linkedin: '#', instagram: '#', email: '#' },
   },
   {
     id: 6,
-    name: 'Team Member 6',
-    role: 'Technical Head',
-    image: 'https://via.placeholder.com/300x300?text=Tech+Head',
+    name: 'Harshita',
+    role: 'Registration',
+    image: Harshita,
     socials: { linkedin: '#', instagram: '#', email: '#' },
   },
   {
     id: 7,
-    name: 'Team Member 7',
+    name: 'Ishika',
     role: 'Sponsorship Lead',
-    image: 'https://via.placeholder.com/300x300?text=Sponsorship',
+    image: Ishika,
     socials: { linkedin: '#', instagram: '#', email: '#' },
   },
   {
     id: 8,
-    name: 'Team Member 8',
+    name: ' Ish Pandey',
+    role: 'Hospitality',
+    image: IshPandey,
+    socials: { linkedin: '#', instagram: '#', email: '#' },
+  },
+   {
+    id: 9,
+    name: 'Junaid',
+    role: 'Designing Lead',
+    image: Junaid,
+    socials: { linkedin: '#', instagram: '#', email: '#' },
+  },
+   {
+    id: 10,
+    name: 'Kanak',
     role: 'Content Lead',
-    image: 'https://via.placeholder.com/300x300?text=Content',
+    image: Kanak,
+    socials: { linkedin: '#', instagram: '#', email: '#' },
+  },
+   {
+    id: 11,
+    name: 'Manya',
+    role: 'Designing Lead',
+    image: Manya,
+    socials: { linkedin: '#', instagram: '#', email: '#' },
+  },
+   {
+    id: 12,
+    name: 'Mayank',
+    role: 'Decoration Lead',
+    image: Mayank,
+    socials: { linkedin: '#', instagram: '#', email: '#' },
+  },
+   {
+    id: 13,
+    name: 'Mayank Aggarwal',
+    role: 'Content Lead',
+    image: MayankAggarwal,
+    socials: { linkedin: '#', instagram: '#', email: '#' },
+  },
+   {
+    id: 14,
+    name: 'Parth',
+    role: 'Content Lead',
+    image: Parth,
+    socials: { linkedin: '#', instagram: '#', email: '#' },
+  },
+   {
+    id: 15,
+    name: 'Priyanshu',
+    role: 'Decoration Lead',
+    image: Priyanshu,
+    socials: { linkedin: '#', instagram: '#', email: '#' },
+  },
+   {
+    id: 16,
+    name: 'Rachit',
+    role: 'Decoration Lead',
+    image: Rachit,
+    socials: { linkedin: '#', instagram: '#', email: '#' },
+  },
+   {
+    id: 17,
+    name: 'Sarthak',
+    role: 'Content Lead',
+    image: Sarthak,
     socials: { linkedin: '#', instagram: '#', email: '#' },
   },
 ];
