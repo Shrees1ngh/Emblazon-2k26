@@ -1,9 +1,9 @@
-/* ── Events Page ── */
 .ev-page {
     position: relative;
     min-height: 100vh;
     background: #050510;
-    overflow: hidden;
+    overflow-x: hidden;
+    /* Fixes ScrollTrigger clipping bugs while preventing horizontal scroll */
     padding-bottom: 4rem;
 }
 
@@ -27,7 +27,8 @@
 }
 
 .ev-hero__title span {
-    background: linear-gradient(135deg, #F97066, #FBBF24);
+    background: linear-gradient(135deg, #A886F4, #50C878);
+    /* Added gradient so it's visible */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

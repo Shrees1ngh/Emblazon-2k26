@@ -31,14 +31,12 @@ function Footer() {
                     <p className="footer-tagline">
                         The Cultural Fest of HMRITM
                     </p>
-                    <div className="footer-description">
-                        <h3 className="footer-heading">VISIT US</h3>
-                        <p className="footer-address">
-                            HMR INSTITUTE OF TECHNOLOGY AND MANAGEMENT<br />
-                            Plot No. 326, Bakoli HMRITM Rd, Hamidpur,<br />
-                            New Delhi, Delhi, 110036, India
-                        </p>
-                    </div>
+                    <h3 className="footer-heading">VISIT US</h3>
+                    <p className="footer-address">
+                        HMR INSTITUTE OF TECHNOLOGY AND MANAGEMENT<br />
+                        Plot No. 326, Bakoli HMRITM Rd, Hamidpur,<br />
+                        New Delhi, Delhi, 110036, India
+                    </p>
                 </motion.div>
 
                 {/* Quick Links */}

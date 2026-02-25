@@ -89,12 +89,6 @@
     margin-top: -12px;
 }
 
-.footer-description {
-    font-size: 13px;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.6);
-}
-
 /* Headings */
 .footer-heading {
     font-size: 14px;
@@ -245,7 +239,7 @@
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.7);
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0;
 }
 
 /* Bottom Section */

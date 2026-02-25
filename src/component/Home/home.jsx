@@ -1,5 +1,13 @@
 import { motion } from 'motion/react';
+import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import emblazonText from '../../assets/fest/emblazon text.webp';
+import bgImage from '../../assets/fest/homebg.jpg';
+import heroRightImage from '../../assets/fest/home_page_background.jpeg';
+import festVideo from '../../assets/fest/clgFest.mp4';
 import './home.css';
 import LogoLoop from './LogoLoop';
 import CurvedLoop from './CurvedLoop';
@@ -11,141 +19,230 @@ import xLogo from '../../assets/social media/x.png';
 import facebookLogo from '../../assets/social media/facebook.png';
 import instagramLogo from '../../assets/social media/instagram.png';
 
+// Fest Images
+import img1 from '../../assets/fest/01.JPG';
+import img2 from '../../assets/fest/02.JPG';
+import img3 from '../../assets/fest/03.JPG';
+import img4 from '../../assets/fest/04.JPG';
+import img5 from '../../assets/fest/05.JPG';
+import img6 from '../../assets/fest/06.jpg';
+
 const socialLogos = [
   { src: instagramLogo, alt: "Instagram", href: "https://instagram.com/emblazon_2k25/" },
   { src: xLogo, alt: "X", href: "https://x.com/emblazon2k25/" },
   { src: facebookLogo, alt: "Facebook", href: "https://facebook.com/emblazon_2k25/" },
 ];
 
+gsap.registerPlugin(ScrollTrigger);
+
+const CinematicSection = () => {
+  const containerRef = useRef(null);
+  const textRef = useRef(null);
+  const videoRef = useRef(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "+=4000",
+        scrub: true,
+        pin: true,
+      }
+    });
+
+    gsap.set(textRef.current, { scale: 1, opacity: 0 });
+    gsap.set(videoRef.current, { opacity: 0, scale: 1.1 });
+
+    tl.to(containerRef.current, { backgroundColor: "#000000", duration: 1 }, 0)
+      .to(textRef.current, { opacity: 1, duration: 1, ease: "power2.out" }, 0)
+      .to(textRef.current, { scale: 5, duration: 2, ease: "power2.in" }, 1)
+      .to(videoRef.current, { opacity: 1, duration: 2, ease: "none" }, 3)
+      .to(textRef.current, { opacity: 0, duration: 1, ease: "power2.out" }, 5)
+      .to(videoRef.current, { yPercent: -10, duration: 2, ease: "none" }, 6);
+
+  }, { scope: containerRef });
+
+  return (
+    <section ref={containerRef} className="cinematic-section">
+      <div ref={videoRef} className="cinematic-video-container">
+        <video autoPlay muted loop playsInline poster={bgImage} className="cinematic-video">
+          <source src={festVideo} type="video/mp4" />
+        </video>
+        <div className="cinematic-overlay"></div>
+      </div>
+      <div className="cinematic-text-wrapper">
+        <h1 ref={textRef} className="cinematic-text">EMBLAZON</h1>
+      </div>
+    </section>
+  );
+};
+
+const FeaturedEventsScroll = () => {
+  return (
+    <div className="featured-video-section">
+      <video className="highlights-video" autoPlay muted loop playsInline>
+        <source src={festVideo} type="video/mp4" />
+      </video>
+      <div className="highlights-overlay"></div>
+      <div className="feat-title-sticky">
+        <h2>🔥 HIGHLIGHTS</h2>
+      </div>
+    </div>
+  );
+};
+
 export default function Home() {
+  const [timeLeft, setTimeLeft] = useState({ days: '00', hours: '00', minutes: '00', seconds: '00' });
+  const aboutTextRef = useRef(null);
+
+  useEffect(() => {
+    const targetDate = new Date('2026-03-17T00:00:00');
+    const interval = setInterval(() => {
+      const difference = +targetDate - +new Date();
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)).toString().padStart(2, '0'),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24).toString().padStart(2, '0'),
+          minutes: Math.floor((difference / 1000 / 60) % 60).toString().padStart(2, '0'),
+          seconds: Math.floor((difference / 1000) % 60).toString().padStart(2, '0'),
+        });
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  /* Animations removed as requested */
   return (
     <div className="home-container">
-      {/* Background Ambience */}
-      <div className="ambient-glow ambient-glow-1"></div>
-      <div className="ambient-glow ambient-glow-2"></div>
-      <div className="ambient-glow ambient-glow-3"></div>
-      <div className="dot-grid"></div>
+      <section className="hero-section anugoonj-hero">
+        <div className="hero-content-anugoonj">
+          <div className="hero-left-col">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="hero-logo-wrapper">
+              <h1 className="hero-emblazon-text">EMBLAZON</h1>
+            </motion.div>
 
-      <CurvedLoop
-        marqueeText="EMBLAZON 2K26 ✦"
-        speed={2}
-        curveAmount={400}
-        direction="right"
-        interactive
-      />
+            <motion.h2 className="hero-subtitle-text" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.5 }}>
+              The Cultural Fest of HMRITM
+            </motion.h2>
 
-      <section className="hero-section">
-        <div className="hero-content">
-          <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1], delay: 0.5 }}
-            className="hero-logo-wrapper"
-          >
-            <img
-              src={emblazonText}
-              alt="Emblazon 2K26"
-              className="hero-text-image"
-            />
-          </motion.div>
-          <motion.p
-            className="hero-subtitle"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 1 }}
-          >
-            The Cultural Fest of HMRITM
-          </motion.p>
+            <motion.div className="hero-dates-modern" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.6 }}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+              </svg>
+              <p className="hero-dates-text">
+                <span className="hero-dates-highlight">17th & 18th</span> March 2026
+              </p>
+            </motion.div>
 
-          <motion.div
-            className="hero-social-loop"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 1.5 }}
-            style={{ width: '100%', maxWidth: '600px', marginTop: '3rem', position: 'relative', overflow: 'hidden' }}
-          >
-            <LogoLoop
-              logos={socialLogos}
-              speed={50}
-              direction="left"
-              logoHeight={40}
-              gap={50}
-              hoverSpeed={0}
-              scaleOnHover
-              fadeOut
-              fadeOutColor="#030308"
-              ariaLabel="Social Media links"
-            />
-          </motion.div>
+            <motion.div className="hero-actions-wrapper" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.7 }}>
+              <div className="hero-actions-title">
+                <span className="dot"></span> CONNECT
+              </div>
+              <div className="hero-actions">
+                <LogoLoop logos={socialLogos} speed={40} direction="left" logoHeight={35} gap={30} hoverSpeed={0} scaleOnHover ariaLabel="Social Media links" />
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="hero-right-col">
+            <motion.div
+              className="hero-timer-wrapper"
+              initial={{ opacity: 0, scale: 0.9, x: 50 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+            >
+              {/* Neon backdrop rings to mimic Anugoonj style */}
+              <div className="neon-ring ring-1"></div>
+              <div className="neon-ring ring-2"></div>
+
+              {/* Modern Timer and Pendulum */}
+              <div className="modern-timer-container">
+                <div className="pendulum-container modern-pendulum">
+                  <div className="pendulum-pivot"></div>
+                  <div className="pendulum-arm"></div>
+                  <div className="pendulum-bob"></div>
+                </div>
+
+                <div className="modern-countdown-grid">
+                  {['days', 'hours', 'minutes', 'seconds'].map((unit) => (
+                    <div key={unit} className="modern-time-box">
+                      <svg className="modern-time-svg" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="48"></circle>
+                      </svg>
+                      <div className="modern-time-content">
+                        <span className="modern-time-val">{timeLeft[unit]}</span>
+                        <span className="modern-time-label">{unit.toUpperCase().replace(/S$/, '')}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
 
-        {/* Interactive Stressed Mascot */}
-        <InteractiveMascot />
         <TextCursor spacing={60} followMouseDirection randomFloat exitDuration={0.4} removalInterval={25} maxPoints={6} />
       </section>
 
-      {/* About EMBLAZON Section */}
+      {/* Gallery Marquee */}
+      <div className="gallery-marquee-wrap">
+        <div className="gallery-marquee-inner">
+          {[...Array(2)].map((_, loopIndex) => (
+            <div key={loopIndex} className="gallery-marquee-track">
+              {[img5, img6, img1, img2, img3, img4, img5, img6].map((src, i) => (
+                <img key={i} src={src} className="gal-mq-img" alt="Gallery" />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
       <section className="about-emblazon-section">
-        <div className="about-emblazon-content">
-          <motion.h2
-            className="about-title"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+        <div className="brutalist-marquee-container">
+          <div className="brutalist-marquee">
+            <span>🚀 REGISTRATIONS LIVE ✦ THE ULTIMATE CULTURAL EXPERIENCE ✦ EXPECT THE UNEXPECTED ✦ UNLEASH YOUR TALENT ✦ </span>
+            <span>🚀 REGISTRATIONS LIVE ✦ THE ULTIMATE CULTURAL EXPERIENCE ✦ EXPECT THE UNEXPECTED ✦ UNLEASH YOUR TALENT ✦ </span>
+          </div>
+        </div>
+
+        <div className="about-emblazon-content" ref={aboutTextRef}>
+          <h2 className="about-title">
             ✨ About <span>EMBLAZON</span>
-          </motion.h2>
+          </h2>
 
           <div className="about-text-container">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            >
+            <p className="about-p">
               EMBLAZON is the flagship cultural fest of HMR Institute of Technology & Management, celebrating creativity, talent, and passion across music, dance, fashion, art, and innovation.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            >
+            </p>
+            <p className="about-p">
               More than just a fest, EMBLAZON is a legacy — a platform where students from across colleges come together to perform, compete, collaborate, and create unforgettable memories.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            >
+            </p>
+            <p className="about-p">
               From electrifying stage performances and fashion parades to rap battles, treasure hunts, and tech-creative showcases, EMBLAZON brings every form of expression under one vibrant celebration.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-            >
+            </p>
+            <p className="about-p">
               Every year, EMBLAZON lights up the HMRITM campus with energy, talent, and excitement — making it one of the most awaited events of the season.
-            </motion.p>
+            </p>
 
-            <motion.h3
-              className="about-tagline"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 1, delay: 1, ease: "easeOut" }}
-            >
-              Not just a fest. A legacy.
-            </motion.h3>
+            <div className="about-buttons-wrapper">
+              <Link to="/events" className="badge-pill explore-btn" style={{ textDecoration: 'none' }}>
+                EXPLORE EVENTS
+              </Link>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSceQNyjkvTdnhg_4XZfMQJypM5svwxLRJWI77HHnO1OGL7PdQ/viewform" target="_blank" rel="noopener noreferrer" className="badge-pill register-btn" style={{ textDecoration: 'none' }}>
+                REGISTER NOW
+              </a>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Featured Horizontal Scroll */}
+      <FeaturedEventsScroll />
+
+      {/* Cinematic Reveal Section */}
+      <CinematicSection />
     </div>
   );
 }
+

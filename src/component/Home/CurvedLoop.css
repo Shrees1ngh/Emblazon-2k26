@@ -19,11 +19,24 @@
     overflow: visible;
     display: block;
     font-size: 6rem;
-    fill: #ffffff;
+    fill: #000000;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .curved-loop-jacket {
+        align-items: flex-start;
+        padding-top: 25vh;
+        /* Places it clearly behind the top part of the hero content but visible as backdrop */
+    }
+
+    .curved-loop-svg {
+        width: 280%;
+        /* Scale up significantly so the text is legible on narrow screens */
+    }
 }
