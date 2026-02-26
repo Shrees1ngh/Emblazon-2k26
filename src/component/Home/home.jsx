@@ -38,54 +38,80 @@ gsap.registerPlugin(ScrollTrigger);
 const CinematicSection = () => {
   const containerRef = useRef(null);
   const textRef = useRef(null);
-  const videoRef = useRef(null);
+  const curtainRef = useRef(null);
+  const outroRef = useRef(null);
 
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top top",
-        end: "+=4000",
-        scrub: true,
+        end: "+=3500",
+        scrub: 1,
         pin: true,
       }
     });
 
-    gsap.set(textRef.current, { scale: 1, opacity: 0 });
-    gsap.set(videoRef.current, { opacity: 0, scale: 1.1 });
+    gsap.set(textRef.current, { scale: 0.5, opacity: 0 });
+    gsap.set(outroRef.current, { opacity: 0, scale: 0.8 });
 
-    tl.to(containerRef.current, { backgroundColor: "#000000", duration: 1 }, 0)
-      .to(textRef.current, { opacity: 1, duration: 1, ease: "power2.out" }, 0)
-      .to(textRef.current, { scale: 5, duration: 2, ease: "power2.in" }, 1)
-      .to(videoRef.current, { opacity: 1, duration: 2, ease: "none" }, 3)
-      .to(textRef.current, { opacity: 0, duration: 1, ease: "power2.out" }, 5)
-      .to(videoRef.current, { yPercent: -10, duration: 2, ease: "none" }, 6);
+    tl.to(textRef.current, { opacity: 1, scale: 1, duration: 1, ease: "power2.out" })
+      .to(textRef.current, { filter: "blur(10px)", scale: 6, opacity: 0, duration: 2, ease: "power2.in" })
+      .to(curtainRef.current, { opacity: 0, duration: 1.5, ease: "none" }, "-=1.5")
+      .to(outroRef.current, { opacity: 1, scale: 1, duration: 1.5, ease: "back.out(1.7)" });
 
   }, { scope: containerRef });
 
   return (
     <section ref={containerRef} className="cinematic-section">
-      <div ref={videoRef} className="cinematic-video-container">
-        <video autoPlay muted loop playsInline poster={bgImage} className="cinematic-video">
-          <source src={festVideo} type="video/mp4" />
-        </video>
-        <div className="cinematic-overlay"></div>
-      </div>
+      <video autoPlay muted loop playsInline poster={bgImage} className="cinematic-bg-video">
+        <source src={festVideo} type="video/mp4" />
+      </video>
+      <div className="cinematic-curtain" ref={curtainRef}></div>
       <div className="cinematic-text-wrapper">
-        <h1 ref={textRef} className="cinematic-text">EMBLAZON</h1>
+        <h1 className="cinematic-main-text" ref={textRef}>EXPECT THE UNEXPECTED</h1>
+      </div>
+      <div className="cinematic-outro" ref={outroRef}>
+        <h2>SEE YOU THERE</h2>
+        <p>MARCH 17 & 18 • HMRITM</p>
       </div>
     </section>
   );
 };
 
 const FeaturedEventsScroll = () => {
+  const sectionRef = useRef(null);
+  const textRef = useRef(null);
+
+  useGSAP(() => {
+    // Initialize properly centered
+    gsap.set(textRef.current, { xPercent: -50, yPercent: -50, transformOrigin: 'center center' });
+
+    // Animate to top left and shrink
+    gsap.to(textRef.current, {
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "top top",
+        scrub: true,
+      },
+      top: "10%",
+      left: "5%",
+      xPercent: 0,
+      yPercent: 0,
+      scale: 0.4,
+      transformOrigin: 'left top',
+      ease: "power1.inOut"
+    });
+  }, { scope: sectionRef });
+
   return (
-    <div className="featured-video-section">
+    <div ref={sectionRef} className="featured-video-section">
       <video className="highlights-video" autoPlay muted loop playsInline>
         <source src={festVideo} type="video/mp4" />
       </video>
       <div className="highlights-overlay"></div>
-      <div className="feat-title-sticky">
+      <div ref={textRef} className="feat-title-sticky">
         <h2>🔥 HIGHLIGHTS</h2>
       </div>
     </div>
@@ -123,7 +149,7 @@ export default function Home() {
             </motion.div>
 
             <motion.h2 className="hero-subtitle-text" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.5 }}>
-              The Cultural Fest of HMRITM
+              <i>The Cultural Fest of HMRITM</i>
             </motion.h2>
 
             <motion.div className="hero-dates-modern" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.6 }}>
