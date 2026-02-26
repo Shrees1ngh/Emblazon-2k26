@@ -128,6 +128,29 @@ function Footer() {
                         </motion.li>
                     </ul>
                 </motion.div>
+
+                {/* Map Section */}
+                <motion.div
+                    className="footer-column footer-map-column"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                    <h3 className="footer-heading">LOCATION</h3>
+                    <div className="footer-map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3496.0664972412!2d77.1325357!3d28.8070956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390da8018e697395%3A0xc3f83769c02506b1!2sHMR%20Institute%20of%20Technology%20and%20Management!5e0!3m2!1sen!2sin!4v1740548550186!5m2!1sen!2sin"
+                            width="100%"
+                            height="180"
+                            style={{ border: 0, borderRadius: '12px' }}
+                            allowFullScreen=""
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            title="HMRITM Location"
+                        ></iframe>
+                    </div>
+                </motion.div>
             </div>
 
             {/* Copyright */}

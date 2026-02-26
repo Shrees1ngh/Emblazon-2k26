@@ -13,11 +13,11 @@
 
 /* --- Hero Section & Elements (Anugoonj Style) --- */
 .anugoonj-hero {
-  min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   position: relative;
   z-index: 10;
-  padding-top: 8rem;
+  padding-top: 6rem;
   /* space for navbar */
   padding-bottom: 5rem;
   background-image: url('../../assets/fest/homebg.jpg');
@@ -225,8 +225,8 @@
   max-width: 800px;
   overflow: hidden;
   position: relative;
-  margin-left: -2vw;
-  /* Shifted left to align beautifully with the large EMBLAZON text */
+  margin-left: 0;
+  /* Reset to 0 for better default, desktop can override if needed */
 }
 
 .hero-actions-title {
@@ -499,12 +499,10 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
-    gap: 0.75rem;
   }
 
   .hero-left-col {
     align-items: center;
-    width: 100%;
     max-width: 100%;
     padding-right: 0;
   }
@@ -521,6 +519,7 @@
   .hero-dates-modern {
     margin-left: 0;
     align-self: center;
+    transform: none;
   }
 
   .hero-description {
@@ -533,9 +532,20 @@
   }
 
   .hero-actions-wrapper {
-    margin: 0 auto 1.25rem;
-    max-width: 360px;
+    margin-left: 0;
+    max-width: 100%;
     width: 100%;
+  }
+
+  .hero-actions-desktop {
+    display: none;
+  }
+
+  .hero-actions-mobile {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0.25rem;
   }
 
   .hero-actions {
@@ -547,12 +557,12 @@
     width: 100%;
     justify-content: center;
     padding-right: 0;
-    padding-top: 0.5rem;
+    padding-top: 7rem;
   }
 
   .hero-timer-wrapper {
     max-width: 350px;
-    margin: 0 auto 2.5rem;
+    margin-bottom: 2rem;
   }
 }
 
@@ -818,108 +828,10 @@
   text-shadow: 4px 4px 0px rgba(255, 102, 178, 0.8), 0 0 40px rgba(0, 0, 0, 0.8);
 }
 
-/* --- Cinematic Reveal Section --- */
-.cinematic-section {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  z-index: 30;
-  background-color: #000;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cinematic-bg-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-.cinematic-curtain {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  z-index: 2;
-}
-
-.cinematic-text-wrapper {
-  position: absolute;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.cinematic-main-text {
-  font-family: 'Outfit', 'Inter', sans-serif;
-  font-size: clamp(2rem, 8vw, 8rem);
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: 15px;
-  text-transform: uppercase;
-  text-align: center;
-  white-space: nowrap;
-  text-shadow: 0 0 30px rgba(255, 102, 178, 0.8), 0 0 80px rgba(168, 134, 244, 0.6);
-  margin: 0;
-}
-
-.cinematic-outro {
-  position: absolute;
-  z-index: 4;
-  color: #fff;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
-  background: rgba(10, 5, 20, 0.4);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  padding: 50px 100px;
-  border-radius: 40px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(255, 102, 178, 0.1);
-}
-
-.cinematic-outro h2 {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(2rem, 5vw, 5rem);
-  font-weight: 900;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 12px;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  background: linear-gradient(180deg, #ffffff 0%, #ff66b2 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  filter: drop-shadow(0 0 20px rgba(255, 102, 178, 0.5));
-}
-
-.cinematic-outro p {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.8rem);
-  font-weight: 700;
-  color: #e2ff05;
-  letter-spacing: 8px;
-  margin-top: 20px;
-}
 
 /* ========== Tablet (max-width: 768px) ========== */
 @media (max-width: 768px) {
+
   /* Hero */
   .anugoonj-hero {
     padding-top: calc(15vh + 1rem);
@@ -952,7 +864,9 @@
     flex-direction: column;
     gap: 10px;
     border-radius: 20px;
-    margin: 0 auto 1.5rem;
+    margin-bottom: 1.25rem;
+    margin-left: 0;
+    align-self: center;
   }
 
   .hero-actions-title {
@@ -970,7 +884,7 @@
   .hero-timer-wrapper {
     max-width: 300px;
     margin-top: 0;
-    margin-bottom: 2.75rem;
+    margin-bottom: 3rem;
   }
 
   .neon-ring.ring-1 {
@@ -1022,12 +936,14 @@
   /* About */
   .about-emblazon-section {
     padding: 4rem 4% 6rem;
+    background-size: cover;
   }
 
   .about-emblazon-content {
     padding: 2rem;
     transform: rotate(0);
     box-shadow: 8px 8px 0px #D16B3D;
+    width: 95%;
   }
 
   .brutalist-marquee {
@@ -1048,26 +964,6 @@
     justify-content: center;
   }
 
-  /* Cinematic */
-  .cinematic-main-text {
-    white-space: normal;
-    letter-spacing: 5px;
-    padding: 0 1rem;
-  }
-
-  .cinematic-outro {
-    padding: 30px 40px;
-    border-radius: 25px;
-  }
-
-  .cinematic-outro h2 {
-    letter-spacing: 5px;
-  }
-
-  .cinematic-outro p {
-    letter-spacing: 3px;
-    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
-  }
 
   .featured-scroll-wrapper {
     padding: 0 80vw 0 5vw;
@@ -1084,7 +980,7 @@
   }
 
   .hero-content-anugoonj {
-    width: 94%;
+    width: 92%;
   }
 
   .hero-emblazon-text {
@@ -1125,7 +1021,8 @@
   .hero-timer-wrapper {
     max-width: 260px;
     margin-top: 0;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
+    transform: scale(0.9);
   }
 
   .neon-ring.ring-1 {
@@ -1178,14 +1075,13 @@
     padding: 8px 12px;
     border-radius: 16px;
     gap: 8px;
-    margin: 0 auto 1.25rem;
+    margin-bottom: 1rem;
   }
 
   .hero-actions-title {
     font-size: 0.7rem;
     letter-spacing: 2px;
     padding-bottom: 8px;
-    text-align: center;
   }
 
   /* Countdown row (if visible) */
@@ -1213,6 +1109,7 @@
   .gallery-marquee-track {
     gap: 0.8rem;
     padding-right: 0.8rem;
+    animation-duration: 40s;
   }
 
   .gal-mq-img {
@@ -1277,28 +1174,4 @@
     font-size: clamp(2rem, 10vw, 3.5rem);
   }
 
-  /* Cinematic */
-  .cinematic-main-text {
-    font-size: clamp(1.4rem, 7vw, 3rem);
-    letter-spacing: 3px;
-    white-space: normal;
-    padding: 0 1rem;
-  }
-
-  .cinematic-outro {
-    padding: 25px 20px;
-    border-radius: 20px;
-    margin: 0 1rem;
-  }
-
-  .cinematic-outro h2 {
-    font-size: clamp(1.2rem, 6vw, 2.5rem);
-    letter-spacing: 3px;
-  }
-
-  .cinematic-outro p {
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    margin-top: 12px;
-  }
 }

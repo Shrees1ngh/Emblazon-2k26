@@ -4,14 +4,9 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import emblazonText from '../../assets/fest/emblazon text.webp';
-import bgImage from '../../assets/fest/homebg.jpg';
-import heroRightImage from '../../assets/fest/home_page_background.jpeg';
 import festVideo from '../../assets/fest/clgFest.mp4';
 import './home.css';
 import LogoLoop from './LogoLoop';
-import CurvedLoop from './CurvedLoop';
-import InteractiveMascot from './InteractiveMascot';
 import TextCursor from './TextCursor';
 
 // Social Media Icons
@@ -35,50 +30,6 @@ const socialLogos = [
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CinematicSection = () => {
-  const containerRef = useRef(null);
-  const textRef = useRef(null);
-  const curtainRef = useRef(null);
-  const outroRef = useRef(null);
-
-  useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "+=3500",
-        scrub: 1,
-        pin: true,
-      }
-    });
-
-    gsap.set(textRef.current, { scale: 0.5, opacity: 0 });
-    gsap.set(outroRef.current, { opacity: 0, scale: 0.8 });
-
-    tl.to(textRef.current, { opacity: 1, scale: 1, duration: 1, ease: "power2.out" })
-      .to(textRef.current, { filter: "blur(10px)", scale: 6, opacity: 0, duration: 2, ease: "power2.in" })
-      .to(curtainRef.current, { opacity: 0, duration: 1.5, ease: "none" }, "-=1.5")
-      .to(outroRef.current, { opacity: 1, scale: 1, duration: 1.5, ease: "back.out(1.7)" });
-
-  }, { scope: containerRef });
-
-  return (
-    <section ref={containerRef} className="cinematic-section">
-      <video autoPlay muted loop playsInline poster={bgImage} className="cinematic-bg-video">
-        <source src={festVideo} type="video/mp4" />
-      </video>
-      <div className="cinematic-curtain" ref={curtainRef}></div>
-      <div className="cinematic-text-wrapper">
-        <h1 className="cinematic-main-text" ref={textRef}>EXPECT THE UNEXPECTED</h1>
-      </div>
-      <div className="cinematic-outro" ref={outroRef}>
-        <h2>SEE YOU THERE</h2>
-        <p>MARCH 17 & 18 • HMRITM</p>
-      </div>
-    </section>
-  );
-};
-
 const FeaturedEventsScroll = () => {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
@@ -87,22 +38,46 @@ const FeaturedEventsScroll = () => {
     // Initialize properly centered
     gsap.set(textRef.current, { xPercent: -50, yPercent: -50, transformOrigin: 'center center' });
 
-    // Animate to top left and shrink
-    gsap.to(textRef.current, {
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top center",
-        end: "top top",
-        scrub: true,
-      },
-      top: "10%",
-      left: "5%",
-      xPercent: 0,
-      yPercent: 0,
-      scale: 0.4,
-      transformOrigin: 'left top',
-      ease: "power1.inOut"
+    let mm = gsap.matchMedia();
+
+    mm.add("(min-width: 769px)", () => {
+      // Desktop: Animate to top left
+      gsap.to(textRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center",
+          end: "top top",
+          scrub: true,
+        },
+        top: "10%",
+        left: "5%",
+        xPercent: 0,
+        yPercent: 0,
+        scale: 0.4,
+        transformOrigin: 'left top',
+        ease: "power1.inOut"
+      });
     });
+
+    mm.add("(max-width: 768px)", () => {
+      // Mobile: Animate to top center
+      gsap.to(textRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center",
+          end: "top top",
+          scrub: true,
+        },
+        top: "5%",
+        left: "50%",
+        xPercent: -50,
+        yPercent: 0,
+        scale: 0.5,
+        transformOrigin: 'center top',
+        ease: "power1.inOut"
+      });
+    });
+
   }, { scope: sectionRef });
 
   return (
@@ -138,7 +113,6 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  /* Animations removed as requested */
   return (
     <div className="home-container">
       <section className="hero-section anugoonj-hero">
@@ -178,11 +152,9 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
             >
-              {/* Neon backdrop rings to mimic Anugoonj style */}
               <div className="neon-ring ring-1"></div>
               <div className="neon-ring ring-2"></div>
 
-              {/* Modern Timer and Pendulum */}
               <div className="modern-timer-container">
                 <div className="pendulum-container modern-pendulum">
                   <div className="pendulum-pivot"></div>
@@ -211,7 +183,6 @@ export default function Home() {
         <TextCursor spacing={60} followMouseDirection randomFloat exitDuration={0.4} removalInterval={25} maxPoints={6} />
       </section>
 
-      {/* Gallery Marquee */}
       <div className="gallery-marquee-wrap">
         <div className="gallery-marquee-inner">
           {[...Array(2)].map((_, loopIndex) => (
@@ -227,8 +198,8 @@ export default function Home() {
       <section className="about-emblazon-section">
         <div className="brutalist-marquee-container">
           <div className="brutalist-marquee">
-            <span>🚀 REGISTRATIONS LIVE ✦ THE ULTIMATE CULTURAL EXPERIENCE ✦ EXPECT THE UNEXPECTED ✦ UNLEASH YOUR TALENT ✦ </span>
-            <span>🚀 REGISTRATIONS LIVE ✦ THE ULTIMATE CULTURAL EXPERIENCE ✦ EXPECT THE UNEXPECTED ✦ UNLEASH YOUR TALENT ✦ </span>
+            <span>🚀 REGISTRATIONS LIVE ✦ THE ULTIMATE CULTURAL EXPERIENCE ✦ UNLEASH YOUR TALENT ✦ </span>
+            <span>🚀 REGISTRATIONS LIVE ✦ THE ULTIMATE CULTURAL EXPERIENCE ✦ UNLEASH YOUR TALENT ✦ </span>
           </div>
         </div>
 
@@ -263,12 +234,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Horizontal Scroll */}
       <FeaturedEventsScroll />
-
-      {/* Cinematic Reveal Section */}
-      <CinematicSection />
     </div>
   );
 }
-
