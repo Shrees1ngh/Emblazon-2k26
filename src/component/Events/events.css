@@ -61,6 +61,8 @@
     max-width: 1150px;
     margin: 0 auto;
     padding: 0 1.5rem;
+    min-height: 400px;
+    /* Prevent layout collapse */
 }
 
 /* ── Section ── */
@@ -175,6 +177,14 @@
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
         box-shadow 0.4s ease,
         border-color 0.4s ease;
+    opacity: 1;
+    /* Default to visible */
+    will-change: transform, opacity;
+}
+
+.ev-card.is-animated {
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 .ev-card:hover {
@@ -240,6 +250,8 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin-top: 0;
+    /* Ensure no negative margin pull */
 }
 
 .ev-card__icon {

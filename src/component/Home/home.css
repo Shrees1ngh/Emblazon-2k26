@@ -11,8 +11,8 @@
   overflow-x: hidden;
 }
 
-/* --- Hero Section & Elements (Anugoonj Style) --- */
-.anugoonj-hero {
+/* --- Hero Section & Elements --- */
+.emblazon-hero {
   min-height: 100dvh;
   width: 100%;
   position: relative;
@@ -29,7 +29,7 @@
   align-items: center;
 }
 
-.anugoonj-hero::after {
+.emblazon-hero::after {
   content: '';
   position: absolute;
   top: 0;
@@ -41,15 +41,14 @@
   /* Above background image, below content */
 }
 
-.hero-content-anugoonj {
+.hero-content-fest {
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
-  /* Allow columns to stretch to full height */
+  align-items: center;
+  /* Or flex-start? Before was center in some versions, stretch in others. Let's use flex-start and padding. */
   z-index: 10;
   width: 95%;
   max-width: 1250px;
-  /* Reduced to bring content back towards center */
   position: relative;
 }
 
@@ -59,10 +58,8 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  /* Center the text vertically */
   color: #fff;
   max-width: 55%;
-  /* keep text constrained to left side */
   padding-right: 2rem;
 }
 
@@ -70,13 +67,9 @@
   flex: 0.8;
   display: flex;
   justify-content: flex-end;
-  /* Keep directly below the register button */
   align-items: flex-start;
-  /* Keep to top */
   padding-top: 5rem;
-  /* Better balance from navbar */
   padding-right: 3rem;
-  /* Brings the rings safely away from edge */
   position: relative;
 }
 
@@ -100,7 +93,7 @@
 
 .hero-emblazon-text {
   font-family: 'Dancing Script';
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(3rem, 7vw, 5.5rem);
   /* Scaled down slightly */
   font-weight: 900;
   color: rgb(255, 255, 255);
@@ -119,14 +112,14 @@
 .hero-subtitle-text {
   font-family: 'Dancing Script';
   font-size: clamp(2rem, 2vw, 3.5rem);
-  font-weight: 500;
-  letter-spacing: 2px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
   color: #e2ff05;
   /* Neon pink hint */
   text-shadow: 0 0 10px rgba(252, 168, 168, 0.5);
   margin-top: 0;
   margin-bottom: 2rem;
-  margin-left: 0.5rem;
+  margin-left: 0.7rem;
 }
 
 .hero-dates-modern {
@@ -211,6 +204,7 @@
 }
 
 .hero-actions-wrapper {
+  grid-area: actions;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -222,11 +216,12 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.03);
   width: 100%;
-  max-width: 800px;
+  max-width: 550px;
   overflow: hidden;
   position: relative;
   margin-left: 0;
-  /* Reset to 0 for better default, desktop can override if needed */
+  margin-top: -1rem;
+  /* Adjust positioning under dates */
 }
 
 .hero-actions-title {
@@ -289,7 +284,7 @@
 .hero-timer-wrapper {
   position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -495,10 +490,12 @@
 }
 
 @media (max-width: 900px) {
-  .hero-content-anugoonj {
+  .hero-content-fest {
+    display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
+    gap: 0;
   }
 
   .hero-left-col {
@@ -552,12 +549,28 @@
     justify-content: center;
   }
 
+  .hero-left-col {
+    display: contents;
+  }
+
+  /* Children of left-col (Title, Dates) */
+  .hero-logo-wrapper,
+  .hero-subtitle-text,
+  .hero-dates-modern {
+    order: 1;
+  }
+
   .hero-right-col {
-    flex: unset;
     width: 100%;
     justify-content: center;
     padding-right: 0;
-    padding-top: 7rem;
+    padding-top: 4rem;
+    order: 2;
+  }
+
+  .hero-actions-wrapper {
+    order: 3;
+    margin-top: 3rem;
   }
 
   .hero-timer-wrapper {
@@ -565,7 +578,6 @@
     margin-bottom: 2rem;
   }
 }
-
 
 /* --- Gallery Marquee Section --- */
 .gallery-marquee-wrap {
@@ -593,6 +605,7 @@
   padding-right: 1.5rem;
   /* Gap between this track and the next track */
   animation: galScroll 25s linear infinite;
+  will-change: transform;
 }
 
 .gal-mq-img {
@@ -603,6 +616,7 @@
   border: 3px solid #fff;
   filter: grayscale(80%);
   transition: all 0.3s ease;
+  will-change: transform, filter;
 }
 
 .gal-mq-img:hover {
@@ -818,6 +832,7 @@
   margin: 0;
   pointer-events: none;
   /* helps prevent blocking video clicks if any */
+  will-change: transform, opacity, top, left;
 }
 
 .feat-title-sticky h2 {
@@ -833,7 +848,7 @@
 @media (max-width: 768px) {
 
   /* Hero */
-  .anugoonj-hero {
+  .emblazon-hero {
     padding-top: calc(15vh + 1rem);
     padding-bottom: 4rem;
     min-height: auto;
@@ -856,6 +871,8 @@
   .hero-dates-modern {
     padding: 10px 18px;
     gap: 10px;
+    margin-top: 1rem;
+    /* Added margin-top to push dates down */
     margin-bottom: 2rem;
   }
 
@@ -973,13 +990,13 @@
 
 /* ========== Small Phones (max-width: 480px) ========== */
 @media (max-width: 480px) {
-  .anugoonj-hero {
+  .emblazon-hero {
     padding-top: calc(15vh + 0.75rem);
     padding-bottom: 3.25rem;
     overflow: hidden;
   }
 
-  .hero-content-anugoonj {
+  .hero-content-fest {
     width: 92%;
   }
 
@@ -1005,6 +1022,8 @@
     padding: 8px 14px;
     gap: 8px;
     border-radius: 30px;
+    margin-top: 0.75rem;
+    /* Added margin-top to push dates down */
     margin-bottom: 1.5rem;
   }
 
@@ -1020,7 +1039,8 @@
   /* Timer on mobile */
   .hero-timer-wrapper {
     max-width: 260px;
-    margin-top: 0;
+    margin-top: 0.5rem;
+    /* Reduced from 1.5rem to move clock up */
     margin-bottom: 2rem;
     transform: scale(0.9);
   }
@@ -1174,4 +1194,68 @@
     font-size: clamp(2rem, 10vw, 3.5rem);
   }
 
+  /* Sponsors Mobile Tweaks */
+  .sponsors-marquee-section {
+    margin: 2.5rem 0;
+    padding: 2.5rem 0;
+  }
+
+  .past-sponsors-heading {
+    font-size: 0.65rem;
+    letter-spacing: 5px;
+    margin-bottom: 2rem;
+    gap: 10px;
+  }
+
+  .past-sponsors-heading::before,
+  .past-sponsors-heading::after {
+    width: 25px;
+  }
+
+}
+
+/* --- Sponsors Marquee Section --- */
+.sponsors-marquee-section {
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  margin: 5rem 0;
+  padding: 4rem 0;
+  position: relative;
+  z-index: 5;
+}
+
+.past-sponsors-heading {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 12px;
+  color: #1a1a1a;
+  margin-bottom: 3.5rem;
+  text-transform: uppercase;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.past-sponsors-heading::before,
+.past-sponsors-heading::after {
+  content: '';
+  height: 1px;
+  width: 40px;
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.sponsors-marquee-loop .logoloop__item img {
+  filter: none;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  object-fit: contain;
+}
+
+.sponsors-marquee-loop .logoloop__item:hover img {
+  transform: scale(1.18);
 }

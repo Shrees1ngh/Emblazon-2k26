@@ -4,7 +4,6 @@ import emblazonLogo from '../../assets/fest/logo.svg';
 import './Footer.css';
 
 // Social Media Icons
-import xLogo from '../../assets/social media/x.png';
 import facebookLogo from '../../assets/social media/facebook.png';
 import instagramLogo from '../../assets/social media/instagram.png';
 
@@ -91,7 +90,7 @@ function Footer() {
                     <h3 className="footer-heading">FOLLOW US</h3>
                     <ul className="footer-social">
                         <motion.li whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                            <a href="https://instagram.com/emblazon_2k25/" target="_blank" rel="noopener noreferrer">
+                            <a href="https://instagram.com/emblazon_hmritm" target="_blank" rel="noopener noreferrer">
                                 <span className="social-icon">
                                     <img
                                         className="social-icon-img"
@@ -112,18 +111,6 @@ function Footer() {
                                     />
                                 </span>
                                 Facebook
-                            </a>
-                        </motion.li>
-                        <motion.li whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                            <a href="https://x.com/emblazon2k25/" target="_blank" rel="noopener noreferrer">
-                                <span className="social-icon">
-                                    <img
-                                        className="social-icon-img"
-                                        src={xLogo}
-                                        alt="X"
-                                    />
-                                </span>
-                                X
                             </a>
                         </motion.li>
                     </ul>

@@ -181,16 +181,18 @@ const EventSection = ({ title, events: sectionEvents, bannerUrl, accent, onImage
           {
             opacity: 1,
             y: 0,
-            scale: 1,
-            duration: 0.5,
-            ease: 'back.out(1.2)',
-            stagger: 0.08,
-            clearProps: 'opacity,y,scale',
+            duration: 0.4,
+            ease: 'power2.out',
+            stagger: 0.05,
             scrollTrigger: {
               trigger: el,
-              start: 'top 90%',
+              start: 'top 95%',
               toggleActions: 'play none none none',
             },
+            onComplete: () => {
+              gsap.set(cards, { clearProps: 'all' });
+              cards.forEach(card => card.classList.add('is-animated'));
+            }
           }
         );
       }
@@ -262,10 +264,20 @@ const Event = () => {
   };
 
   useEffect(() => {
-    // Refresh ScrollTrigger when content height changes due to filtering
-    const timeout = setTimeout(() => ScrollTrigger.refresh(), 100);
-    return () => clearTimeout(timeout);
-  }, [activeDay]);
+    const refreshST = () => {
+      ScrollTrigger.refresh();
+    };
+
+    const t1 = setTimeout(refreshST, 100);
+    const t2 = setTimeout(refreshST, 500);
+    const t3 = setTimeout(refreshST, 1500);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, [activeDay, events]);
 
   /* Title text animation removed */
 

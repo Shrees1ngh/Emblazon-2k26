@@ -10,9 +10,14 @@ import LogoLoop from './LogoLoop';
 import TextCursor from './TextCursor';
 
 // Social Media Icons
-import xLogo from '../../assets/social media/x.png';
 import facebookLogo from '../../assets/social media/facebook.png';
 import instagramLogo from '../../assets/social media/instagram.png';
+
+// Sponsor Logos
+import agroMania from '../../assets/sponsors/agro mania.webp';
+import jambooree from '../../assets/sponsors/jambooree.png';
+import smaaash from '../../assets/sponsors/smaaash.jpg';
+import smartHand from '../../assets/sponsors/smart&hand.png';
 
 // Fest Images
 import img1 from '../../assets/fest/01.JPG';
@@ -23,8 +28,7 @@ import img5 from '../../assets/fest/05.JPG';
 import img6 from '../../assets/fest/06.jpg';
 
 const socialLogos = [
-  { src: instagramLogo, alt: "Instagram", href: "https://instagram.com/emblazon_2k25/" },
-  { src: xLogo, alt: "X", href: "https://x.com/emblazon2k25/" },
+  { src: instagramLogo, alt: "Instagram", href: "https://instagram.com/emblazon_hmritm" },
   { src: facebookLogo, alt: "Facebook", href: "https://facebook.com/emblazon_2k25/" },
 ];
 
@@ -47,7 +51,7 @@ const FeaturedEventsScroll = () => {
           trigger: sectionRef.current,
           start: "top center",
           end: "top top",
-          scrub: true,
+          scrub: 1,
         },
         top: "10%",
         left: "5%",
@@ -66,7 +70,7 @@ const FeaturedEventsScroll = () => {
           trigger: sectionRef.current,
           start: "top center",
           end: "top top",
-          scrub: true,
+          scrub: 1,
         },
         top: "5%",
         left: "50%",
@@ -115,8 +119,8 @@ export default function Home() {
 
   return (
     <div className="home-container">
-      <section className="hero-section anugoonj-hero">
-        <div className="hero-content-anugoonj">
+      <section className="emblazon-hero">
+        <div className="hero-content-fest">
           <div className="hero-left-col">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="hero-logo-wrapper">
               <h1 className="hero-emblazon-text">EMBLAZON</h1>
@@ -178,10 +182,11 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
+
         </div>
 
         <TextCursor spacing={60} followMouseDirection randomFloat exitDuration={0.4} removalInterval={25} maxPoints={6} />
-      </section>
+      </section >
 
       <div className="gallery-marquee-wrap">
         <div className="gallery-marquee-inner">
@@ -234,7 +239,25 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="sponsors-marquee-section">
+        <h3 className="past-sponsors-heading">PAST SPONSORS</h3>
+        <LogoLoop
+          logos={[
+            { src: agroMania, alt: "Agro Mania" },
+            { src: jambooree, alt: "Jambooree" },
+            { src: smaaash, alt: "Smaaash" },
+            { src: smartHand, alt: "Smart & Hand" },
+          ]}
+          speed={100}
+          direction="right"
+          logoHeight={80}
+          gap={100}
+          pauseOnHover={false}
+          className="sponsors-marquee-loop"
+        />
+      </section>
+
       <FeaturedEventsScroll />
-    </div>
+    </div >
   );
 }
