@@ -11,12 +11,12 @@ import './navbar.css';
 const REGISTER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSceQNyjkvTdnhg_4XZfMQJypM5svwxLRJWI77HHnO1OGL7PdQ/viewform'; // Replace with Google Form link when ready
 
 const NAV_ITEMS = [
-  { path: '/', name: 'Home', icon: '🏠' },
-  { path: '/gallery', name: 'Gallery', icon: '📸' },
-  { path: '/team', name: 'Team', icon: '🚀' },
-  { path: '/events', name: 'Events', icon: '🎭' },
-  { path: '/sponsors', name: 'Sponsors', icon: '🤝' },
-  { path: '/about', name: 'About', icon: '✨' }
+  { path: '/', name: 'Home' },
+  { path: '/gallery', name: 'Gallery' },
+  { path: '/team', name: 'Team' },
+  { path: '/events', name: 'Events' },
+  { path: '/sponsors', name: 'Sponsors' },
+  { path: '/about', name: 'About' }
 ];
 
 gsap.registerPlugin(ScrollTrigger);
