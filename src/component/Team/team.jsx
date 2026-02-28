@@ -6,7 +6,6 @@ import './OrganisingCommitee.css';
 import shreeImg from '../../assets/team/shree.jpeg';
 import shashankImg from '../../assets/team/shashank.jpeg';
 import AbhinavJha from '../../assets/team/AbhinavJha.jpeg';
-import AdityaKumar from '../../assets/team/AdityaKumar.jpeg';
 import Harshita from '../../assets/team/Harshita.jpeg';
 import Ishika from '../../assets/team/Ishika.jpeg';
 import IshPandey from '../../assets/team/IshPandey.jpeg';
@@ -48,32 +47,7 @@ const EmailIcon = () => (
 
 
 
-const coreTeam = [
-  {
-    id: 1,
-    name: 'Shree Bhagwan',
-    role: 'Website Team',
-    image: shreeImg,
-    socials: { linkedin: 'https://www.linkedin.com/in/shreebhagwan/', instagram: 'https://www.instagram.com/shree_s1ngh/', email: 'helloshreebhagwan@gmail.com' },
-  },
-  {
-    id: 2,
-    name: 'Shashank Pandey',
-    role: 'Website Team',
-    image: shashankImg,
-    socials: {
-      linkedin: 'https://www.linkedin.com/in/shashank-pandey-2a3724291/',
-      instagram: 'https://instagram.com/shashankpandey4730',
-      email: 'shashankp846@gmail.com',
-    },
-  },
-    {
-    id: 3,
-    name: 'Anmol Jangra',
-    role: 'Website Team',
-    image: Anmol,
-    socials: { linkedin: 'https://www.linkedin.com/in/anmol-jangra-5b2786322?utm_source=share_via&utm_content=profile&utm_medium=member_android', instagram: "", email: "" },
-  },
+const coreTeamMembers = [
   {
     id: 4,
     name: 'Junaid',
@@ -172,13 +146,33 @@ const coreTeam = [
     image: Palak,
     socials: { linkedin: 'https://www.linkedin.com/in/palak-goyal-924741319', instagram: 'https://www.instagram.com/p_goyal01?igsh=MWs5NGdyazl3MWdlZw==', email: 'Palakgoyal0119@gmail.com' },
   },
-  
+];
+
+const webTeamMembers = [
   {
-    id: 18,
-    name: 'Aditya Kumar',
-    role: 'Stage & Awards Team',
-    image: AdityaKumar,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
+    id: 1,
+    name: 'Shree Bhagwan',
+    role: 'Website Team',
+    image: shreeImg,
+    socials: { linkedin: 'https://www.linkedin.com/in/shreebhagwan/', instagram: 'https://www.instagram.com/shree_s1ngh/', email: 'helloshreebhagwan@gmail.com' },
+  },
+  {
+    id: 2,
+    name: 'Shashank Pandey',
+    role: 'Website Team',
+    image: shashankImg,
+    socials: {
+      linkedin: 'https://www.linkedin.com/in/shashank-pandey-2a3724291/',
+      instagram: 'https://instagram.com/shashankpandey4730',
+      email: 'shashankp846@gmail.com',
+    },
+  },
+  {
+    id: 3,
+    name: 'Anmol Jangra',
+    role: 'Website Team',
+    image: Anmol,
+    socials: { linkedin: 'https://www.linkedin.com/in/anmol-jangra-5b2786322?utm_source=share_via&utm_content=profile&utm_medium=member_android', instagram: "", email: "" },
   },
 ];
 
@@ -331,6 +325,33 @@ export default function Team() {
     return () => ScrollTrigger.getAll().forEach((t) => t.kill());
   }, []);
 
+  const webGridRef = useRef(null);
+
+  // Animate web team cards on scroll
+  useEffect(() => {
+    const el = webGridRef.current;
+    if (!el) return;
+
+    const cards = el.querySelectorAll('.tm-card');
+    gsap.set(cards, { opacity: 0, y: 60, scale: 0.92 });
+
+    gsap.to(cards, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      duration: 0.7,
+      ease: 'back.out(1.4)',
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      },
+    });
+
+    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+  }, []);
+
   return (
     <div className="tm-page">
       <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
@@ -358,8 +379,16 @@ export default function Team() {
       </div>
 
       <div className="tm-content">
+        <h2 className="tm-section-heading">CORE TEAM</h2>
         <div ref={gridRef} className="tm-grid">
-          {coreTeam.map((member, i) => (
+          {coreTeamMembers.map((member, i) => (
+            <MemberCard key={member.id} member={member} index={i} />
+          ))}
+        </div>
+
+        <h2 className="tm-section-heading">WEB TEAM</h2>
+        <div ref={webGridRef} className="tm-grid">
+          {webTeamMembers.map((member, i) => (
             <MemberCard key={member.id} member={member} index={i} />
           ))}
         </div>
