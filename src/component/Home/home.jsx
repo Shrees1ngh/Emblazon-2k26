@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -47,14 +47,33 @@ const FeaturedEventsScroll = () => {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
 
+  /* Reset on mount so navigating back always starts fresh */
+  useLayoutEffect(() => {
+    if (textRef.current) {
+      gsap.set(textRef.current, {
+        top: '50%',
+        left: '50%',
+        xPercent: -50,
+        yPercent: -50,
+        scale: 1,
+        transformOrigin: 'center center',
+      });
+    }
+
+    /* Let the DOM settle + ScrollToTop finish, then recalculate all triggers */
+    const refreshId = requestAnimationFrame(() => {
+      ScrollTrigger.refresh(true);
+    });
+
+    return () => cancelAnimationFrame(refreshId);
+  }, []);
+
   useGSAP(() => {
-    // Initialize properly centered
     gsap.set(textRef.current, { xPercent: -50, yPercent: -50, transformOrigin: 'center center' });
 
     let mm = gsap.matchMedia();
 
     mm.add("(min-width: 769px)", () => {
-      // Desktop: Animate to top left
       gsap.to(textRef.current, {
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -73,7 +92,6 @@ const FeaturedEventsScroll = () => {
     });
 
     mm.add("(max-width: 768px)", () => {
-      // Mobile: Animate to top center
       gsap.to(textRef.current, {
         scrollTrigger: {
           trigger: sectionRef.current,
