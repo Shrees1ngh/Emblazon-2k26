@@ -267,44 +267,56 @@ export default function Home() {
       </section>
 
       <section className="sponsors-marquee-section">
+        <div className="sponsors-glow-orb sponsors-glow-orb--1"></div>
+        <div className="sponsors-glow-orb sponsors-glow-orb--2"></div>
+
         <div className="sponsors-banner">
-          <div className="sponsors-banner-deco">✦ ✦ ✦</div>
-          <h3 className="sponsors-banner-title">OUR PAST SPONSORS</h3>
-          <p className="sponsors-banner-sub">Brands that believed in the EMBLAZON legacy</p>
+          <div className="sponsors-banner-line sponsors-banner-line--left"></div>
+          <div className="sponsors-banner-center">
+            <span className="sponsors-banner-tag">✦ TRUSTED BY THE BEST ✦</span>
+            <h3 className="sponsors-banner-title">
+              OUR PAST <span>SPONSORS</span>
+            </h3>
+            <p className="sponsors-banner-sub">Brands that believed in the EMBLAZON legacy</p>
+          </div>
+          <div className="sponsors-banner-line sponsors-banner-line--right"></div>
         </div>
-        <LogoLoop
-          logos={[
-            { src: agroMania, alt: "Agro Mania" },
-            { src: jambooree, alt: "Jambooree" },
-            { src: smaaash, alt: "Smaaash" },
-            { src: smartHand, alt: "Smart & Hand" },
-            { src: pepsiLogo, alt: "Pepsi" },
-            { src: aceLogo, alt: "ACE" },
-            { src: allahabadBankLogo, alt: "Allahabad Bank" },
-          ]}
-          speed={100}
-          direction="right"
-          logoHeight={80}
-          gap={100}
-          pauseOnHover={false}
-          className="sponsors-marquee-loop"
-        />
-        <LogoLoop
-          logos={[
-            { src: codingNinjasLogo, alt: "Coding Ninjas" },
-            { src: collegeDuniaLogo, alt: "College Dunia" },
-            { src: madeEasyLogo, alt: "Made Easy" },
-            { src: punjabKesariLogo, alt: "Punjab Kesari" },
-            { src: sargamLogo, alt: "Sargam Electronics" },
-            { src: zebronicsLogo, alt: "Zebronics" },
-          ]}
-          speed={100}
-          direction="left"
-          logoHeight={80}
-          gap={100}
-          pauseOnHover={false}
-          className="sponsors-marquee-loop"
-        />
+
+        <div className="sponsors-tracks">
+          <LogoLoop
+            logos={[
+              { src: agroMania, alt: "Agro Mania" },
+              { src: jambooree, alt: "Jambooree" },
+              { src: smaaash, alt: "Smaaash" },
+              { src: smartHand, alt: "Smart & Hand" },
+              { src: pepsiLogo, alt: "Pepsi" },
+              { src: aceLogo, alt: "ACE" },
+              { src: allahabadBankLogo, alt: "Allahabad Bank" },
+            ]}
+            speed={80}
+            direction="right"
+            logoHeight={70}
+            gap={60}
+            pauseOnHover={false}
+            className="sponsors-marquee-loop"
+          />
+          <LogoLoop
+            logos={[
+              { src: codingNinjasLogo, alt: "Coding Ninjas" },
+              { src: collegeDuniaLogo, alt: "College Dunia" },
+              { src: madeEasyLogo, alt: "Made Easy" },
+              { src: punjabKesariLogo, alt: "Punjab Kesari" },
+              { src: sargamLogo, alt: "Sargam Electronics" },
+              { src: zebronicsLogo, alt: "Zebronics" },
+            ]}
+            speed={80}
+            direction="left"
+            logoHeight={70}
+            gap={60}
+            pauseOnHover={false}
+            className="sponsors-marquee-loop"
+          />
+        </div>
       </section>
 
       <FeaturedEventsScroll />

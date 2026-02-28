@@ -1184,68 +1184,180 @@
 
   /* Sponsors Mobile Tweaks */
   .sponsors-marquee-section {
-    margin: 2.5rem 0;
-    padding: 2.5rem 0;
+    margin: 2rem 0;
+    padding: 3rem 0 2.5rem;
   }
 
   .sponsors-banner {
-    padding: 1.5rem 1rem 1.2rem;
-    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .sponsors-banner-line--left,
+  .sponsors-banner-line--right {
+    display: none;
+  }
+
+  .sponsors-banner-tag {
+    font-size: 0.55rem;
+    letter-spacing: 3px;
   }
 
   .sponsors-banner-title {
-    font-size: clamp(1.1rem, 5vw, 1.5rem);
+    font-size: clamp(1.3rem, 6vw, 1.8rem);
     letter-spacing: 4px;
   }
 
   .sponsors-banner-sub {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     letter-spacing: 2px;
   }
 
+  .sponsors-tracks {
+    gap: 1.5rem;
+    padding: 0;
+  }
+
+  .sponsors-marquee-loop .logoloop__item img {
+    padding: 8px 14px;
+    border-radius: 10px;
+  }
 }
 
+/* ============================== */
 /* --- Sponsors Marquee Section --- */
+/* ============================== */
 .sponsors-marquee-section {
-  background: #ffffff;
-  border-top: 1px solid rgba(0, 0, 0, 0.03);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  background: linear-gradient(160deg, #05080f 0%, #0c1225 35%, #111b38 65%, #0a0f1e 100%);
   overflow: hidden;
-  margin: 5rem 0;
-  padding: 4rem 0;
+  margin: 4rem 0;
+  padding: 5rem 0 4rem;
   position: relative;
   z-index: 5;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
+  border-top: 1px solid rgba(168, 134, 244, 0.1);
+  border-bottom: 1px solid rgba(168, 134, 244, 0.1);
+}
+
+/* Floating glow orbs */
+.sponsors-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+
+.sponsors-glow-orb--1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(168, 134, 244, 0.5) 0%, transparent 70%);
+  top: -100px;
+  left: -80px;
+  animation: orbFloat1 8s ease-in-out infinite alternate;
+}
+
+.sponsors-glow-orb--2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(209, 107, 61, 0.45) 0%, transparent 70%);
+  bottom: -80px;
+  right: -60px;
+  animation: orbFloat2 10s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(60px, 40px) scale(1.15);
+  }
+}
+
+@keyframes orbFloat2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(-50px, -30px) scale(1.1);
+  }
 }
 
 /* --- Sponsors Banner Heading --- */
 .sponsors-banner {
-  text-align: center;
-  padding: 2.5rem 2rem 2rem;
-  margin-bottom: 2.5rem;
-  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #16213e 100%);
-  border-bottom: 4px solid;
-  border-image: linear-gradient(90deg, #D16B3D, #A886F4, #FF66B2) 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Animated side accent lines */
+.sponsors-banner-line {
+  flex: 1;
+  max-width: 200px;
+  height: 2px;
+  border-radius: 2px;
   position: relative;
   overflow: hidden;
 }
 
-.sponsors-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 30% 50%, rgba(168, 134, 244, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 50%, rgba(209, 107, 61, 0.08) 0%, transparent 60%);
-  pointer-events: none;
+.sponsors-banner-line--left {
+  background: linear-gradient(90deg, transparent 0%, rgba(168, 134, 244, 0.5) 100%);
 }
 
-.sponsors-banner-deco {
-  font-size: 0.7rem;
-  letter-spacing: 12px;
-  color: #D16B3D;
-  margin-bottom: 0.8rem;
+.sponsors-banner-line--right {
+  background: linear-gradient(90deg, rgba(209, 107, 61, 0.5) 0%, transparent 100%);
+}
+
+.sponsors-banner-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: lineShimmer 3s ease-in-out infinite;
+}
+
+.sponsors-banner-line--right::after {
+  animation-delay: 1.5s;
+}
+
+@keyframes lineShimmer {
+  0% {
+    left: -60%;
+  }
+
+  100% {
+    left: 160%;
+  }
+}
+
+.sponsors-banner-center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sponsors-banner-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 5px;
+  color: rgba(209, 107, 61, 0.7);
+  text-transform: uppercase;
+  font-weight: 600;
   animation: decoPulse 3s ease-in-out infinite;
 }
 
@@ -1253,7 +1365,7 @@
 
   0%,
   100% {
-    opacity: 0.4;
+    opacity: 0.5;
   }
 
   50% {
@@ -1263,33 +1375,96 @@
 
 .sponsors-banner-title {
   font-family: 'Montserrat', 'Inter', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 900;
-  letter-spacing: clamp(6px, 1.5vw, 14px);
+  letter-spacing: clamp(6px, 1.5vw, 12px);
   color: #fff;
   text-transform: uppercase;
   margin: 0;
-  text-shadow: 0 0 30px rgba(168, 134, 244, 0.4), 0 0 60px rgba(209, 107, 61, 0.2);
+  line-height: 1.2;
+}
+
+.sponsors-banner-title span {
+  background: linear-gradient(135deg, #A886F4 0%, #d4a4ff 40%, #FF66B2 70%, #D16B3D 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 .sponsors-banner-sub {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
-  color: rgba(255, 255, 255, 0.45);
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+  color: rgba(255, 255, 255, 0.35);
   letter-spacing: 3px;
   text-transform: uppercase;
-  margin: 0.8rem 0 0;
-  font-weight: 500;
+  margin: 0.3rem 0 0;
+  font-weight: 400;
 }
 
+/* --- Logo Tracks Container --- */
+.sponsors-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+  padding: 0.5rem 0;
+}
 
+/* Edge fade overlay on the tracks */
+.sponsors-tracks::before,
+.sponsors-tracks::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(50px, 10vw, 140px);
+  z-index: 10;
+  pointer-events: none;
+}
 
+.sponsors-tracks::before {
+  left: 0;
+  background: linear-gradient(to right, #05080f 0%, transparent 100%);
+}
+
+.sponsors-tracks::after {
+  right: 0;
+  background: linear-gradient(to left, #0a0f1e 0%, transparent 100%);
+}
+
+/* Logo card styling */
 .sponsors-marquee-loop .logoloop__item img {
-  filter: none;
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  filter: grayscale(30%) brightness(1.05);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   object-fit: contain;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 10px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(168, 134, 244, 0.06);
 }
 
 .sponsors-marquee-loop .logoloop__item:hover img {
-  transform: scale(1.18);
+  transform: scale(1.08) translateY(-2px);
+  filter: grayscale(0%) brightness(1.1);
+  box-shadow:
+    0 8px 30px rgba(168, 134, 244, 0.2),
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(168, 134, 244, 0.15);
+  border-color: rgba(168, 134, 244, 0.2);
 }
