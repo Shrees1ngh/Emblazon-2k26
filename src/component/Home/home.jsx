@@ -9,11 +9,11 @@ import './home.css';
 import LogoLoop from './LogoLoop';
 import TextCursor from './TextCursor';
 
-// Social Media Icons
+/* Social media icon assets */
 import facebookLogo from '../../assets/social media/facebook.png';
 import instagramLogo from '../../assets/social media/instagram.png';
 
-// Sponsor Logos
+/* Past sponsor logo assets */
 import agroMania from '../../assets/sponsors/agro mania.webp';
 import jambooree from '../../assets/sponsors/jambooree.png';
 import smaaash from '../../assets/sponsors/smaaash.jpg';
@@ -28,7 +28,7 @@ import punjabKesariLogo from '../../assets/sponsors/punjab kesari.png';
 import sargamLogo from '../../assets/sponsors/sargam electronics.png';
 import zebronicsLogo from '../../assets/sponsors/zebronics.webp';
 
-// Fest Images
+/* Gallery marquee images */
 import img1 from '../../assets/fest/01.JPG';
 import img2 from '../../assets/fest/02.JPG';
 import img3 from '../../assets/fest/03.JPG';

@@ -14,10 +14,10 @@ import starEveningBanner from '../../assets/Extras/StarEvening.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const REGISTER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSceQNyjkvTdnhg_4XZfMQJypM5svwxLRJWI77HHnO1OGL7PdQ/viewform'; // Replace with Google Form link when ready
+/* Emblazon registration form URL */
+const REGISTER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSceQNyjkvTdnhg_4XZfMQJypM5svwxLRJWI77HHnO1OGL7PdQ/viewform';
 
-/* Category config: accent colours, emojis, and Unsplash banner images
-   Palette: warm coral → amber → rose → indigo → fuchsia → teal → gold */
+/* Category config: accent colours, emojis, and banner images */
 const categoryConfig = {
   Cultural: {
     accent: '#F97066',

@@ -8,7 +8,8 @@ import heroImage from '../../assets/fest/logo.svg';
 
 import './navbar.css';
 
-const REGISTER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSceQNyjkvTdnhg_4XZfMQJypM5svwxLRJWI77HHnO1OGL7PdQ/viewform'; // Replace with Google Form link when ready
+/* Emblazon registration form URL */
+const REGISTER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSceQNyjkvTdnhg_4XZfMQJypM5svwxLRJWI77HHnO1OGL7PdQ/viewform';
 
 const NAV_ITEMS = [
   { path: '/', name: 'Home' },

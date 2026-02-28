@@ -554,7 +554,7 @@
     left: 150%;
   }
 
-  /* Menu Backdrop completely removed as overlay covers 100vw/vh */
+  /* Hide backdrop on mobile (fullscreen overlay is used instead) */
   .menu-backdrop {
     display: none;
   }

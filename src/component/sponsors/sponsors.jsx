@@ -126,8 +126,6 @@ function SponsorTier({ tier, sponsors }) {
 
 export default function Sponsors() {
   const heroRef = useRef(null);
-  // Floating particles background removed
-
 
   // Hero text animation
   useEffect(() => {
