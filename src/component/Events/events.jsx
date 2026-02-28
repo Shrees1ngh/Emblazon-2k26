@@ -310,8 +310,27 @@ const Event = () => {
     };
   }, [activeDay, events]);
 
-  /* Title text animation removed */
+  // Hero text animation
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
 
+    const title = el.querySelector('.ev-hero__title');
+    const sub = el.querySelector('.ev-hero__sub');
+    const divider = el.querySelector('.ev-hero__line');
+
+    gsap.set([title, sub], { opacity: 0, y: 40 });
+    if (divider) gsap.set(divider, { scaleX: 0 });
+
+    const tl = gsap.timeline({ delay: 0.2 });
+    tl.to(title, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' });
+    tl.to(sub, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
+    if (divider) {
+      tl.to(divider, { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.3');
+    }
+
+    return () => tl.kill();
+  }, []);
   // Cleanup only event-page ScrollTriggers on unmount
   useEffect(() => {
     return () => {

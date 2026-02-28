@@ -67,14 +67,19 @@ function Footer() {
                 >
                     <h3 className="footer-heading">CONTACT US</h3>
                     <div className="footer-contact">
-                        <p className="contact-label">For General Inquiries:</p>
+                        <p className="contact-label">Fest Email ID:</p>
+                        <a href="mailto:emblazon@hmritm.ac.in" className="contact-email">
+                            emblazon@hmritm.ac.in
+                        </a>
+
+                        <p className="contact-label">College Email ID:</p>
                         <a href="mailto:info@hmritm.ac.in" className="contact-email">
                             info@hmritm.ac.in
                         </a>
 
-                        <p className="contact-label">For Sponsorship:</p>
-                        <a href="mailto:sponsorship@hmritm.ac.in" className="contact-email">
-                            sponsorship@hmritm.ac.in
+                        <p className="contact-label">Phone Number:</p>
+                        <a href="tel:+918287461931" className="contact-email">
+                            +91 8287461931
                         </a>
                     </div>
                 </motion.div>

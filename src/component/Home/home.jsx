@@ -18,6 +18,15 @@ import agroMania from '../../assets/sponsors/agro mania.webp';
 import jambooree from '../../assets/sponsors/jambooree.png';
 import smaaash from '../../assets/sponsors/smaaash.jpg';
 import smartHand from '../../assets/sponsors/smart&hand.png';
+import pepsiLogo from '../../assets/sponsors/Pepsi.svg';
+import aceLogo from '../../assets/sponsors/ace.webp';
+import allahabadBankLogo from '../../assets/sponsors/allahabad bank.jpg';
+import codingNinjasLogo from '../../assets/sponsors/coding ninjas.avif';
+import collegeDuniaLogo from '../../assets/sponsors/college dunia.jpg';
+import madeEasyLogo from '../../assets/sponsors/made easy.jpg';
+import punjabKesariLogo from '../../assets/sponsors/punjab kesari.png';
+import sargamLogo from '../../assets/sponsors/sargam electronics.png';
+import zebronicsLogo from '../../assets/sponsors/zebronics.webp';
 
 // Fest Images
 import img1 from '../../assets/fest/01.JPG';
@@ -240,16 +249,35 @@ export default function Home() {
       </section>
 
       <section className="sponsors-marquee-section">
-        <h3 className="past-sponsors-heading">PAST SPONSORS</h3>
+        <h3 className="past-sponsors-heading">OUR PAST SPONSORS</h3>
         <LogoLoop
           logos={[
             { src: agroMania, alt: "Agro Mania" },
             { src: jambooree, alt: "Jambooree" },
             { src: smaaash, alt: "Smaaash" },
             { src: smartHand, alt: "Smart & Hand" },
+            { src: pepsiLogo, alt: "Pepsi" },
+            { src: aceLogo, alt: "ACE" },
+            { src: allahabadBankLogo, alt: "Allahabad Bank" },
           ]}
           speed={100}
           direction="right"
+          logoHeight={80}
+          gap={100}
+          pauseOnHover={false}
+          className="sponsors-marquee-loop"
+        />
+        <LogoLoop
+          logos={[
+            { src: codingNinjasLogo, alt: "Coding Ninjas" },
+            { src: collegeDuniaLogo, alt: "College Dunia" },
+            { src: madeEasyLogo, alt: "Made Easy" },
+            { src: punjabKesariLogo, alt: "Punjab Kesari" },
+            { src: sargamLogo, alt: "Sargam Electronics" },
+            { src: zebronicsLogo, alt: "Zebronics" },
+          ]}
+          speed={100}
+          direction="left"
           logoHeight={80}
           gap={100}
           pauseOnHover={false}
