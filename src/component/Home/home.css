@@ -1188,16 +1188,19 @@
     padding: 2.5rem 0;
   }
 
-  .past-sponsors-heading {
-    font-size: 0.65rem;
-    letter-spacing: 5px;
-    margin-bottom: 2rem;
-    gap: 10px;
+  .sponsors-banner {
+    padding: 1.5rem 1rem 1.2rem;
+    margin-bottom: 1.5rem;
   }
 
-  .past-sponsors-heading::before,
-  .past-sponsors-heading::after {
-    width: 25px;
+  .sponsors-banner-title {
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+    letter-spacing: 4px;
+  }
+
+  .sponsors-banner-sub {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
   }
 
 }
@@ -1217,29 +1220,69 @@
   gap: 2rem;
 }
 
-.past-sponsors-heading {
+/* --- Sponsors Banner Heading --- */
+.sponsors-banner {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 12px;
-  color: #1a1a1a;
-  margin-bottom: 3.5rem;
-  text-transform: uppercase;
+  padding: 2.5rem 2rem 2rem;
+  margin-bottom: 2.5rem;
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #16213e 100%);
+  border-bottom: 4px solid;
+  border-image: linear-gradient(90deg, #D16B3D, #A886F4, #FF66B2) 1;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
+  overflow: hidden;
 }
 
-.past-sponsors-heading::before,
-.past-sponsors-heading::after {
+.sponsors-banner::before {
   content: '';
-  height: 1px;
-  width: 40px;
-  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1), transparent);
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(168, 134, 244, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 50%, rgba(209, 107, 61, 0.08) 0%, transparent 60%);
+  pointer-events: none;
 }
+
+.sponsors-banner-deco {
+  font-size: 0.7rem;
+  letter-spacing: 12px;
+  color: #D16B3D;
+  margin-bottom: 0.8rem;
+  animation: decoPulse 3s ease-in-out infinite;
+}
+
+@keyframes decoPulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.sponsors-banner-title {
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: clamp(6px, 1.5vw, 14px);
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 0 30px rgba(168, 134, 244, 0.4), 0 0 60px rgba(209, 107, 61, 0.2);
+}
+
+.sponsors-banner-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 0.8rem 0 0;
+  font-weight: 500;
+}
+
+
 
 .sponsors-marquee-loop .logoloop__item img {
   filter: none;

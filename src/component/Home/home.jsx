@@ -267,7 +267,11 @@ export default function Home() {
       </section>
 
       <section className="sponsors-marquee-section">
-        <h3 className="past-sponsors-heading">OUR PAST SPONSORS</h3>
+        <div className="sponsors-banner">
+          <div className="sponsors-banner-deco">✦ ✦ ✦</div>
+          <h3 className="sponsors-banner-title">OUR PAST SPONSORS</h3>
+          <p className="sponsors-banner-sub">Brands that believed in the EMBLAZON legacy</p>
+        </div>
         <LogoLoop
           logos={[
             { src: agroMania, alt: "Agro Mania" },
