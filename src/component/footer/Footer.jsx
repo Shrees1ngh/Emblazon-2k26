@@ -4,7 +4,6 @@ import emblazonLogo from '../../assets/fest/logo.svg';
 import './Footer.css';
 
 // Social Media Icons
-import xLogo from '../../assets/social media/x.png';
 import facebookLogo from '../../assets/social media/facebook.png';
 import instagramLogo from '../../assets/social media/instagram.png';
 
@@ -68,14 +67,19 @@ function Footer() {
                 >
                     <h3 className="footer-heading">CONTACT US</h3>
                     <div className="footer-contact">
-                        <p className="contact-label">For General Inquiries:</p>
+                        <p className="contact-label">Fest Email ID:</p>
+                        <a href="mailto:emblazon@hmritm.ac.in" className="contact-email">
+                            emblazon@hmritm.ac.in
+                        </a>
+
+                        <p className="contact-label">College Email ID:</p>
                         <a href="mailto:info@hmritm.ac.in" className="contact-email">
                             info@hmritm.ac.in
                         </a>
 
-                        <p className="contact-label">For Sponsorship:</p>
-                        <a href="mailto:sponsorship@hmritm.ac.in" className="contact-email">
-                            sponsorship@hmritm.ac.in
+                        <p className="contact-label">Phone Number:</p>
+                        <a href="tel:+918287461931" className="contact-email">
+                            +91 8287461931
                         </a>
                     </div>
                 </motion.div>
@@ -91,7 +95,7 @@ function Footer() {
                     <h3 className="footer-heading">FOLLOW US</h3>
                     <ul className="footer-social">
                         <motion.li whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                            <a href="https://instagram.com/emblazon_2k25/" target="_blank" rel="noopener noreferrer">
+                            <a href="https://instagram.com/emblazon_hmritm" target="_blank" rel="noopener noreferrer">
                                 <span className="social-icon">
                                     <img
                                         className="social-icon-img"
@@ -112,18 +116,6 @@ function Footer() {
                                     />
                                 </span>
                                 Facebook
-                            </a>
-                        </motion.li>
-                        <motion.li whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                            <a href="https://x.com/emblazon2k25/" target="_blank" rel="noopener noreferrer">
-                                <span className="social-icon">
-                                    <img
-                                        className="social-icon-img"
-                                        src={xLogo}
-                                        alt="X"
-                                    />
-                                </span>
-                                X
                             </a>
                         </motion.li>
                     </ul>

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -9,12 +9,26 @@ import './home.css';
 import LogoLoop from './LogoLoop';
 import TextCursor from './TextCursor';
 
-// Social Media Icons
-import xLogo from '../../assets/social media/x.png';
+/* Social media icon assets */
 import facebookLogo from '../../assets/social media/facebook.png';
 import instagramLogo from '../../assets/social media/instagram.png';
 
-// Fest Images
+/* Past sponsor logo assets */
+import agroMania from '../../assets/sponsors/agro mania.webp';
+import jambooree from '../../assets/sponsors/jambooree.png';
+import smaaash from '../../assets/sponsors/smaaash.jpg';
+import smartHand from '../../assets/sponsors/smart&hand.png';
+import pepsiLogo from '../../assets/sponsors/Pepsi.svg';
+import aceLogo from '../../assets/sponsors/ace.webp';
+import allahabadBankLogo from '../../assets/sponsors/allahabad bank.jpg';
+import codingNinjasLogo from '../../assets/sponsors/coding ninjas.avif';
+import collegeDuniaLogo from '../../assets/sponsors/college dunia.jpg';
+import madeEasyLogo from '../../assets/sponsors/made easy.jpg';
+import punjabKesariLogo from '../../assets/sponsors/punjab kesari.png';
+import sargamLogo from '../../assets/sponsors/sargam electronics.png';
+import zebronicsLogo from '../../assets/sponsors/zebronics.webp';
+
+/* Gallery marquee images */
 import img1 from '../../assets/fest/01.JPG';
 import img2 from '../../assets/fest/02.JPG';
 import img3 from '../../assets/fest/03.JPG';
@@ -23,8 +37,7 @@ import img5 from '../../assets/fest/05.JPG';
 import img6 from '../../assets/fest/06.jpg';
 
 const socialLogos = [
-  { src: instagramLogo, alt: "Instagram", href: "https://instagram.com/emblazon_2k25/" },
-  { src: xLogo, alt: "X", href: "https://x.com/emblazon2k25/" },
+  { src: instagramLogo, alt: "Instagram", href: "https://instagram.com/emblazon_hmritm" },
   { src: facebookLogo, alt: "Facebook", href: "https://facebook.com/emblazon_2k25/" },
 ];
 
@@ -34,20 +47,39 @@ const FeaturedEventsScroll = () => {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
 
+  /* Reset on mount so navigating back always starts fresh */
+  useLayoutEffect(() => {
+    if (textRef.current) {
+      gsap.set(textRef.current, {
+        top: '50%',
+        left: '50%',
+        xPercent: -50,
+        yPercent: -50,
+        scale: 1,
+        transformOrigin: 'center center',
+      });
+    }
+
+    /* Let the DOM settle + ScrollToTop finish, then recalculate all triggers */
+    const refreshId = requestAnimationFrame(() => {
+      ScrollTrigger.refresh(true);
+    });
+
+    return () => cancelAnimationFrame(refreshId);
+  }, []);
+
   useGSAP(() => {
-    // Initialize properly centered
     gsap.set(textRef.current, { xPercent: -50, yPercent: -50, transformOrigin: 'center center' });
 
     let mm = gsap.matchMedia();
 
     mm.add("(min-width: 769px)", () => {
-      // Desktop: Animate to top left
       gsap.to(textRef.current, {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top center",
           end: "top top",
-          scrub: true,
+          scrub: 1,
         },
         top: "10%",
         left: "5%",
@@ -60,13 +92,12 @@ const FeaturedEventsScroll = () => {
     });
 
     mm.add("(max-width: 768px)", () => {
-      // Mobile: Animate to top center
       gsap.to(textRef.current, {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top center",
           end: "top top",
-          scrub: true,
+          scrub: 1,
         },
         top: "5%",
         left: "50%",
@@ -115,8 +146,8 @@ export default function Home() {
 
   return (
     <div className="home-container">
-      <section className="hero-section anugoonj-hero">
-        <div className="hero-content-anugoonj">
+      <section className="emblazon-hero">
+        <div className="hero-content-fest">
           <div className="hero-left-col">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="hero-logo-wrapper">
               <h1 className="hero-emblazon-text">EMBLAZON</h1>
@@ -178,10 +209,11 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
+
         </div>
 
         <TextCursor spacing={60} followMouseDirection randomFloat exitDuration={0.4} removalInterval={25} maxPoints={6} />
-      </section>
+      </section >
 
       <div className="gallery-marquee-wrap">
         <div className="gallery-marquee-inner">
@@ -234,7 +266,60 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="sponsors-marquee-section">
+        <div className="sponsors-glow-orb sponsors-glow-orb--1"></div>
+        <div className="sponsors-glow-orb sponsors-glow-orb--2"></div>
+
+        <div className="sponsors-banner">
+          <div className="sponsors-banner-line sponsors-banner-line--left"></div>
+          <div className="sponsors-banner-center">
+            <span className="sponsors-banner-tag">✦ TRUSTED BY THE BEST ✦</span>
+            <h3 className="sponsors-banner-title">
+              OUR PAST <span>SPONSORS</span>
+            </h3>
+            <p className="sponsors-banner-sub">Brands that believed in the EMBLAZON legacy</p>
+          </div>
+          <div className="sponsors-banner-line sponsors-banner-line--right"></div>
+        </div>
+
+        <div className="sponsors-tracks">
+          <LogoLoop
+            logos={[
+              { src: agroMania, alt: "Agro Mania" },
+              { src: jambooree, alt: "Jambooree" },
+              { src: smaaash, alt: "Smaaash" },
+              { src: smartHand, alt: "Smart & Hand" },
+              { src: pepsiLogo, alt: "Pepsi" },
+              { src: aceLogo, alt: "ACE" },
+              { src: allahabadBankLogo, alt: "Allahabad Bank" },
+            ]}
+            speed={80}
+            direction="right"
+            logoHeight={70}
+            gap={60}
+            pauseOnHover={false}
+            className="sponsors-marquee-loop"
+          />
+          <LogoLoop
+            logos={[
+              { src: codingNinjasLogo, alt: "Coding Ninjas" },
+              { src: collegeDuniaLogo, alt: "College Dunia" },
+              { src: madeEasyLogo, alt: "Made Easy" },
+              { src: punjabKesariLogo, alt: "Punjab Kesari" },
+              { src: sargamLogo, alt: "Sargam Electronics" },
+              { src: zebronicsLogo, alt: "Zebronics" },
+            ]}
+            speed={80}
+            direction="left"
+            logoHeight={70}
+            gap={60}
+            pauseOnHover={false}
+            className="sponsors-marquee-loop"
+          />
+        </div>
+      </section>
+
       <FeaturedEventsScroll />
-    </div>
+    </div >
   );
 }

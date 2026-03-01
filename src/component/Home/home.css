@@ -1,5 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap'); */
-
 .home-container {
   min-height: 100vh;
   width: 100%;
@@ -11,14 +9,13 @@
   overflow-x: hidden;
 }
 
-/* --- Hero Section & Elements (Anugoonj Style) --- */
-.anugoonj-hero {
+/* --- Hero Section & Elements --- */
+.emblazon-hero {
   min-height: 100dvh;
   width: 100%;
   position: relative;
   z-index: 10;
   padding-top: 6rem;
-  /* space for navbar */
   padding-bottom: 5rem;
   background-image: url('../../assets/fest/homebg.jpg');
   background-size: cover;
@@ -29,7 +26,7 @@
   align-items: center;
 }
 
-.anugoonj-hero::after {
+.emblazon-hero::after {
   content: '';
   position: absolute;
   top: 0;
@@ -41,15 +38,14 @@
   /* Above background image, below content */
 }
 
-.hero-content-anugoonj {
+.hero-content-fest {
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
-  /* Allow columns to stretch to full height */
+  align-items: center;
+  /* Or flex-start? Before was center in some versions, stretch in others. Let's use flex-start and padding. */
   z-index: 10;
   width: 95%;
   max-width: 1250px;
-  /* Reduced to bring content back towards center */
   position: relative;
 }
 
@@ -59,10 +55,8 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  /* Center the text vertically */
   color: #fff;
   max-width: 55%;
-  /* keep text constrained to left side */
   padding-right: 2rem;
 }
 
@@ -70,13 +64,9 @@
   flex: 0.8;
   display: flex;
   justify-content: flex-end;
-  /* Keep directly below the register button */
   align-items: flex-start;
-  /* Keep to top */
   padding-top: 5rem;
-  /* Better balance from navbar */
   padding-right: 3rem;
-  /* Brings the rings safely away from edge */
   position: relative;
 }
 
@@ -100,7 +90,7 @@
 
 .hero-emblazon-text {
   font-family: 'Dancing Script';
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(3rem, 7vw, 5.5rem);
   /* Scaled down slightly */
   font-weight: 900;
   color: rgb(255, 255, 255);
@@ -119,14 +109,14 @@
 .hero-subtitle-text {
   font-family: 'Dancing Script';
   font-size: clamp(2rem, 2vw, 3.5rem);
-  font-weight: 500;
-  letter-spacing: 2px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
   color: #e2ff05;
   /* Neon pink hint */
   text-shadow: 0 0 10px rgba(252, 168, 168, 0.5);
   margin-top: 0;
   margin-bottom: 2rem;
-  margin-left: 0.5rem;
+  margin-left: 0.7rem;
 }
 
 .hero-dates-modern {
@@ -211,6 +201,7 @@
 }
 
 .hero-actions-wrapper {
+  grid-area: actions;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -222,11 +213,12 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.03);
   width: 100%;
-  max-width: 800px;
+  max-width: 550px;
   overflow: hidden;
   position: relative;
   margin-left: 0;
-  /* Reset to 0 for better default, desktop can override if needed */
+  margin-top: -1rem;
+  /* Adjust positioning under dates */
 }
 
 .hero-actions-title {
@@ -289,7 +281,7 @@
 .hero-timer-wrapper {
   position: relative;
   width: 100%;
-  max-width: 440px;
+  max-width: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -495,10 +487,12 @@
 }
 
 @media (max-width: 900px) {
-  .hero-content-anugoonj {
+  .hero-content-fest {
+    display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
+    gap: 0;
   }
 
   .hero-left-col {
@@ -552,12 +546,28 @@
     justify-content: center;
   }
 
+  .hero-left-col {
+    display: contents;
+  }
+
+  /* Children of left-col (Title, Dates) */
+  .hero-logo-wrapper,
+  .hero-subtitle-text,
+  .hero-dates-modern {
+    order: 1;
+  }
+
   .hero-right-col {
-    flex: unset;
     width: 100%;
     justify-content: center;
     padding-right: 0;
-    padding-top: 7rem;
+    padding-top: 4rem;
+    order: 2;
+  }
+
+  .hero-actions-wrapper {
+    order: 3;
+    margin-top: 3rem;
   }
 
   .hero-timer-wrapper {
@@ -565,7 +575,6 @@
     margin-bottom: 2rem;
   }
 }
-
 
 /* --- Gallery Marquee Section --- */
 .gallery-marquee-wrap {
@@ -591,8 +600,8 @@
   display: flex;
   gap: 1.5rem;
   padding-right: 1.5rem;
-  /* Gap between this track and the next track */
   animation: galScroll 25s linear infinite;
+  will-change: transform;
 }
 
 .gal-mq-img {
@@ -603,6 +612,7 @@
   border: 3px solid #fff;
   filter: grayscale(80%);
   transition: all 0.3s ease;
+  will-change: transform, filter;
 }
 
 .gal-mq-img:hover {
@@ -640,7 +650,6 @@
 .brutalist-marquee-container {
   width: 100vw;
   background-color: #e0ff00;
-  /* Neon cyberpunk yellow */
   border-top: 4px solid #000;
   border-bottom: 4px solid #000;
   padding: 20px 0;
@@ -648,7 +657,6 @@
   z-index: 20;
   white-space: nowrap;
   transform: rotate(-1.5deg);
-  /* Slightly more aggressive lean */
   margin-bottom: 6rem;
   box-shadow: 0 0 30px rgba(224, 255, 0, 0.4);
 }
@@ -663,7 +671,6 @@
   color: #000;
   text-transform: uppercase;
   animation: scrollMarquee 20s linear infinite reverse;
-  /* Plays left to right */
 }
 
 .brutalist-marquee span {
@@ -803,7 +810,6 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  /* Dark tint to make text readable */
   z-index: 2;
 }
 
@@ -817,7 +823,7 @@
   text-align: center;
   margin: 0;
   pointer-events: none;
-  /* helps prevent blocking video clicks if any */
+  will-change: transform, opacity, top, left;
 }
 
 .feat-title-sticky h2 {
@@ -833,7 +839,7 @@
 @media (max-width: 768px) {
 
   /* Hero */
-  .anugoonj-hero {
+  .emblazon-hero {
     padding-top: calc(15vh + 1rem);
     padding-bottom: 4rem;
     min-height: auto;
@@ -856,6 +862,7 @@
   .hero-dates-modern {
     padding: 10px 18px;
     gap: 10px;
+    margin-top: 1rem;
     margin-bottom: 2rem;
   }
 
@@ -973,13 +980,13 @@
 
 /* ========== Small Phones (max-width: 480px) ========== */
 @media (max-width: 480px) {
-  .anugoonj-hero {
+  .emblazon-hero {
     padding-top: calc(15vh + 0.75rem);
     padding-bottom: 3.25rem;
     overflow: hidden;
   }
 
-  .hero-content-anugoonj {
+  .hero-content-fest {
     width: 92%;
   }
 
@@ -1005,6 +1012,7 @@
     padding: 8px 14px;
     gap: 8px;
     border-radius: 30px;
+    margin-top: 0.75rem;
     margin-bottom: 1.5rem;
   }
 
@@ -1020,7 +1028,7 @@
   /* Timer on mobile */
   .hero-timer-wrapper {
     max-width: 260px;
-    margin-top: 0;
+    margin-top: 0.5rem;
     margin-bottom: 2rem;
     transform: scale(0.9);
   }
@@ -1174,4 +1182,289 @@
     font-size: clamp(2rem, 10vw, 3.5rem);
   }
 
+  /* Sponsors Mobile Tweaks */
+  .sponsors-marquee-section {
+    margin: 2rem 0;
+    padding: 3rem 0 2.5rem;
+  }
+
+  .sponsors-banner {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .sponsors-banner-line--left,
+  .sponsors-banner-line--right {
+    display: none;
+  }
+
+  .sponsors-banner-tag {
+    font-size: 0.55rem;
+    letter-spacing: 3px;
+  }
+
+  .sponsors-banner-title {
+    font-size: clamp(1.3rem, 6vw, 1.8rem);
+    letter-spacing: 4px;
+  }
+
+  .sponsors-banner-sub {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+  }
+
+  .sponsors-tracks {
+    gap: 1.5rem;
+    padding: 0;
+  }
+
+  .sponsors-marquee-loop .logoloop__item img {
+    padding: 8px 14px;
+    border-radius: 10px;
+  }
+}
+
+/* ============================== */
+/* --- Sponsors Marquee Section --- */
+/* ============================== */
+.sponsors-marquee-section {
+  background: linear-gradient(160deg, #05080f 0%, #0c1225 35%, #111b38 65%, #0a0f1e 100%);
+  overflow: hidden;
+  margin: 4rem 0;
+  padding: 5rem 0 4rem;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  border-top: 1px solid rgba(168, 134, 244, 0.1);
+  border-bottom: 1px solid rgba(168, 134, 244, 0.1);
+}
+
+/* Floating glow orbs */
+.sponsors-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+
+.sponsors-glow-orb--1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(168, 134, 244, 0.5) 0%, transparent 70%);
+  top: -100px;
+  left: -80px;
+  animation: orbFloat1 8s ease-in-out infinite alternate;
+}
+
+.sponsors-glow-orb--2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(209, 107, 61, 0.45) 0%, transparent 70%);
+  bottom: -80px;
+  right: -60px;
+  animation: orbFloat2 10s ease-in-out infinite alternate;
+}
+
+@keyframes orbFloat1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(60px, 40px) scale(1.15);
+  }
+}
+
+@keyframes orbFloat2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(-50px, -30px) scale(1.1);
+  }
+}
+
+/* --- Sponsors Banner Heading --- */
+.sponsors-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Animated side accent lines */
+.sponsors-banner-line {
+  flex: 1;
+  max-width: 200px;
+  height: 2px;
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sponsors-banner-line--left {
+  background: linear-gradient(90deg, transparent 0%, rgba(168, 134, 244, 0.5) 100%);
+}
+
+.sponsors-banner-line--right {
+  background: linear-gradient(90deg, rgba(209, 107, 61, 0.5) 0%, transparent 100%);
+}
+
+.sponsors-banner-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: lineShimmer 3s ease-in-out infinite;
+}
+
+.sponsors-banner-line--right::after {
+  animation-delay: 1.5s;
+}
+
+@keyframes lineShimmer {
+  0% {
+    left: -60%;
+  }
+
+  100% {
+    left: 160%;
+  }
+}
+
+.sponsors-banner-center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sponsors-banner-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 5px;
+  color: rgba(209, 107, 61, 0.7);
+  text-transform: uppercase;
+  font-weight: 600;
+  animation: decoPulse 3s ease-in-out infinite;
+}
+
+@keyframes decoPulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.sponsors-banner-title {
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: clamp(6px, 1.5vw, 12px);
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.sponsors-banner-title span {
+  background: linear-gradient(135deg, #A886F4 0%, #d4a4ff 40%, #FF66B2 70%, #D16B3D 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.sponsors-banner-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 0.3rem 0 0;
+  font-weight: 400;
+}
+
+/* --- Logo Tracks Container --- */
+.sponsors-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+  padding: 0.5rem 0;
+}
+
+/* Edge fade overlay on the tracks */
+.sponsors-tracks::before,
+.sponsors-tracks::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(50px, 10vw, 140px);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.sponsors-tracks::before {
+  left: 0;
+  background: linear-gradient(to right, #05080f 0%, transparent 100%);
+}
+
+.sponsors-tracks::after {
+  right: 0;
+  background: linear-gradient(to left, #0a0f1e 0%, transparent 100%);
+}
+
+/* Logo card styling */
+.sponsors-marquee-loop .logoloop__item img {
+  filter: grayscale(30%) brightness(1.05);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 10px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(168, 134, 244, 0.06);
+}
+
+.sponsors-marquee-loop .logoloop__item:hover img {
+  transform: scale(1.08) translateY(-2px);
+  filter: grayscale(0%) brightness(1.1);
+  box-shadow:
+    0 8px 30px rgba(168, 134, 244, 0.2),
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(168, 134, 244, 0.15);
+  border-color: rgba(168, 134, 244, 0.2);
 }

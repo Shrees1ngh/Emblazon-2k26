@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import { events } from '../../data/eventsData';
@@ -14,10 +14,10 @@ import starEveningBanner from '../../assets/Extras/StarEvening.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const REGISTER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSceQNyjkvTdnhg_4XZfMQJypM5svwxLRJWI77HHnO1OGL7PdQ/viewform'; // Replace with Google Form link when ready
+/* Emblazon registration form URL */
+const REGISTER_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSceQNyjkvTdnhg_4XZfMQJypM5svwxLRJWI77HHnO1OGL7PdQ/viewform';
 
-/* Category config: accent colours, emojis, and Unsplash banner images
-   Palette: warm coral → amber → rose → indigo → fuchsia → teal → gold */
+/* Category config: accent colours, emojis, and banner images */
 const categoryConfig = {
   Cultural: {
     accent: '#F97066',
@@ -167,36 +167,69 @@ const EventCard = ({ event, index, onImageClick }) => {
 const EventSection = ({ title, events: sectionEvents, bannerUrl, accent, onImageClick }) => {
   const sectionRef = useRef(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const el = sectionRef.current;
     if (!el || !sectionEvents.length) return;
 
-    let ctx = gsap.context(() => {
+    let ctx;
+    // Use requestAnimationFrame to ensure DOM is fully painted before setting up animations
+    const rafId = requestAnimationFrame(() => {
+      ctx = gsap.context(() => {
+        const cards = el.querySelectorAll('.ev-card');
+        if (cards.length === 0) return;
 
-      const cards = el.querySelectorAll('.ev-card');
-      if (cards.length > 0) {
-        gsap.fromTo(
-          cards,
-          { opacity: 0, y: 40, scale: 0.95 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.5,
-            ease: 'back.out(1.2)',
-            stagger: 0.08,
-            clearProps: 'opacity,y,scale',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      }
-    }, el);
+        // Check if section is already in viewport (common on page navigation)
+        const rect = el.getBoundingClientRect();
+        const isAlreadyVisible = rect.top < window.innerHeight;
 
-    return () => ctx.revert();
+        if (isAlreadyVisible) {
+          // Section already in view — animate immediately without ScrollTrigger
+          gsap.fromTo(
+            cards,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+              ease: 'power2.out',
+              stagger: 0.05,
+              delay: 0.1,
+              onComplete: () => {
+                gsap.set(cards, { clearProps: 'opacity,y,transform' });
+                cards.forEach(card => card.classList.add('is-animated'));
+              }
+            }
+          );
+        } else {
+          // Section below viewport — use ScrollTrigger
+          gsap.fromTo(
+            cards,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+              ease: 'power2.out',
+              stagger: 0.05,
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 90%',
+                once: true,
+              },
+              onComplete: () => {
+                gsap.set(cards, { clearProps: 'opacity,y,transform' });
+                cards.forEach(card => card.classList.add('is-animated'));
+              }
+            }
+          );
+        }
+      }, el);
+    });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      if (ctx) ctx.revert();
+    };
   }, [sectionEvents]);
 
   if (!sectionEvents.length) return null;
@@ -262,15 +295,52 @@ const Event = () => {
   };
 
   useEffect(() => {
-    // Refresh ScrollTrigger when content height changes due to filtering
-    const timeout = setTimeout(() => ScrollTrigger.refresh(), 100);
-    return () => clearTimeout(timeout);
-  }, [activeDay]);
+    const refreshST = () => {
+      ScrollTrigger.refresh();
+    };
 
-  /* Title text animation removed */
+    const t1 = setTimeout(refreshST, 100);
+    const t2 = setTimeout(refreshST, 500);
+    const t3 = setTimeout(refreshST, 1500);
 
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, [activeDay, events]);
+
+  // Hero text animation
   useEffect(() => {
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+    const el = heroRef.current;
+    if (!el) return;
+
+    const title = el.querySelector('.ev-hero__title');
+    const sub = el.querySelector('.ev-hero__sub');
+    const divider = el.querySelector('.ev-hero__line');
+
+    gsap.set([title, sub], { opacity: 0, y: 40 });
+    if (divider) gsap.set(divider, { scaleX: 0 });
+
+    const tl = gsap.timeline({ delay: 0.2 });
+    tl.to(title, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' });
+    tl.to(sub, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
+    if (divider) {
+      tl.to(divider, { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.3');
+    }
+
+    return () => tl.kill();
+  }, []);
+  // Cleanup only event-page ScrollTriggers on unmount
+  useEffect(() => {
+    return () => {
+      // Kill only ScrollTriggers created within the events page
+      ScrollTrigger.getAll().forEach((t) => {
+        if (t.vars?.trigger?.closest?.('.ev-page')) {
+          t.kill();
+        }
+      });
+    };
   }, []);
 
   const mainEvents = filterByDay(events.filter((e) => e.category === 'Cultural' || e.category === 'Fun' || e.category === 'Drama'));
