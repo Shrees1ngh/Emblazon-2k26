@@ -20,6 +20,7 @@ import Priyanshu from '../../assets/team/Priyanshu.jpeg';
 import Rachit from '../../assets/team/Rachit.jpeg';
 import Sarthak from '../../assets/team/Sarthak.jpeg';
 import Anmol from '../../assets/team/AnmolJangra.jpeg';
+import aditya from '../../assets/team/AdityaKumar.jpeg';
 
 
 
@@ -64,7 +65,7 @@ const coreTeamMembers = [
   },
   {
     id: 6,
-    name: 'Mayank Aggarwal',
+    name: 'Mayank Gupta',
     role: 'Decoration Team',
     image: MayankAggarwal,
     socials: { linkedin: '#', instagram: '#', email: '#' },
@@ -146,6 +147,13 @@ const coreTeamMembers = [
     image: Palak,
     socials: { linkedin: 'https://www.linkedin.com/in/palak-goyal-924741319', instagram: 'https://www.instagram.com/p_goyal01?igsh=MWs5NGdyazl3MWdlZw==', email: 'Palakgoyal0119@gmail.com' },
   },
+  {
+    id: 18,
+    name: 'Aditya Kumar',
+    role: 'Stage & Awards Team',
+    image: aditya,
+    socials: { linkedin: '#', instagram: '#', email: '#' }
+  }
 ];
 
 const webTeamMembers = [
