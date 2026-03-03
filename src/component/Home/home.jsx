@@ -157,7 +157,7 @@ const StarEveningTeaser = () => {
           <div key={col} className="matrix-col" style={{
             '--col-delay': `${Math.random() * 8}s`,
             '--col-dur': `${6 + Math.random() * 10}s`,
-            '--col-opacity': `${0.1 + Math.random() * 0.15}`,
+            '--col-opacity': `${0.04 + Math.random() * 0.04}`,
           }}>
             {[...Array(20)].map((_, row) => (
               <span key={row} className="matrix-char">?</span>
@@ -187,7 +187,7 @@ const StarEveningTeaser = () => {
               <div className="star-img-overlay">
                 <span className="star-coming-badge">
                   <span className="badge-dot" />
-                  COMING SOON
+                  STAY TUNED
                 </span>
               </div>
             </div>
@@ -223,7 +223,7 @@ const StarEveningTeaser = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            Someone <strong>BIG</strong> is coming to ignite the stage.<br />
+            <strong>Someone BIG is coming to ignite the stage.</strong><br />
             Get ready for a performance that will leave you breathless.
             <br /><em>The mystery unfolds soon...</em>
           </motion.p>
