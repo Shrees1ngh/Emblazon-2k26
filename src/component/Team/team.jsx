@@ -13,17 +13,14 @@ import Junaid from '../../assets/team/Junaid.jpeg';
 import Kanak from '../../assets/team/Kanak.jpeg';
 import Manya from '../../assets/team/Manya.jpeg';
 import Mayank from '../../assets/team/Mayank.jpeg';
-import MayankAggarwal from '../../assets/team/MayankGupta.jpeg';
+import MayankGupta from '../../assets/team/MayankGupta.jpeg';
 import Palak from '../../assets/team/Palak.jpeg';
 import Parth from '../../assets/team/parth.jpeg';
 import Priyanshu from '../../assets/team/Priyanshu.jpeg';
 import Rachit from '../../assets/team/Rachit.jpeg';
 import Sarthak from '../../assets/team/Sarthak.jpeg';
 import Anmol from '../../assets/team/AnmolJangra.jpeg';
-import aditya from '../../assets/team/AdityaKumar.jpeg';
-
-
-
+import AdityaKumar from '../../assets/team/AdityaKumar.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,9 +43,67 @@ const EmailIcon = () => (
   </svg>
 );
 
-
-
 const coreTeamMembers = [
+  // Stage & Awards Team
+  {
+    id: 17,
+    name: 'Palak Goyal',
+    role: 'Stage & Awards Team',
+    image: Palak,
+    socials: { linkedin: 'https://www.linkedin.com/in/palak-goyal-924741319', instagram: 'https://www.instagram.com/p_goyal01?igsh=MWs5NGdyazl3MWdlZw==', email: 'Palakgoyal0119@gmail.com' },
+  },
+  {
+    id: 18,
+    name: 'Aditya Kumar',
+    role: 'Stage & Awards Team',
+    image: AdityaKumar,
+    socials: { linkedin: 'https://www.linkedin.com/in/aditya-kumar-936958329?utm_source=share_via&utm_content=profile&utm_medium=member_android', instagram: 'https://www.instagram.com/_.aa.dii?igsh=MWdhdWg2NDhoMmtwNA==', email: '#' },
+  },
+  // Cultural Team
+  {
+    id: 14,
+    name: 'Mayank Malik',
+    role: 'Cultural Team',
+    image: Mayank,
+    socials: { linkedin: 'https://www.linkedin.com/in/mayank-malik-6ab64a371?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', instagram: 'https://www.instagram.com/_growupmnv_?igsh=YWNtd3ZjMHEwcTVz', email: 'mayank34malik@gmail.com' },
+  },
+  {
+    id: 15,
+    name: 'Sarthak Goel',
+    role: 'Cultural Team',
+    image: Sarthak,
+    socials: { linkedin: 'https://www.linkedin.com/in/sarthak-goel-aa6778276?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', instagram: 'https://www.instagram.com/____sarthakkkk?igsh=MWF6aG1tdGpianFvdA==', email: 'sarthakgoel518@gmail.com' },
+  },
+  {
+    id: 16,
+    name: 'Kanak Sharma',
+    role: 'Cultural Team',
+    image: Kanak,
+    socials: { linkedin: 'https://www.linkedin.com/in/kanak-sharma-a5563b2a0?utm_source=share_via&utm_content=profile&utm_medium=member_android', instagram: 'https://www.instagram.com/kanak_sharma009?igsh=MWE3czYwNGt1N2E0dA==', email: 'kanaksharma.ks009@gmail.com' },
+  },
+  // Decoration Team
+  {
+    id: 6,
+    name: 'Mayank Gupta',
+    role: 'Decoration Team',
+    image: MayankGupta,
+    socials: { linkedin: 'https://www.linkedin.com/in/mayank-gupta-452701292?utm_source=share_via&utm_content=profile&utm_medium=member_android', instagram: 'https://www.instagram.com/aggarwal_1945?igsh=c282YjJhcWlidG5r', email: 'mayankkumargupta1987@gmail.com' },
+  },
+  {
+    id: 7,
+    name: 'Rachit Sharma',
+    role: 'Decoration Team',
+    image: Rachit,
+    socials: { linkedin: '#', instagram: 'https://www.instagram.com/reel/DU3HVELk4yX/?igsh=MTkxbzNvbzJhM2g5bw==', email: '#' },
+  },
+  {
+    id: 8,
+    name: 'Priyanshu',
+    role: 'Decoration Team',
+    image: Priyanshu,
+    socials: { linkedin: '#', instagram: '#', email: '#' },
+  },
+  // Design & Advertisement Team
   {
     id: 4,
     name: 'Junaid',
@@ -61,99 +116,45 @@ const coreTeamMembers = [
     name: 'Manya',
     role: 'Design & Advertisement Team',
     image: Manya,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
+    socials: { linkedin: '#', instagram: '#', email: 'manyajain210906@gmail.com' },
   },
-  {
-    id: 6,
-    name: 'Mayank Gupta',
-    role: 'Decoration Team',
-    image: MayankAggarwal,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
-  },
-  {
-    id: 7,
-    name: 'Rachit Sharma',
-    role: 'Decoration Team',
-    image: Rachit,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
-  },
-  {
-    id: 8,
-    name: 'Priyanshu',
-    role: 'Decoration Team',
-    image: Priyanshu,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
-  },
-  {
-    id: 9,
-    name: 'Abhinav Jha',
-    role: 'Marketing Team',
-    image: AbhinavJha,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
-  },
-  {
-    id: 10,
-    name: 'Ishika',
-    role: 'Marketing Team',
-    image: Ishika,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
-  },
-  {
-    id: 11,
-    name: 'Parth',
-    role: 'Marketing Team',
-    image: Parth,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
-  },
+  // Operations Team
   {
     id: 12,
     name: ' Ish Pandey',
     role: 'Operations Team',
     image: IshPandey,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
+    socials: { linkedin: 'https://www.linkedin.com/in/ish-pandey-57b361276?utm_source=share_via&utm_content=profile&utm_medium=member_android', instagram: 'https://www.instagram.com/ishh_pandey1044?igsh=YzhraWhweWw4Y29m', email: 'cyclist.ishpandey@gmail.com' },
   },
   {
     id: 13,
     name: 'Harshita',
     role: 'Operations Team',
     image: Harshita,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
+    socials: { linkedin: '#', instagram: 'https://www.instagram.com/harshii_295?utm_source=qr&igsh=MWJpY3dzYnhlNHdlMg==', email: 'harshirajput05@gmail.com' },
+  },
+  // Marketing Team
+  {
+    id: 9,
+    name: 'Abhinav Jha',
+    role: 'Marketing Team',
+    image: AbhinavJha,
+    socials: { linkedin: '#', instagram: 'https://www.instagram.com/itz_abhinav_jha/', email: 'jhaabhinav24@gmail.com' },
   },
   {
-    id: 14,
-    name: 'Mayank Malik',
-    role: 'Cultural Team',
-    image: Mayank,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
+    id: 10,
+    name: 'Ishika',
+    role: 'Marketing Team',
+    image: Ishika,
+    socials: { linkedin: 'https://www.linkedin.com/in/ishika-tyagi-264091331?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app', instagram: 'https://www.instagram.com/ishik_1111?igsh=MW8xNGdwaDBkYmdmYQ==', email: 'ishika_2005@icloud.com' },
   },
   {
-    id: 15,
-    name: 'Sarthak Goel',
-    role: 'Cultural Team',
-    image: Sarthak,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
+    id: 11,
+    name: 'Parth',
+    role: 'Marketing Team',
+    image: Parth,
+    socials: { linkedin: 'https://www.linkedin.com/in/parth-dabas-bb1728324?utm_source=share_via&utm_content=profile&utm_medium=member_android', instagram: 'https://www.instagram.com/parthdabas1012?utm_source=qr&igsh=cGsyODl6YjZsaWE0', email: 'dparthdabas2005@gmail.com' },
   },
-  {
-    id: 16,
-    name: 'Kanak Sharma',
-    role: 'Cultural Team',
-    image: Kanak,
-    socials: { linkedin: '#', instagram: '#', email: '#' },
-  },
-  {
-    id: 17,
-    name: 'Palak Goyal',
-    role: 'Stage & Awards Team',
-    image: Palak,
-    socials: { linkedin: 'https://www.linkedin.com/in/palak-goyal-924741319', instagram: 'https://www.instagram.com/p_goyal01?igsh=MWs5NGdyazl3MWdlZw==', email: 'Palakgoyal0119@gmail.com' },
-  },
-  {
-    id: 18,
-    name: 'Aditya Kumar',
-    role: 'Stage & Awards Team',
-    image: aditya,
-    socials: { linkedin: '#', instagram: '#', email: '#' }
-  }
 ];
 
 const webTeamMembers = [
@@ -189,6 +190,24 @@ function MemberCard({ member, index }) {
   const cardRef = useRef(null);
   const glowRef = useRef(null);
   const [flipped, setFlipped] = useState(false);
+  const [msgStatus, setMsgStatus] = useState({ show: false, key: 0 });
+  const timerRef = useRef(null);
+
+  const handleSocialClick = (e, link) => {
+    e.stopPropagation();
+    if (!link || link === '#' || link === "") {
+      e.preventDefault();
+      // Reset timer
+      if (timerRef.current) clearTimeout(timerRef.current);
+
+      // Update key and show msg
+      setMsgStatus(prev => ({ show: true, key: prev.key + 1 }));
+
+      timerRef.current = setTimeout(() => {
+        setMsgStatus(prev => ({ ...prev, show: false }));
+      }, 2000);
+    }
+  };
 
   const handleMouseMove = (e) => {
     const card = cardRef.current;
@@ -250,7 +269,7 @@ function MemberCard({ member, index }) {
               target="_blank"
               rel="noopener noreferrer"
               className="tm-social tm-social--linkedin"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => handleSocialClick(e, member.socials.linkedin)}
               title="LinkedIn"
             >
               <LinkedInIcon />
@@ -260,28 +279,34 @@ function MemberCard({ member, index }) {
               target="_blank"
               rel="noopener noreferrer"
               className="tm-social tm-social--instagram"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => handleSocialClick(e, member.socials.instagram)}
               title="Instagram"
             >
               <InstagramIcon />
             </a>
             <a
-              href={`mailto:${member.socials.email}`}
+              href={member.socials.email && member.socials.email !== '#' ? `mailto:${member.socials.email}` : '#'}
               className="tm-social tm-social--email"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e) => handleSocialClick(e, member.socials.email)}
               title="Email"
             >
               <EmailIcon />
             </a>
           </div>
           <div className="tm-card__hint">Click to flip back ↻</div>
+
+          {/* Not Available Popup - key forces re-animation on new click */}
+          <div
+            key={msgStatus.key}
+            className={`tm-card__not-available ${msgStatus.show ? 'tm-card__not-available--show' : ''}`}
+          >
+            Link Not Available
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-
 
 /* ── Main Team Page ── */
 export default function Team() {
