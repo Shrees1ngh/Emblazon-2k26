@@ -8,6 +8,7 @@ import festVideo from '../../assets/fest/clgFest.mp4';
 import './home.css';
 import LogoLoop from './LogoLoop';
 import TextCursor from './TextCursor';
+import ElectricBorder from '../ElectricBorder/ElectricBorder';
 
 /* Social media icon assets */
 import facebookLogo from '../../assets/social media/facebook.png';
@@ -35,6 +36,7 @@ import img3 from '../../assets/fest/03.JPG';
 import img4 from '../../assets/fest/04.JPG';
 import img5 from '../../assets/fest/05.JPG';
 import img6 from '../../assets/fest/06.jpg';
+import starTeaser from '../../assets/fest/starTeaser.png';
 
 const socialLogos = [
   { src: instagramLogo, alt: "Instagram", href: "https://instagram.com/emblazon_hmritm" },
@@ -121,6 +123,155 @@ const FeaturedEventsScroll = () => {
         <h2>🔥 HIGHLIGHTS</h2>
       </div>
     </div>
+  );
+};
+
+const StarEveningTeaser = () => {
+  const detailItems = [
+    { icon: '📅', label: 'DATE', value: '18th March 2026' },
+    { icon: '🕑', label: 'TIME', value: '2:00 PM — 4:00 PM' },
+    { icon: '📍', label: 'VENUE', value: 'Main Stage' },
+  ];
+
+  /* Live analog clock state */
+  const [time, setTime] = useState(new Date());
+  useEffect(() => {
+    const tick = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(tick);
+  }, []);
+  const seconds = time.getSeconds();
+  const minutes = time.getMinutes();
+  const hours = time.getHours() % 12;
+  const secDeg = seconds * 6;
+  const minDeg = minutes * 6 + seconds * 0.1;
+  const hrDeg = hours * 30 + minutes * 0.5;
+
+  /* Matrix question marks - generate columns */
+  const matrixCols = 30;
+
+  return (
+    <section className="star-teaser-section">
+      {/* Matrix question marks background */}
+      <div className="star-matrix-bg" aria-hidden="true">
+        {[...Array(matrixCols)].map((_, col) => (
+          <div key={col} className="matrix-col" style={{
+            '--col-delay': `${Math.random() * 8}s`,
+            '--col-dur': `${6 + Math.random() * 10}s`,
+            '--col-opacity': `${0.1 + Math.random() * 0.15}`,
+          }}>
+            {[...Array(20)].map((_, row) => (
+              <span key={row} className="matrix-char">?</span>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      <div className="star-teaser-content">
+        {/* Image with ElectricBorder */}
+        <motion.div
+          className="star-teaser-image-col"
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+        >
+          <ElectricBorder
+            color="#e2ff05"
+            speed={1.2}
+            chaos={0.15}
+            style={{ borderRadius: 32 }}
+          >
+            <div className="star-teaser-image-wrap">
+              <img src={starTeaser} alt="Star Evening Teaser" className="star-teaser-img" />
+              <div className="star-glow-effect" />
+              <div className="star-img-overlay">
+                <span className="star-coming-badge">
+                  <span className="badge-dot" />
+                  COMING SOON
+                </span>
+              </div>
+            </div>
+          </ElectricBorder>
+        </motion.div>
+
+        {/* Info column */}
+        <div className="star-teaser-info">
+          <motion.div
+            className="star-tag"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            ✦ EXCLUSIVE PERFORMANCE ✦
+          </motion.div>
+
+          <motion.h2
+            className="star-title"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            STAR <span className="star-title-highlight">EVENING</span>
+          </motion.h2>
+
+          <motion.p
+            className="star-mystery-text"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            Someone <strong>BIG</strong> is coming to ignite the stage.<br />
+            Get ready for a performance that will leave you breathless.
+            <br /><em>The mystery unfolds soon...</em>
+          </motion.p>
+
+          <div className="star-details-grid">
+            {detailItems.map((item, i) => (
+              <motion.div
+                key={item.label}
+                className="star-detail-card"
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
+              >
+                <span className="detail-icon">{item.icon}</span>
+                <span className="detail-label">{item.label}</span>
+                <span className="detail-value">{item.value}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Circular Analog Clock */}
+          <motion.div
+            className="star-clock-wrap"
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.8, type: 'spring', stiffness: 150 }}
+          >
+            <div className="star-clock">
+              <div className="clock-face">
+                {[...Array(12)].map((_, i) => (
+                  <div key={i} className="clock-mark" style={{ transform: `rotate(${i * 30}deg)` }}>
+                    <div className="clock-mark-inner" />
+                  </div>
+                ))}
+                <div className="clock-hand clock-hand-hr" style={{ transform: `rotate(${hrDeg}deg)` }} />
+                <div className="clock-hand clock-hand-min" style={{ transform: `rotate(${minDeg}deg)` }} />
+                <div className="clock-hand clock-hand-sec" style={{ transform: `rotate(${secDeg}deg)` }} />
+                <div className="clock-center-dot" />
+              </div>
+              <div className="clock-ring-glow" />
+            </div>
+            <span className="clock-label">TICK TOCK...</span>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -320,6 +471,7 @@ export default function Home() {
       </section>
 
       <FeaturedEventsScroll />
+      <StarEveningTeaser />
     </div >
   );
 }
