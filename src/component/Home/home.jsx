@@ -363,7 +363,6 @@ export default function Home() {
 
         </div>
 
-        <TextCursor spacing={60} followMouseDirection randomFloat exitDuration={0.4} removalInterval={25} maxPoints={6} />
       </section >
 
       <div className="gallery-marquee-wrap">
@@ -472,6 +471,7 @@ export default function Home() {
 
       <FeaturedEventsScroll />
       <StarEveningTeaser />
+      <TextCursor spacing={60} followMouseDirection randomFloat exitDuration={0.4} removalInterval={25} maxPoints={6} />
     </div >
   );
 }
