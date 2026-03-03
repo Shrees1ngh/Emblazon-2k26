@@ -10,7 +10,7 @@ import culturalBanner from '../../assets/Extras/cultural.jpg';
 import musicBanner from '../../assets/Extras/music.jpg';
 import danceBanner from '../../assets/Extras/dance.jpg';
 import literaryBanner from '../../assets/Extras/Literary_FineArts.jpg';
-import starEveningBanner from '../../assets/Extras/StarEvening.jpg';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,11 +49,7 @@ const categoryConfig = {
     icon: '🎨',
     banner: literaryBanner,
   },
-  'Star Evening': {
-    accent: '#FCD34D',
-    icon: '⭐',
-    banner: starEveningBanner,
-  },
+
 };
 
 const getCategoryConfig = (cat) =>
@@ -347,7 +343,6 @@ const Event = () => {
   const literaryEvents = filterByDay(events.filter((e) => e.category === 'Literary/Fine Arts'));
   const musicEvents = filterByDay(events.filter((e) => e.category === 'Music'));
   const danceEvents = filterByDay(events.filter((e) => e.category === 'Dance'));
-  const starEvents = filterByDay(events.filter((e) => e.category === 'Star Evening'));
 
   return (
     <div className="ev-page">
@@ -406,14 +401,6 @@ const Event = () => {
           events={literaryEvents}
           bannerUrl={categoryConfig['Literary/Fine Arts'].banner}
           accent={categoryConfig['Literary/Fine Arts'].accent}
-          onImageClick={setSelectedImage}
-        />
-
-        <EventSection
-          title="Star Evening"
-          events={starEvents}
-          bannerUrl={categoryConfig['Star Evening'].banner}
-          accent={categoryConfig['Star Evening'].accent}
           onImageClick={setSelectedImage}
         />
       </div>
