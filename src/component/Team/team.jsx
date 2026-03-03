@@ -13,7 +13,7 @@ import Junaid from '../../assets/team/Junaid.jpeg';
 import Kanak from '../../assets/team/Kanak.jpeg';
 import Manya from '../../assets/team/Manya.jpeg';
 import Mayank from '../../assets/team/Mayank.jpeg';
-import MayankAggarwal from '../../assets/team/MayankAggarwal.jpeg';
+import MayankAggarwal from '../../assets/team/MayankGupta.jpeg';
 import Palak from '../../assets/team/Palak.jpeg';
 import Parth from '../../assets/team/parth.jpeg';
 import Priyanshu from '../../assets/team/Priyanshu.jpeg';
