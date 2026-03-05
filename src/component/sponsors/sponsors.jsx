@@ -3,21 +3,20 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import DotGrid from '../DotGrid';
 import './sponsors.css';
-import smaaashLogo from '../../assets/sponsors/smaaash.jpg';
-import smartHandLogo from '../../assets/sponsors/smart&hand.png';
+import infoStechnologiesLogo from '../../assets/sponsors/infoStechnologies.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const sponsorsData = {
   title: [
     {
-      name: 'Smaaash',
-      logo: smaaashLogo,
-      description: 'Powering Emblazon 2K26',
+      name: 'InfoS Technologies',
+      logo: infoStechnologiesLogo,
+      description: 'INFO S TECHNOLOGIES',
     },
   ],
   gold: [
-    { name: 'Smart&Hand', logo: smartHandLogo },
+    { name: 'Gold Sponsor 1', logo: '' },
     { name: 'Gold Sponsor 2', logo: '' },
   ],
   silver: [

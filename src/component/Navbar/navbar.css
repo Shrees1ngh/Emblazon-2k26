@@ -115,6 +115,10 @@
   border-radius: 30px;
   position: relative;
   pointer-events: auto;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
 }
 
 .nav-icon {
@@ -589,8 +593,12 @@
     animation-delay: 0.35s;
   }
 
+  .main-links.mobile-open .nav-link:nth-child(7) {
+    animation-delay: 0.40s;
+  }
+
   .main-links.mobile-open .register-btn.mobile {
-    animation-delay: 0.45s;
+    animation-delay: 0.50s;
   }
 }
 

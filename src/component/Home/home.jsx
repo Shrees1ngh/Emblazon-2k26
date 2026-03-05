@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -9,6 +9,7 @@ import './home.css';
 import LogoLoop from './LogoLoop';
 import TextCursor from './TextCursor';
 import ElectricBorder from '../ElectricBorder/ElectricBorder';
+import scheduleImg from '../../assets/events/day 1 and day 2 event.png';
 
 /* Social media icon assets */
 import facebookLogo from '../../assets/social media/facebook.png';
@@ -150,7 +151,7 @@ const StarEveningTeaser = () => {
   const matrixCols = 30;
 
   return (
-    <section className="star-teaser-section">
+    <section id="star-evening" className="star-teaser-section">
       {/* Matrix question marks background */}
       <div className="star-matrix-bg" aria-hidden="true">
         {[...Array(matrixCols)].map((_, col) => (
@@ -278,6 +279,32 @@ const StarEveningTeaser = () => {
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: '00', hours: '00', minutes: '00', seconds: '00' });
   const aboutTextRef = useRef(null);
+
+  const fireflies = useMemo(() => {
+    return [...Array(50)].map((_, i) => {
+      const colors = ['#A886F4', '#50C878', '#FF66B2', '#e2ff05', '#00faff'];
+      const color = colors[i % colors.length];
+      const size = Math.random() * 5 + 3;
+
+      // Distribute evenly across 5 columns and 10 rows
+      const col = i % 5;
+      const row = Math.floor(i / 5);
+      const leftBase = col * 20;
+      const topBase = row * 10;
+
+      return {
+        id: i,
+        width: `${size}px`,
+        height: `${size}px`,
+        left: `${leftBase + Math.random() * 15 + 2}%`,
+        top: `${topBase + Math.random() * 8 + 1}%`,
+        background: color,
+        boxShadow: `0 0 ${size * 2}px ${size / 2}px ${color}`,
+        animationDuration: `${Math.random() * 10 + 8}s`,
+        animationDelay: `${Math.random() * 5}s`
+      };
+    });
+  }, []);
 
   useEffect(() => {
     const targetDate = new Date('2026-03-17T00:00:00');
@@ -412,6 +439,53 @@ export default function Home() {
                 REGISTER NOW
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Time-Wise Event Schedule ── */}
+      <section className="ev-schedule-banner">
+        <div className="ev-schedule-glow ev-schedule-glow--red"></div>
+        <div className="ev-schedule-glow ev-schedule-glow--blue"></div>
+
+        {/* Floating Particles */}
+        {fireflies.map((ff) => (
+          <div
+            key={ff.id}
+            className="ev-sched-particle"
+            style={{
+              width: ff.width,
+              height: ff.height,
+              left: ff.left,
+              top: ff.top,
+              background: ff.background,
+              boxShadow: ff.boxShadow,
+              animationDuration: ff.animationDuration,
+              animationDelay: ff.animationDelay
+            }}
+          ></div>
+        ))}
+
+        <div className="ev-schedule-banner__content">
+          <h2 className="ev-schedule-banner__title">
+            📋 Time-Wise Event <span>Schedule</span>
+          </h2>
+          <p className="ev-schedule-banner__sub">Day 1 (17th March) &amp; Day 2 (18th March) — Full Schedule</p>
+          <div className="ev-schedule-banner__img-wrap">
+            <ElectricBorder
+              color="#00faff"
+              speed={1}
+              chaos={0.12}
+              borderRadius={20}
+              style={{ borderRadius: 20 }}
+            >
+              <img
+                src={scheduleImg}
+                alt="Day 1 and Day 2 Event Schedule"
+                className="ev-schedule-banner__img"
+                loading="lazy"
+              />
+            </ElectricBorder>
           </div>
         </div>
       </section>

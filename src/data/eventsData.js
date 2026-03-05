@@ -1,5 +1,34 @@
-import fashionParadeImg from '../assets/events/fashion parade.png';
+import fashionParadeImg from '../assets/events/fashion_parade.png';
 import rappingImg from '../assets/events/rapping.png';
+import mrMsEmblazomImg from '../assets/events/mr_and_ms_emblazon.png';
+import treasureHuntImg from '../assets/events/treasure_hunt.png';
+import describeToLaughImg from '../assets/events/describe_to_laugh.png';
+import musicalChairImg from '../assets/events/musical_chair.png';
+import streetPlayImg from '../assets/events/street_play.png';
+import oneActPlayImg from '../assets/events/one_act_play.png';
+import monoActingImg from '../assets/events/mono_acting.png';
+import paperDanceImg from '../assets/events/paper_dance.png';
+import propDanceImg from '../assets/events/prop_dance.png';
+import spinTheDareImg from '../assets/events/spin_the_dare.png';
+import reEnactItImg from '../assets/events/re-enact_it.png';
+import debateImg from '../assets/events/debate.png';
+import justAMinuteImg from '../assets/events/just_a_minute.png';
+import poetriaImg from '../assets/events/poetria.png';
+import narraticaImg from '../assets/events/narratica.png';
+import colourYourDreamImg from '../assets/events/colour_your_dream.png';
+import rangoliImg from '../assets/events/rangoli.png';
+import drawWithMusicImg from '../assets/events/draw_with_music.png';
+import bollywoodDialogImg from '../assets/events/bollywood_dialog.png';
+import techArtImg from '../assets/events/tech art.png';
+import captionThisImg from '../assets/events/caption_this.png';
+import guessTheMemeImg from '../assets/events/guess the meme.png';
+import soloSingingImg from '../assets/events/solo singing.png';
+import duetSingingImg from '../assets/events/duet singing.png';
+import buzzToSingImg from '../assets/events/buzz to sing.png';
+import guessTheSongImg from '../assets/events/guess the song.png';
+import soloDanceImg from '../assets/events/solo_dance.png';
+import nachBaliyeImg from '../assets/events/nach baliye.png';
+import groupDanceImg from '../assets/events/group_dance.png';
 
 export const events = [
     // ── Cultural / Fun Events ──
@@ -9,7 +38,7 @@ export const events = [
         description: 'Walk the ramp and dazzle with your style, glamour and confidence.',
         category: 'Cultural',
         date: '2026-03-18',
-        time: '12:00 – 1:00',
+        time: '12:00 PM – 1:00 PM',
         location: 'Main Stage',
         registrationStatus: 'Open',
         image: fashionParadeImg,
@@ -20,7 +49,7 @@ export const events = [
         description: 'Drop bars, own the mic and set the stage on fire with your flow.',
         category: 'Cultural',
         date: '2026-03-18',
-        time: '10:00 – 10:45',
+        time: '10:00 AM – 10:45 AM',
         location: 'Main Stage',
         registrationStatus: 'Open',
         image: rappingImg,
@@ -31,10 +60,10 @@ export const events = [
         description: 'The ultimate personality contest — charm, talent and confidence combined.',
         category: 'Cultural',
         date: '2026-03-17',
-        time: '11:15 – 12:15',
+        time: '11:15 AM – 12:15 PM',
         location: 'Main Stage',
         registrationStatus: 'Open',
-        image: '',
+        image: mrMsEmblazomImg,
     },
     {
         id: 4,
@@ -42,10 +71,10 @@ export const events = [
         description: 'Solve clues, race against time and find the hidden treasure across campus.',
         category: 'Fun',
         date: '2026-03-17',
-        time: '11:00 onwards',
+        time: '11:00 AM onwards',
         location: 'Campus Wide',
         registrationStatus: 'Open',
-        image: '',
+        image: treasureHuntImg,
     },
     {
         id: 5,
@@ -53,10 +82,10 @@ export const events = [
         description: 'Describe it without saying it — the funniest explanations win!',
         category: 'Fun',
         date: '2026-03-17',
-        time: '12:15 – 12:45',
-        location: 'Lawn 1',
+        time: '12:15 PM – 12:45 PM',
+        location: 'Lawn 2',
         registrationStatus: 'Open',
-        image: '',
+        image: describeToLaughImg,
     },
     {
         id: 6,
@@ -64,10 +93,10 @@ export const events = [
         description: 'The classic game of speed, reflexes and musical timing.',
         category: 'Fun',
         date: '2026-03-17',
-        time: '11:45 – 12:15',
-        location: 'Lawn 1',
+        time: '11:45 AM – 12:15 PM',
+        location: 'Lawn 2',
         registrationStatus: 'Open',
-        image: '',
+        image: musicalChairImg,
     },
     {
         id: 7,
@@ -75,10 +104,10 @@ export const events = [
         description: 'Powerful street theatre — stories that move, provoke and inspire.',
         category: 'Drama',
         date: '2026-03-17',
-        time: '12:15 – 12:45',
+        time: '12:15 PM – 12:45 PM',
         location: 'Main Ground',
         registrationStatus: 'Open',
-        image: '',
+        image: streetPlayImg,
     },
     {
         id: 8,
@@ -86,10 +115,10 @@ export const events = [
         description: 'A short, impactful performance — tell a complete story in one act.',
         category: 'Drama',
         date: '2026-03-18',
-        time: '10:45 – 12:00',
+        time: '10:45 AM – 12:00 PM',
         location: 'Main Stage',
         registrationStatus: 'Open',
-        image: '',
+        image: oneActPlayImg,
     },
     {
         id: 9,
@@ -97,10 +126,10 @@ export const events = [
         description: 'One actor, many characters — showcase your range and expressiveness.',
         category: 'Drama',
         date: '2026-03-17',
-        time: '12:45 – 1:30',
+        time: '12:45 PM – 1:30 PM',
         location: 'Main Stage',
         registrationStatus: 'Open',
-        image: '',
+        image: monoActingImg,
     },
     {
         id: 10,
@@ -108,10 +137,10 @@ export const events = [
         description: 'Dance on an ever-shrinking piece of paper — balance meets rhythm!',
         category: 'Fun',
         date: '2026-03-18',
-        time: '10:45 – 11:15',
-        location: 'Lawn 1',
+        time: '10:45 AM – 11:15 AM',
+        location: 'Lawn 2',
         registrationStatus: 'Open',
-        image: '',
+        image: paperDanceImg,
     },
     {
         id: 11,
@@ -119,10 +148,10 @@ export const events = [
         description: 'Dance with a twist — use creative props to elevate your performance.',
         category: 'Fun',
         date: '2026-03-18',
-        time: '9:30 – 10:00',
+        time: '9:30 AM – 10:00 AM',
         location: 'Main Stage',
         registrationStatus: 'Open',
-        image: '',
+        image: propDanceImg,
     },
     {
         id: 33,
@@ -133,7 +162,7 @@ export const events = [
         time: 'Whole Day',
         location: 'Near Main Ground',
         registrationStatus: 'Open',
-        image: '',
+        image: spinTheDareImg,
     },
     {
         id: 34,
@@ -141,10 +170,10 @@ export const events = [
         description: 'Recreate iconic scenes from movies, history or pop culture.',
         category: 'Fun',
         date: '2026-03-18',
-        time: '12:00 – 12:45',
-        location: 'Lawn 1',
+        time: '12:00 PM – 12:45 PM',
+        location: 'Lawn 2',
         registrationStatus: 'Open',
-        image: '',
+        image: reEnactItImg,
     },
 
     // ── Literary / Fine Art Events ──
@@ -154,21 +183,21 @@ export const events = [
         description: 'Argue, counter and persuade in this battle of wits. Hindi & English.',
         category: 'Literary/Fine Arts',
         date: '2026-03-17',
-        time: '10:30 – 11:45',
-        location: 'Room',
+        time: '10:30 AM – 11:45 AM',
+        location: 'Room 120',
         registrationStatus: 'Open',
-        image: '',
+        image: debateImg,
     },
     {
         id: 13,
         title: 'Just a Minute',
-        description: 'Speak on any topic for 60 seconds — no stammering, no pauses!',
+        description: 'Speak on any topic for 60 seconds — no stammering, no pauses! Hindi & English.',
         category: 'Literary/Fine Arts',
         date: '2026-03-17',
-        time: '11:00 – 11:45',
-        location: 'Lawn 1',
+        time: '11:00 AM – 11:45 AM',
+        location: 'Lawn 2',
         registrationStatus: 'Open',
-        image: '',
+        image: justAMinuteImg,
     },
     {
         id: 14,
@@ -176,10 +205,10 @@ export const events = [
         description: 'Recite your soul out — poetry and shayari in Hindi & English.',
         category: 'Literary/Fine Arts',
         date: '2026-03-17',
-        time: '1:30 – 2:30',
-        location: 'Room 1',
+        time: '1:30 PM – 2:30 PM',
+        location: 'Room 120',
         registrationStatus: 'Open',
-        image: '',
+        image: poetriaImg,
     },
     {
         id: 15,
@@ -187,10 +216,10 @@ export const events = [
         description: 'The art of storytelling — weave words into worlds. Hindi & English.',
         category: 'Literary/Fine Arts',
         date: '2026-03-17',
-        time: '11:45 – 1:00',
-        location: 'Room 1',
+        time: '11:45 AM – 1:00 PM',
+        location: 'Room 120',
         registrationStatus: 'Open',
-        image: '',
+        image: narraticaImg,
     },
     {
         id: 16,
@@ -198,10 +227,10 @@ export const events = [
         description: 'Let your imagination flow on canvas with vibrant colours.',
         category: 'Literary/Fine Arts',
         date: '2026-03-18',
-        time: '10:15 – 11:15',
-        location: 'EG Lab',
+        time: '10:15 AM – 11:15 AM',
+        location: 'Room 029',
         registrationStatus: 'Open',
-        image: '',
+        image: colourYourDreamImg,
     },
     {
         id: 17,
@@ -209,10 +238,10 @@ export const events = [
         description: 'Create stunning floor art with colours, patterns and creativity.',
         category: 'Literary/Fine Arts',
         date: '2026-03-17',
-        time: '10:15 onwards',
+        time: '10:15 AM onwards',
         location: 'Reception',
         registrationStatus: 'Open',
-        image: '',
+        image: rangoliImg,
     },
     {
         id: 18,
@@ -220,10 +249,10 @@ export const events = [
         description: 'Sketch what the music makes you feel — art meets melody.',
         category: 'Literary/Fine Arts',
         date: '2026-03-18',
-        time: '9:30 – 10:15',
-        location: 'Mechanical Lab / EG Lab',
+        time: '9:30 AM – 10:15 AM',
+        location: 'Room 029',
         registrationStatus: 'Open',
-        image: '',
+        image: drawWithMusicImg,
     },
     {
         id: 19,
@@ -231,10 +260,10 @@ export const events = [
         description: 'Deliver iconic Bollywood dialogues with maximum style and swag.',
         category: 'Literary/Fine Arts',
         date: '2026-03-17',
-        time: '12:15 – 1:00',
-        location: 'Room 2',
+        time: '12:15 PM – 1:00 PM',
+        location: 'Room 102',
         registrationStatus: 'Open',
-        image: '',
+        image: bollywoodDialogImg,
     },
     {
         id: 21,
@@ -242,10 +271,10 @@ export const events = [
         description: 'Where technology meets creativity — digital art at its finest.',
         category: 'Literary/Fine Arts',
         date: '2026-03-17',
-        time: '11:30 – 12:15',
+        time: '11:30 AM – 12:15 PM',
         location: 'Mechanical Lab',
         registrationStatus: 'Open',
-        image: '',
+        image: techArtImg,
     },
     {
         id: 22,
@@ -254,9 +283,9 @@ export const events = [
         category: 'Literary/Fine Arts',
         date: '2026-03-17',
         time: 'Whole Day',
-        location: 'Lawn 1',
+        location: 'Lawn 2',
         registrationStatus: 'Open',
-        image: '',
+        image: captionThisImg,
     },
     {
         id: 23,
@@ -265,9 +294,9 @@ export const events = [
         category: 'Literary/Fine Arts',
         date: '2026-03-17',
         time: 'Whole Day',
-        location: 'Lawn 1',
+        location: 'Lawn 2',
         registrationStatus: 'Open',
-        image: '',
+        image: guessTheMemeImg,
     },
 
     // ── Music ──
@@ -277,10 +306,10 @@ export const events = [
         description: 'Let your voice shine in this solo vocal competition.',
         category: 'Music',
         date: '2026-03-18',
-        time: '11:15 – 12:00',
-        location: 'Lawn 1',
+        time: '11:15 AM – 12:00 PM',
+        location: 'Lawn 2',
         registrationStatus: 'Open',
-        image: '',
+        image: soloSingingImg,
     },
     {
         id: 25,
@@ -288,10 +317,10 @@ export const events = [
         description: 'Two voices, one stage — harmonize and captivate the audience.',
         category: 'Music',
         date: '2026-03-17',
-        time: '10:15 – 11:00',
-        location: 'Lawn 1',
+        time: '10:15 AM – 11:00 AM',
+        location: 'Lawn 2',
         registrationStatus: 'Open',
-        image: '',
+        image: duetSingingImg,
     },
     {
         id: 27,
@@ -299,10 +328,10 @@ export const events = [
         description: 'Hit the buzzer first and sing the song — speed meets melody.',
         category: 'Music',
         date: '2026-03-17',
-        time: '11:30 – 12:15',
-        location: 'Room 2',
+        time: '11:30 AM – 12:15 PM',
+        location: 'Room 102',
         registrationStatus: 'Open',
-        image: '',
+        image: buzzToSingImg,
     },
     {
         id: 28,
@@ -310,10 +339,10 @@ export const events = [
         description: 'Can you name that tune? Test your musical memory!',
         category: 'Music',
         date: '2026-03-18',
-        time: '10:00 – 10:45',
-        location: 'Room 1',
+        time: '10:00 AM – 10:45 AM',
+        location: 'Room 120',
         registrationStatus: 'Open',
-        image: '',
+        image: guessTheSongImg,
     },
 
     // ── Dance ──
@@ -323,10 +352,10 @@ export const events = [
         description: 'Express yourself through the art of solo dance performance.',
         category: 'Dance',
         date: '2026-03-17',
-        time: '10:15 – 11:15',
+        time: '10:15 AM – 11:15 AM',
         location: 'Main Stage',
         registrationStatus: 'Open',
-        image: '',
+        image: soloDanceImg,
     },
     {
         id: 30,
@@ -334,10 +363,10 @@ export const events = [
         description: 'Partner up and set the stage ablaze with your duet performance.',
         category: 'Dance',
         date: '2026-03-17',
-        time: '1:30 – 2:30',
+        time: '1:30 PM – 2:30 PM',
         location: 'Main Stage',
         registrationStatus: 'Open',
-        image: '',
+        image: nachBaliyeImg,
     },
     {
         id: 31,
@@ -345,9 +374,9 @@ export const events = [
         description: 'Synchronize, energize and mesmerize with your crew!',
         category: 'Dance',
         date: '2026-03-18',
-        time: '1:00 – 2:00',
+        time: '1:00 PM – 2:00 PM',
         location: 'Main Stage',
         registrationStatus: 'Open',
-        image: '',
+        image: groupDanceImg,
     },
 ];

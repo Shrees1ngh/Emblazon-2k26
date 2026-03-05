@@ -16,6 +16,7 @@ const NAV_ITEMS = [
   { path: '/gallery', name: 'Gallery' },
   { path: '/team', name: 'Team' },
   { path: '/events', name: 'Events' },
+  { path: '/#star-evening', name: 'Star Evening' },
   { path: '/sponsors', name: 'Sponsors' },
   { path: '/about', name: 'About' }
 ];
@@ -28,7 +29,38 @@ export default function Navbar({ appState }) {
   const [portalContainer, setPortalContainer] = useState(null);
 
   const handleNav = useCallback((path) => {
-    // If already on this route, just scroll to top — don't kill animations
+    // Handle hash-based scroll targets (e.g. /#star-evening)
+    if (path.includes('#')) {
+      const [basePath, hash] = path.split('#');
+      const targetPath = basePath || '/';
+
+      const scrollToElement = () => {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+
+      setIsMenuOpen(false);
+      document.body.style.overflow = '';
+
+      if (location.pathname === targetPath) {
+        // Already on the page, just scroll
+        scrollToElement();
+      } else {
+        // Navigate to page first, then scroll after DOM loads
+        ScrollTrigger.getAll().forEach((st) => st.kill(true));
+        gsap.globalTimeline.clear();
+        document.body.style.width = '';
+        document.documentElement.style.width = '';
+        window.scrollTo(0, 0);
+        navigate(targetPath);
+        setTimeout(scrollToElement, 600);
+      }
+      return;
+    }
+
+    // If already on this route, just scroll to top
     if (location.pathname === path) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setIsMenuOpen(false);
@@ -123,15 +155,26 @@ export default function Navbar({ appState }) {
         <div className="nav-center">
           <div className="main-links">
             {NAV_ITEMS.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
-                onClick={(e) => { e.preventDefault(); handleNav(item.path); }}
-              >
-                <span className="nav-icon">{item.icon}</span>
-                <span className="nav-text">{item.name}</span>
-              </NavLink>
+              item.path.includes('#') ? (
+                <button
+                  key={item.path}
+                  className="nav-link"
+                  onClick={() => handleNav(item.path)}
+                >
+                  <span className="nav-icon">{item.icon}</span>
+                  <span className="nav-text">{item.name}</span>
+                </button>
+              ) : (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
+                  onClick={(e) => { e.preventDefault(); handleNav(item.path); }}
+                >
+                  <span className="nav-icon">{item.icon}</span>
+                  <span className="nav-text">{item.name}</span>
+                </NavLink>
+              )
             ))}
           </div>
         </div>
@@ -148,15 +191,26 @@ export default function Navbar({ appState }) {
       {(portalContainer && isMenuOpen) && (createPortal(
         <div className="main-links mobile-open" aria-hidden={!isMenuOpen} role="menu">
           {NAV_ITEMS.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
-              onClick={(e) => { e.preventDefault(); handleNav(item.path); }}
-            >
-              <span className="nav-icon">{item.icon}</span>
-              <span className="nav-text">{item.name}</span>
-            </NavLink>
+            item.path.includes('#') ? (
+              <button
+                key={item.path}
+                className="nav-link"
+                onClick={() => handleNav(item.path)}
+              >
+                <span className="nav-icon">{item.icon}</span>
+                <span className="nav-text">{item.name}</span>
+              </button>
+            ) : (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) => 'nav-link' + (isActive ? ' active' : '')}
+                onClick={(e) => { e.preventDefault(); handleNav(item.path); }}
+              >
+                <span className="nav-icon">{item.icon}</span>
+                <span className="nav-text">{item.name}</span>
+              </NavLink>
+            )
           ))}
           <a href={REGISTER_URL} className="register-btn mobile" target="_blank" rel="noopener noreferrer">Register</a>
         </div>,

@@ -634,7 +634,7 @@
 /* --- About EMBLAZON Section --- */
 .about-emblazon-section {
   width: 100%;
-  padding: 6rem 5% 10rem;
+  padding: 6rem 5% 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1925,5 +1925,161 @@
   .star-clock {
     width: 100px;
     height: 100px;
+  }
+}
+
+/* ── Schedule Banner ── */
+.ev-schedule-banner {
+  position: relative;
+  z-index: 1;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 3rem 1rem 4rem;
+  text-align: center;
+  background: #000;
+  width: 100vw;
+  max-width: none;
+  overflow: hidden;
+}
+
+.ev-schedule-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(120px);
+  z-index: 0;
+}
+
+.ev-schedule-glow--red {
+  width: 350px;
+  height: 350px;
+  background: rgba(255, 0, 0, 0.4);
+  top: -50px;
+  left: -50px;
+  animation: floatRedGlow 14s infinite ease-in-out alternate;
+}
+
+.ev-schedule-glow--blue {
+  width: 450px;
+  height: 450px;
+  background: rgba(0, 0, 255, 0.4);
+  bottom: -100px;
+  right: -100px;
+  animation: floatBlueGlow 18s infinite ease-in-out alternate;
+}
+
+@keyframes floatRedGlow {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(50px, 30px) scale(1.1);
+  }
+
+  100% {
+    transform: translate(-20px, 60px) scale(0.9);
+  }
+}
+
+@keyframes floatBlueGlow {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-60px, -40px) scale(1.15);
+  }
+
+  100% {
+    transform: translate(30px, -60px) scale(0.85);
+  }
+}
+
+/* Floating Particles */
+.ev-sched-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: particleFloatUp linear infinite;
+  opacity: 0;
+}
+
+@keyframes particleFloatUp {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translate(30px, -100px);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate(-30px, -200px);
+    opacity: 0;
+  }
+}
+
+.ev-schedule-banner__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.ev-schedule-banner__title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 0 0.4rem;
+}
+
+.ev-schedule-banner__title span {
+  color: #A886F4;
+}
+
+.ev-schedule-banner__sub {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 2rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.ev-schedule-banner__img-wrap {
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.ev-schedule-banner__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .ev-schedule-banner {
+    padding: 2rem 0.5rem 3rem;
+  }
+
+  .ev-schedule-banner__img-wrap {
+    border-radius: 14px;
+  }
+
+  .ev-schedule-banner__img {
+    border-radius: 14px;
   }
 }
