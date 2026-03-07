@@ -38,6 +38,7 @@ import img4 from '../../assets/fest/fest_memory_04.JPG';
 import img5 from '../../assets/fest/fest_memory_05.JPG';
 import img6 from '../../assets/fest/fest_memory_06.jpg';
 import starTeaser from '../../assets/fest/starTeaser.png';
+import ajayHoodaImg from '../../assets/star/ajay_hooda.jpg';
 
 const socialLogos = [
   { src: instagramLogo, alt: "Instagram", href: "https://instagram.com/emblazon_hmritm" },
@@ -183,12 +184,12 @@ const StarEveningTeaser = () => {
             style={{ borderRadius: 32 }}
           >
             <div className="star-teaser-image-wrap">
-              <img src={starTeaser} alt="Star Evening Teaser" className="star-teaser-img" />
+              <img src={ajayHoodaImg} alt="Ajay Hooda" className="star-teaser-img" />
               <div className="star-glow-effect" />
               <div className="star-img-overlay">
                 <span className="star-coming-badge">
                   <span className="badge-dot" />
-                  STAY TUNED
+                  AJAY HOODA
                 </span>
               </div>
             </div>
@@ -224,9 +225,9 @@ const StarEveningTeaser = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <strong>Someone BIG is coming to ignite the stage.</strong><br />
-            Get ready for a performance that will leave you breathless.
-            <br /><em>The mystery unfolds soon...</em>
+            <strong>The sensational Ajay Hooda is set to ignite the stage at EMBLAZON 2k26!</strong><br />
+            Get ready for an electrifying night of unstoppable energy, blockbuster hits, and unmatched vibes.
+            <br /><em>Brace yourself for the biggest performance of the year!</em>
           </motion.p>
 
           <div className="star-details-grid">
@@ -268,7 +269,7 @@ const StarEveningTeaser = () => {
               </div>
               <div className="clock-ring-glow" />
             </div>
-            <span className="clock-label">TICK TOCK...</span>
+            <span className="clock-label">COUNTDOWN BEGINS...</span>
           </motion.div>
         </div>
       </div>
