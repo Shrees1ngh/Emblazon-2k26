@@ -130,61 +130,88 @@ const FeaturedEventsScroll = () => {
 
 const StarEveningTeaser = () => {
   const detailItems = [
-    { icon: '📅', label: 'DATE', value: '18th March 2026' },
+    { icon: '📅', label: 'DATE', value: 'March 18, 2026' },
     { icon: '🕑', label: 'TIME', value: '2:00 PM — 4:00 PM' },
     { icon: '📍', label: 'VENUE', value: 'Main Stage' },
   ];
 
-  /* Live analog clock state */
-  const [time, setTime] = useState(new Date());
+  /* Live countdown to event: 18 March 2026, 2:00 PM IST */
+  const [eventCountdown, setEventCountdown] = useState({ days: '00', hours: '00', mins: '00', secs: '00' });
   useEffect(() => {
-    const tick = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(tick);
+    const target = new Date('2026-03-18T14:00:00+05:30');
+    const tick = () => {
+      const diff = +target - +new Date();
+      if (diff > 0) {
+        setEventCountdown({
+          days: Math.floor(diff / 86400000).toString().padStart(2, '0'),
+          hours: Math.floor((diff / 3600000) % 24).toString().padStart(2, '0'),
+          mins: Math.floor((diff / 60000) % 60).toString().padStart(2, '0'),
+          secs: Math.floor((diff / 1000) % 60).toString().padStart(2, '0'),
+        });
+      }
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
   }, []);
-  const seconds = time.getSeconds();
-  const minutes = time.getMinutes();
-  const hours = time.getHours() % 12;
-  const secDeg = seconds * 6;
-  const minDeg = minutes * 6 + seconds * 0.1;
-  const hrDeg = hours * 30 + minutes * 0.5;
 
-  /* Matrix question marks - generate columns */
-  const matrixCols = 30;
+  /* Sparkle particles */
+  const sparkles = useMemo(() =>
+    [...Array(20)].map((_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      size: Math.random() * 4 + 2,
+      delay: `${Math.random() * 6}s`,
+      dur: `${3 + Math.random() * 4}s`,
+    })), []);
 
   return (
     <section id="star-evening" className="star-teaser-section">
-      {/* Matrix question marks background */}
-      <div className="star-matrix-bg" aria-hidden="true">
-        {[...Array(matrixCols)].map((_, col) => (
-          <div key={col} className="matrix-col" style={{
-            '--col-delay': `${Math.random() * 8}s`,
-            '--col-dur': `${6 + Math.random() * 10}s`,
-            '--col-opacity': `${0.04 + Math.random() * 0.04}`,
-          }}>
-            {[...Array(20)].map((_, row) => (
-              <span key={row} className="matrix-char">?</span>
-            ))}
-          </div>
+      {/* Animated floating orbs */}
+      <div className="star-orb star-orb--1" aria-hidden="true" />
+      <div className="star-orb star-orb--2" aria-hidden="true" />
+      <div className="star-orb star-orb--3" aria-hidden="true" />
+
+      {/* Sparkle particles */}
+      <div className="star-sparkles" aria-hidden="true">
+        {sparkles.map((s) => (
+          <span
+            key={s.id}
+            className="star-sparkle"
+            style={{
+              left: s.left,
+              top: s.top,
+              width: s.size,
+              height: s.size,
+              animationDelay: s.delay,
+              animationDuration: s.dur,
+            }}
+          />
         ))}
       </div>
 
+      {/* Top accent line */}
+      <div className="star-accent-line" aria-hidden="true" />
+
       <div className="star-teaser-content">
-        {/* Image with ElectricBorder */}
+        {/* Image with spotlight and ElectricBorder */}
         <motion.div
           className="star-teaser-image-col"
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -60, scale: 0.95 }}
+          whileInView={{ opacity: 1, x: 0, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: 'easeOut' }}
+          transition={{ duration: 1.1, ease: 'easeOut' }}
         >
+          <div className="star-spotlight" aria-hidden="true" />
           <ElectricBorder
             color="#e2ff05"
             speed={1.2}
             chaos={0.15}
-            style={{ borderRadius: 32 }}
+            style={{ borderRadius: 28 }}
           >
             <div className="star-teaser-image-wrap">
-              <img src={ajayHoodaImg} alt="Ajay Hooda" className="star-teaser-img" />
+              <img src={ajayHoodaImg} alt="Ajay Hooda — Star Event performer at EMBLAZON 2k26" className="star-teaser-img" />
               <div className="star-glow-effect" />
               <div className="star-img-overlay">
                 <span className="star-coming-badge">
@@ -205,7 +232,8 @@ const StarEveningTeaser = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            ✦ EXCLUSIVE PERFORMANCE ✦
+            <span className="star-tag-dot" />
+            EXCLUSIVE PERFORMANCE
           </motion.div>
 
           <motion.h2
@@ -215,7 +243,7 @@ const StarEveningTeaser = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            STAR <span className="star-title-highlight">EVENING</span>
+            STAR<br /><span className="star-title-highlight">EVENING</span>
           </motion.h2>
 
           <motion.p
@@ -225,8 +253,8 @@ const StarEveningTeaser = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <strong>The sensational Ajay Hooda is set to ignite the stage at EMBLAZON 2k26!</strong><br />
-            Get ready for an electrifying night of unstoppable energy, blockbuster hits, and unmatched vibes.
+            The sensational <strong>Ajay Hooda</strong> is set to ignite the stage at <strong>Emblazon 2K26!</strong><br />
+            Get ready for an electrifying performance packed with unstoppable energy, blockbuster hits, and unmatched vibes.
             <br /><em>Brace yourself for the biggest performance of the year!</em>
           </motion.p>
 
@@ -247,29 +275,28 @@ const StarEveningTeaser = () => {
             ))}
           </div>
 
-          {/* Circular Analog Clock */}
+          {/* Live countdown timer */}
           <motion.div
-            className="star-clock-wrap"
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            className="star-countdown-wrap"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.8, type: 'spring', stiffness: 150 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <div className="star-clock">
-              <div className="clock-face">
-                {[...Array(12)].map((_, i) => (
-                  <div key={i} className="clock-mark" style={{ transform: `rotate(${i * 30}deg)` }}>
-                    <div className="clock-mark-inner" />
-                  </div>
-                ))}
-                <div className="clock-hand clock-hand-hr" style={{ transform: `rotate(${hrDeg}deg)` }} />
-                <div className="clock-hand clock-hand-min" style={{ transform: `rotate(${minDeg}deg)` }} />
-                <div className="clock-hand clock-hand-sec" style={{ transform: `rotate(${secDeg}deg)` }} />
-                <div className="clock-center-dot" />
-              </div>
-              <div className="clock-ring-glow" />
+            <span className="star-countdown-label">⏳ Performance starts in</span>
+            <div className="star-countdown-grid">
+              {[
+                { val: eventCountdown.days, unit: 'DAYS' },
+                { val: eventCountdown.hours, unit: 'HRS' },
+                { val: eventCountdown.mins, unit: 'MIN' },
+                { val: eventCountdown.secs, unit: 'SEC' },
+              ].map((t) => (
+                <div key={t.unit} className="star-cd-box">
+                  <span className="star-cd-val">{t.val}</span>
+                  <span className="star-cd-unit">{t.unit}</span>
+                </div>
+              ))}
             </div>
-            <span className="clock-label">COUNTDOWN BEGINS...</span>
           </motion.div>
         </div>
       </div>
@@ -280,6 +307,30 @@ const StarEveningTeaser = () => {
 export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: '00', hours: '00', minutes: '00', seconds: '00' });
   const aboutTextRef = useRef(null);
+  const containerRef = useRef(null);
+
+  // Auto-refresh ScrollTriggers on any layout changes
+  useEffect(() => {
+    if (!containerRef.current) return;
+    let resizeTimer;
+    const observer = new ResizeObserver(() => {
+      // Debounce the refresh
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 50);
+    });
+    observer.observe(containerRef.current);
+
+    // Fallback: forcefully refresh after mounts and heavy image potential loads
+    const initialTimer = setTimeout(() => ScrollTrigger.refresh(), 500);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(resizeTimer);
+      clearTimeout(initialTimer);
+    };
+  }, []);
 
   const fireflies = useMemo(() => {
     return [...Array(50)].map((_, i) => {
@@ -324,7 +375,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="home-container">
+    <div className="home-container" ref={containerRef}>
       <section className="emblazon-hero">
         <div className="hero-content-fest">
           <div className="hero-left-col">
