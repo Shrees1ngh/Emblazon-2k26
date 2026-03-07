@@ -9,7 +9,7 @@ import './home.css';
 import LogoLoop from './LogoLoop';
 import TextCursor from './TextCursor';
 import ElectricBorder from '../ElectricBorder/ElectricBorder';
-import scheduleImg from '../../assets/events/day 1 and day 2 event.png';
+import scheduleImg from "../../assets/events/day 1 and day 2 event.webp";
 
 /* Social media icon assets */
 import facebookLogo from '../../assets/social media/facebook.png';
@@ -31,12 +31,12 @@ import sargamLogo from '../../assets/sponsors/sargam electronics.png';
 import zebronicsLogo from '../../assets/sponsors/zebronics.webp';
 
 /* Gallery marquee images */
-import img1 from '../../assets/fest/01.JPG';
-import img2 from '../../assets/fest/02.JPG';
-import img3 from '../../assets/fest/03.JPG';
-import img4 from '../../assets/fest/04.JPG';
-import img5 from '../../assets/fest/05.JPG';
-import img6 from '../../assets/fest/06.jpg';
+import img1 from '../../assets/fest/fest_memory_01.JPG';
+import img2 from '../../assets/fest/fest_memory_02.JPG';
+import img3 from '../../assets/fest/fest_memory_03.JPG';
+import img4 from '../../assets/fest/fest_memory_04.JPG';
+import img5 from '../../assets/fest/fest_memory_05.JPG';
+import img6 from '../../assets/fest/fest_memory_06.jpg';
 import starTeaser from '../../assets/fest/starTeaser.png';
 
 const socialLogos = [
@@ -468,7 +468,7 @@ export default function Home() {
 
         <div className="ev-schedule-banner__content">
           <h2 className="ev-schedule-banner__title">
-            📋 Time-Wise Event <span>Schedule</span>
+            Time-Wise Event <span>Schedule</span>
           </h2>
           <p className="ev-schedule-banner__sub">Day 1 (17th March) &amp; Day 2 (18th March) — Full Schedule</p>
           <div className="ev-schedule-banner__img-wrap">

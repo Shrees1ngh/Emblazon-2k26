@@ -43,6 +43,7 @@
     width: 100%;
     height: 100%;
     animation: pulse 2.5s ease-in-out infinite;
+    will-change: transform, opacity;
 }
 
 .loading-circle-outer .circular-text {
@@ -63,6 +64,7 @@
     height: 65%;
     animation: pulse 3s ease-in-out infinite;
     animation-delay: 0.5s;
+    will-change: transform, opacity;
 }
 
 .loading-circle-inner .circular-text {
@@ -111,6 +113,7 @@
     height: 120px;
     object-fit: contain;
     filter: drop-shadow(0 8px 32px rgba(255, 128, 0, 0.6));
+    will-change: filter, transform;
 }
 
 

@@ -8,25 +8,29 @@ import './gallery.css';
 import DomeGallery from './DomeGallery';
 import Starfield from './Starfield';
 
-import fest01 from '../../assets/fest/01.JPG';
-import fest03 from '../../assets/fest/03.JPG';
-import fest04 from '../../assets/fest/04.JPG';
-import fest05 from '../../assets/fest/05.JPG';
-import fest06 from '../../assets/fest/06.jpg';
-import fest07 from '../../assets/fest/07.jpg';
-import fest08 from '../../assets/fest/08.jpg';
-import fest09 from '../../assets/fest/09.jpg';
-import fest010 from '../../assets/fest/010.jpg';
-import fest011 from '../../assets/fest/011.jpeg';
-import fest012 from '../../assets/fest/012.png';
-import fest013 from '../../assets/fest/013.jpg';
-import fest014 from '../../assets/fest/014.jpg';
-import fest015 from '../../assets/fest/015.jpeg';
-import fest1 from '../../assets/fest/1.jpeg';
-import fest2 from '../../assets/fest/2.jpeg';
-import fest3 from '../../assets/fest/3.jpeg';
-import fest6 from '../../assets/fest/6.jpeg';
-import fest9 from '../../assets/fest/9.jpeg';
+import fest01 from '../../assets/fest/fest_memory_01.JPG';
+import fest03 from '../../assets/fest/fest_memory_03.JPG';
+import fest04 from '../../assets/fest/fest_memory_04.JPG';
+import fest05 from '../../assets/fest/fest_memory_05.JPG';
+import fest06 from '../../assets/fest/fest_memory_06.jpg';
+import fest07 from '../../assets/fest/fest_memory_07.jpg';
+import fest08 from '../../assets/fest/fest_memory_08.jpg';
+import fest09 from '../../assets/fest/fest_memory_09.jpg';
+import fest010 from '../../assets/fest/fest_memory_010.jpg';
+import fest011 from '../../assets/fest/fest_memory_011.jpeg';
+import fest012 from '../../assets/fest/fest_memory_012.png';
+import fest013 from '../../assets/fest/fest_memory_013.jpg';
+import fest014 from '../../assets/fest/fest_memory_014.jpg';
+import fest015 from '../../assets/fest/fest_memory_015.jpeg';
+import fest1 from '../../assets/fest/fest_memory_1.jpeg';
+import fest2 from '../../assets/fest/fest_memory_2.jpeg';
+import fest3 from '../../assets/fest/fest_memory_3.jpeg';
+import fest6 from '../../assets/fest/fest_memory_6.jpeg';
+import fest9 from '../../assets/fest/fest_memory_9.jpeg';
+import fest16 from '../../assets/fest/fest_memory_16.jpeg';
+import fest17 from '../../assets/fest/fest_memory_17.jpeg';
+import fest18 from '../../assets/fest/fest_memory_18.jpeg';
+import fest19 from '../../assets/fest/fest_memory_19.jpeg';
 
 const domeImages = [
   { src: fest01, alt: 'Emblazon fest' },
@@ -48,6 +52,10 @@ const domeImages = [
   { src: fest3, alt: 'Emblazon fest' },
   { src: fest6, alt: 'Emblazon fest' },
   { src: fest9, alt: 'Emblazon fest' },
+  { src: fest16, alt: 'Emblazon fest' },
+  { src: fest17, alt: 'Emblazon fest' },
+  { src: fest18, alt: 'Emblazon fest' },
+  { src: fest19, alt: 'Emblazon fest' },
 ];
 
 gsap.registerPlugin(Flip, ScrollTrigger);
