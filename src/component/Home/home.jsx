@@ -51,69 +51,66 @@ const FeaturedEventsScroll = () => {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
 
-  /* Reset on mount so navigating back always starts fresh */
-  useLayoutEffect(() => {
-    if (textRef.current) {
-      gsap.set(textRef.current, {
-        top: '50%',
-        left: '50%',
-        xPercent: -50,
-        yPercent: -50,
-        scale: 1,
-        transformOrigin: 'center center',
-      });
-    }
-
-    /* Let the DOM settle + ScrollToTop finish, then recalculate all triggers */
-    const refreshId = requestAnimationFrame(() => {
-      ScrollTrigger.refresh(true);
-    });
-
-    return () => cancelAnimationFrame(refreshId);
-  }, []);
-
   useGSAP(() => {
-    gsap.set(textRef.current, { xPercent: -50, yPercent: -50, transformOrigin: 'center center' });
-
     let mm = gsap.matchMedia();
 
     mm.add("(min-width: 769px)", () => {
-      gsap.to(textRef.current, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top center",
-          end: "top top",
-          scrub: 1,
+      gsap.fromTo(textRef.current,
+        {
+          top: "50%",
+          left: "50%",
+          xPercent: -50,
+          yPercent: -50,
+          scale: 1,
+          transformOrigin: 'center center'
         },
-        top: "10%",
-        left: "5%",
-        xPercent: 0,
-        yPercent: 0,
-        scale: 0.4,
-        transformOrigin: 'left top',
-        ease: "power1.inOut"
-      });
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top center",
+            end: "top top",
+            scrub: 1,
+          },
+          top: "10%",
+          left: "5%",
+          xPercent: 0,
+          yPercent: 0,
+          scale: 0.4,
+          transformOrigin: 'left top',
+          ease: "none"
+        }
+      );
     });
 
     mm.add("(max-width: 768px)", () => {
-      gsap.to(textRef.current, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top center",
-          end: "top top",
-          scrub: 1,
+      gsap.fromTo(textRef.current,
+        {
+          top: "50%",
+          left: "50%",
+          xPercent: -50,
+          yPercent: -50,
+          scale: 1,
+          transformOrigin: 'center center'
         },
-        top: "5%",
-        left: "50%",
-        xPercent: -50,
-        yPercent: 0,
-        scale: 0.5,
-        transformOrigin: 'center top',
-        ease: "power1.inOut"
-      });
+        {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top center",
+            end: "top top",
+            scrub: 1,
+          },
+          top: "5%",
+          left: "50%",
+          xPercent: -50,
+          yPercent: 0,
+          scale: 0.5,
+          transformOrigin: 'center top',
+          ease: "none"
+        }
+      );
     });
 
-  }, { scope: sectionRef });
+  }, { scope: sectionRef, dependencies: [] });
 
   return (
     <div ref={sectionRef} className="featured-video-section">
@@ -208,7 +205,7 @@ const StarEveningTeaser = () => {
             color="#e2ff05"
             speed={1.2}
             chaos={0.15}
-            style={{ borderRadius: 28 }}
+            borderRadius={28}
           >
             <div className="star-teaser-image-wrap">
               <img src={ajayHoodaImg} alt="Ajay Hooda — Star Event performer at EMBLAZON 2k26" className="star-teaser-img" />

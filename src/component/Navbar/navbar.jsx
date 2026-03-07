@@ -1,4 +1,4 @@
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import { useCallback, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
@@ -25,6 +25,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Navbar({ appState }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [portalContainer, setPortalContainer] = useState(null);
 
@@ -34,10 +35,15 @@ export default function Navbar({ appState }) {
       const [basePath, hash] = path.split('#');
       const targetPath = basePath || '/';
 
-      const scrollToElement = () => {
+      const scrollToElement = (retries = 0) => {
         const el = document.getElementById(hash);
         if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Give GSAP ScrollTriggers a moment to recalculate before scrolling
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 150);
+        } else if (retries < 15) {
+          setTimeout(() => scrollToElement(retries + 1), 200);
         }
       };
 
@@ -55,7 +61,7 @@ export default function Navbar({ appState }) {
         document.documentElement.style.width = '';
         window.scrollTo(0, 0);
         navigate(targetPath);
-        setTimeout(scrollToElement, 600);
+        setTimeout(() => scrollToElement(), 500);
       }
       return;
     }
