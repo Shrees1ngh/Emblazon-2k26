@@ -139,14 +139,14 @@ const FeaturedEventsScroll = () => {
 const StarEveningTeaser = () => {
   const detailItems = [
     { icon: <Calendar18Icon />, label: 'DATE', value: 'March 18, 2026' },
-    { icon: '🕑', label: 'TIME', value: '2:00 PM — 4:00 PM' },
+    { icon: '🕑', label: 'TIME', value: '1:00 PM — 3:00 PM' },
     { icon: '📍', label: 'VENUE', value: 'Main Stage' },
   ];
 
-  /* Live countdown to event: 18 March 2026, 2:00 PM IST */
+  /* Live countdown to event: 18 March 2026, 1:00 PM IST */
   const [eventCountdown, setEventCountdown] = useState({ days: '00', hours: '00', mins: '00', secs: '00' });
   useEffect(() => {
-    const target = new Date('2026-03-18T14:00:00+05:30');
+    const target = new Date('2026-03-18T13:00:00+05:30');
     const tick = () => {
       const diff = +target - +new Date();
       if (diff > 0) {
