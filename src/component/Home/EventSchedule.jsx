@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'motion/react';
 import { events } from '../../data/eventsData';
 import './EventSchedule.css';

@@ -1,6 +1,7 @@
 import { useNavigate, NavLink, useLocation } from 'react-router-dom';
 import { useCallback, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'motion/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -104,6 +105,7 @@ export default function Navbar({ appState }) {
   useEffect(() => {
     const el = document.createElement('div');
     document.body.appendChild(el);
+    // eslint-disable-next-line
     setPortalContainer(el);
     return () => {
       document.body.removeChild(el);

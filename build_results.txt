@@ -1,0 +1,117 @@
+
+> fest@0.0.0 build
+> vite build
+
+[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 613 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32massets/coding ninjas-B0D54_ni.avif          [39m[1m[2m     4.48 kB[22m[1m[22m
+[2mdist/[22m[32mindex.html                                  [39m[1m[2m     4.68 kB[22m[1m[22m[2m │ gzip:   1.50 kB[22m
+[2mdist/[22m[32massets/punjab kesari-Bj-ZFh4c.png           [39m[1m[2m     4.92 kB[22m[1m[22m
+[2mdist/[22m[32massets/smart_hand-djf_Clj3.png              [39m[1m[2m     7.04 kB[22m[1m[22m
+[2mdist/[22m[32massets/ace-Dea36PXc.webp                    [39m[1m[2m     7.48 kB[22m[1m[22m
+[2mdist/[22m[32massets/facebook-CymeOZ7C.png                [39m[1m[2m    14.79 kB[22m[1m[22m
+[2mdist/[22m[32massets/sargam electronics-gq98aysN.png      [39m[1m[2m    18.24 kB[22m[1m[22m
+[2mdist/[22m[32massets/zebronics-CUqfUKX9.webp              [39m[1m[2m    20.49 kB[22m[1m[22m
+[2mdist/[22m[32massets/made easy-CiYGfnQx.jpg               [39m[1m[2m    26.12 kB[22m[1m[22m
+[2mdist/[22m[32massets/jambooree-CpRtzkKW.png               [39m[1m[2m    32.88 kB[22m[1m[22m
+[2mdist/[22m[32massets/agro mania-BK8Mtfwj.webp             [39m[1m[2m    34.16 kB[22m[1m[22m
+[2mdist/[22m[32massets/college dunia-BdXkOMgJ.jpg           [39m[1m[2m    36.14 kB[22m[1m[22m
+[2mdist/[22m[32massets/Palak-aWbzd5bH.jpeg                  [39m[1m[2m    46.20 kB[22m[1m[22m
+[2mdist/[22m[32massets/Sarthak-BkGP6Est.jpeg                [39m[1m[2m    52.61 kB[22m[1m[22m
+[2mdist/[22m[32massets/instagram-Dbq-n8qV.png               [39m[1m[2m    52.99 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img3-DABMRWTh.JPG               [39m[1m[2m    66.56 kB[22m[1m[22m
+[2mdist/[22m[32massets/allahabad bank-CmTWK5tN.jpg          [39m[1m[2m    70.03 kB[22m[1m[22m
+[2mdist/[22m[32massets/music-CPCePlhD.jpg                   [39m[1m[2m    79.30 kB[22m[1m[22m
+[2mdist/[22m[32massets/dance-BZHMlM-m.jpg                   [39m[1m[2m    81.96 kB[22m[1m[22m
+[2mdist/[22m[32massets/Kanak-DEDsFq9L.jpeg                  [39m[1m[2m    85.73 kB[22m[1m[22m
+[2mdist/[22m[32massets/Literary_FineArts-BaAzKOQC.jpg       [39m[1m[2m    88.47 kB[22m[1m[22m
+[2mdist/[22m[32massets/Junaid-Dso0EeA2.jpeg                 [39m[1m[2m    89.55 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img7-CxpRJ3vy.JPG               [39m[1m[2m    91.26 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img19-DC1VdLau.jpg              [39m[1m[2m    91.80 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img2-BmJ1Wo31.jpeg              [39m[1m[2m    93.27 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img20-xSzKuxW0.jpeg             [39m[1m[2m    94.12 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img1-Co0aoopD.JPG               [39m[1m[2m    97.78 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img8-CQocEmHy.JPG               [39m[1m[2m   100.40 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img18-kwV6_3Do.jpg              [39m[1m[2m   108.42 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img6-CxEZwErH.jpeg              [39m[1m[2m   110.20 kB[22m[1m[22m
+[2mdist/[22m[32massets/dhun-BBtfZd7x.webp                   [39m[1m[2m   112.37 kB[22m[1m[22m
+[2mdist/[22m[32massets/day 1 and day 2 event-CTXcXxTB.webp  [39m[1m[2m   113.03 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img9-CpYtmAq9.jpg               [39m[1m[2m   114.36 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img5-NePsLfT6.JPG               [39m[1m[2m   115.02 kB[22m[1m[22m
+[2mdist/[22m[32massets/Priyanshu-CHUNpzTe.jpeg              [39m[1m[2m   122.33 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img24-yhK9IhMF.jpeg             [39m[1m[2m   125.28 kB[22m[1m[22m
+[2mdist/[22m[32massets/buzz to sing-BXq_GmMm.webp           [39m[1m[2m   127.05 kB[22m[1m[22m
+[2mdist/[22m[32massets/rangoli-BvmWRXLb.webp                [39m[1m[2m   127.11 kB[22m[1m[22m
+[2mdist/[22m[32massets/paper_dance-DHvc7G5C.webp            [39m[1m[2m   127.34 kB[22m[1m[22m
+[2mdist/[22m[32massets/rapping-ChaCwySy.webp                [39m[1m[2m   127.47 kB[22m[1m[22m
+[2mdist/[22m[32massets/caption_this-DuZm26OU.webp           [39m[1m[2m   127.69 kB[22m[1m[22m
+[2mdist/[22m[32massets/solo singing-BMuJEskD.webp           [39m[1m[2m   127.76 kB[22m[1m[22m
+[2mdist/[22m[32massets/solo_dance-BqcsCwL9.webp             [39m[1m[2m   127.86 kB[22m[1m[22m
+[2mdist/[22m[32massets/duet singing-BmbtYXpZ.webp           [39m[1m[2m   128.06 kB[22m[1m[22m
+[2mdist/[22m[32massets/group_dance-1rCq8gc2.webp            [39m[1m[2m   128.13 kB[22m[1m[22m
+[2mdist/[22m[32massets/tech art-csewbi4h.webp               [39m[1m[2m   128.13 kB[22m[1m[22m
+[2mdist/[22m[32massets/fashion_parade-CUvRldSD.webp         [39m[1m[2m   128.20 kB[22m[1m[22m
+[2mdist/[22m[32massets/draw_with_music-BOIAd7mQ.webp        [39m[1m[2m   128.24 kB[22m[1m[22m
+[2mdist/[22m[32massets/spin_the_dare-BSs-KMoV.webp          [39m[1m[2m   128.43 kB[22m[1m[22m
+[2mdist/[22m[32massets/logo-CH7yauXr.svg                    [39m[1m[2m   128.45 kB[22m[1m[22m[2m │ gzip:  42.98 kB[22m
+[2mdist/[22m[32massets/describe_to_laugh-DwCeznuX.webp      [39m[1m[2m   128.51 kB[22m[1m[22m
+[2mdist/[22m[32massets/guess the meme-BSVs5pJW.webp         [39m[1m[2m   128.62 kB[22m[1m[22m
+[2mdist/[22m[32massets/musical_chair-5qZ3CliI.webp          [39m[1m[2m   128.63 kB[22m[1m[22m
+[2mdist/[22m[32massets/re-enact_it-5tRpjrv5.webp            [39m[1m[2m   128.74 kB[22m[1m[22m
+[2mdist/[22m[32massets/one_act_play-BMT1JAed.webp           [39m[1m[2m   128.75 kB[22m[1m[22m
+[2mdist/[22m[32massets/treasure_hunt-YgAHRneH.webp          [39m[1m[2m   128.82 kB[22m[1m[22m
+[2mdist/[22m[32massets/colour_your_dream-oOlmIHFm.webp      [39m[1m[2m   128.98 kB[22m[1m[22m
+[2mdist/[22m[32massets/mr_and_ms_emblazon-a3vx_fG5.webp     [39m[1m[2m   128.99 kB[22m[1m[22m
+[2mdist/[22m[32massets/guess the song-CwxoqqMf.webp         [39m[1m[2m   129.05 kB[22m[1m[22m
+[2mdist/[22m[32massets/street_play-yNhc3MOq.webp            [39m[1m[2m   129.10 kB[22m[1m[22m
+[2mdist/[22m[32massets/mono_acting-7dU23yXs.webp            [39m[1m[2m   129.27 kB[22m[1m[22m
+[2mdist/[22m[32massets/nach baliye-CDrzuSiJ.webp            [39m[1m[2m   129.39 kB[22m[1m[22m
+[2mdist/[22m[32massets/bollywood_dialog-H3FxCJFK.webp       [39m[1m[2m   129.74 kB[22m[1m[22m
+[2mdist/[22m[32massets/prop_dance-BM1d-sZf.webp             [39m[1m[2m   129.94 kB[22m[1m[22m
+[2mdist/[22m[32massets/just_a_minute-BQwgGzLe.webp          [39m[1m[2m   130.36 kB[22m[1m[22m
+[2mdist/[22m[32massets/debate-0Hzim1S6.webp                 [39m[1m[2m   130.87 kB[22m[1m[22m
+[2mdist/[22m[32massets/narratica-o4eYAeTr.webp              [39m[1m[2m   131.02 kB[22m[1m[22m
+[2mdist/[22m[32massets/poetria--eAS3hUe.webp                [39m[1m[2m   132.88 kB[22m[1m[22m
+[2mdist/[22m[32massets/AnmolJangra-DKd_aA7-.jpeg            [39m[1m[2m   134.57 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img4-CmWcT2bB.jpeg              [39m[1m[2m   134.97 kB[22m[1m[22m
+[2mdist/[22m[32massets/emblazon2k26-CC9bQ9-T.png            [39m[1m[2m   142.24 kB[22m[1m[22m
+[2mdist/[22m[32massets/shree-B_TxL9PR.jpeg                  [39m[1m[2m   144.85 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img11-DO4p5zYx.jpg              [39m[1m[2m   149.84 kB[22m[1m[22m
+[2mdist/[22m[32massets/cultural-CUHxe9BR.jpg                [39m[1m[2m   155.67 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img16-BJkgIjzw.jpeg             [39m[1m[2m   156.37 kB[22m[1m[22m
+[2mdist/[22m[32massets/Mayank-YoqapTl2.jpeg                 [39m[1m[2m   156.58 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img10-2JPDSTRS.jpeg             [39m[1m[2m   158.63 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img14-cDFURB59.jpeg             [39m[1m[2m   162.03 kB[22m[1m[22m
+[2mdist/[22m[32massets/Ishika-DIp-WMps.jpeg                 [39m[1m[2m   165.52 kB[22m[1m[22m
+[2mdist/[22m[32massets/infoStechnologies-B9yy4caG.png       [39m[1m[2m   174.89 kB[22m[1m[22m
+[2mdist/[22m[32massets/IshPandey-DXUo1X4T.jpeg              [39m[1m[2m   180.50 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img17-Jq3HOIOy.png              [39m[1m[2m   198.11 kB[22m[1m[22m
+[2mdist/[22m[32massets/parth-CEQiwBrc.jpeg                  [39m[1m[2m   198.49 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img13-juPBslNv.jpg              [39m[1m[2m   203.72 kB[22m[1m[22m
+[2mdist/[22m[32massets/shashank-BRTFLxdD.jpeg               [39m[1m[2m   206.15 kB[22m[1m[22m
+[2mdist/[22m[32massets/Manya-DILJPxBI.jpeg                  [39m[1m[2m   207.99 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img15-DpJDuHwJ.jpg              [39m[1m[2m   210.99 kB[22m[1m[22m
+[2mdist/[22m[32massets/ajay_hooda-CAJx05yj.jpg              [39m[1m[2m   218.59 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img21-9SEeU5YZ.jpeg             [39m[1m[2m   223.03 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img12-LmvpR02Z.jpg              [39m[1m[2m   227.15 kB[22m[1m[22m
+[2mdist/[22m[32massets/Rachit-Bq29-aQb.jpeg                 [39m[1m[2m   228.31 kB[22m[1m[22m
+[2mdist/[22m[32massets/AdityaKumar-BVFxjxIj.jpeg            [39m[1m[2m   231.70 kB[22m[1m[22m
+[2mdist/[22m[32massets/MayankGupta-C1oBolI3.jpeg            [39m[1m[2m   260.13 kB[22m[1m[22m
+[2mdist/[22m[32massets/AbhinavJha-DKJ90MkZ.jpeg             [39m[1m[2m   309.67 kB[22m[1m[22m
+[2mdist/[22m[32massets/Harshita-BXaBPu4L.jpeg               [39m[1m[2m   387.01 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img22-BUtv3fH7.jpeg             [39m[1m[2m 1,440.52 kB[22m[1m[22m
+[2mdist/[22m[32massets/fest_img23-BFRw6Amo.jpeg             [39m[1m[2m 1,534.62 kB[22m[1m[22m
+[2mdist/[22m[32massets/homebg-BLLiYnzb.jpg                  [39m[1m[2m 3,809.16 kB[22m[1m[22m
+[2mdist/[22m[32massets/Hmritm-CfTXBfNi.mp4                  [39m[1m[2m 7,510.74 kB[22m[1m[22m
+[2mdist/[22m[32massets/clgFest-CaM-5oaQ.mp4                 [39m[1m[2m10,396.27 kB[22m[1m[22m
+[2mdist/[22m[35massets/index-CX_JWUVp.css                   [39m[1m[2m    85.59 kB[22m[1m[22m[2m │ gzip:  17.22 kB[22m
+[2mdist/[22m[36massets/index-DqMFac5F.js                    [39m[1m[33m   635.05 kB[39m[22m[2m │ gzip: 217.73 kB[22m
+[33m
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[32m✓ built in 5.25s[39m

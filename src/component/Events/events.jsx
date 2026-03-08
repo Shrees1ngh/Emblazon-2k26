@@ -304,7 +304,7 @@ const Event = () => {
       clearTimeout(t2);
       clearTimeout(t3);
     };
-  }, [activeDay, events]);
+  }, [activeDay]);
 
   // Hero text animation
   useEffect(() => {

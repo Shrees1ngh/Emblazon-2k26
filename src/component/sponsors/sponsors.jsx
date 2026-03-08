@@ -179,15 +179,6 @@ export default function Sponsors() {
         <SponsorTier tier="partners" sponsors={sponsorsData.partners} />
       </div>
 
-      <div className="sponsors-cta">
-        <h2 className="sponsors-cta__title">Want to Sponsor Emblazon?</h2>
-        <p className="sponsors-cta__text">
-          Partner with us and reach thousands of students and tech enthusiasts
-        </p>
-        <a href="mailto:emblazon@hmritm.ac.in" className="sponsors-cta__btn">
-          Become a Sponsor →
-        </a>
-      </div>
     </div>
   );
 }

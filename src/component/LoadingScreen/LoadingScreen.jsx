@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'motion/react';
 import CircularText from './CircularText';
 import logo from '../../assets/fest/logo.svg';

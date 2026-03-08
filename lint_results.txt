@@ -1,0 +1,170 @@
+
+> fest@0.0.0 lint
+> eslint .
+
+
+C:\Users\shree\Downloads\Emblazon-2k26\src\component\Events\events.jsx
+  307:6  warning  React Hook useEffect has an unnecessary dependency: 'events'. Either exclude it or remove the dependency array. Outer scope values like 'events' aren't valid dependencies because mutating them doesn't re-render the component  react-hooks/exhaustive-deps
+
+C:\Users\shree\Downloads\Emblazon-2k26\src\component\Home\EventSchedule.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\shree\Downloads\Emblazon-2k26\src\component\Home\TextCursor.jsx
+   2:10  error    'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     no-unused-vars
+  17:36  error    Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  15 |     const [trail, setTrail] = useState([]);
+  16 |     const containerRef = useRef(null);
+> 17 |     const lastMoveTimeRef = useRef(Date.now());
+     |                                    ^^^^^^^^^^ Cannot call impure function
+  18 |     const idCounter = useRef(0);
+  19 |
+  20 |     const handleMouseMove = e => {  react-hooks/purity
+  82:8   warning  React Hook useEffect has a missing dependency: 'handleMouseMove'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                react-hooks/exhaustive-deps
+
+C:\Users\shree\Downloads\Emblazon-2k26\src\component\Home\home.jsx
+    1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             no-unused-vars
+    2:31  error  'useLayoutEffect' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    no-unused-vars
+   65:8   error  'starTeaser' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         no-unused-vars
+  195:16  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  193 |     [...Array(20)].map((_, i) => ({
+  194 |       id: i,
+> 195 |       left: `${Math.random() * 100}%`,
+      |                ^^^^^^^^^^^^^ Cannot call impure function
+  196 |       top: `${Math.random() * 100}%`,
+  197 |       size: Math.random() * 4 + 2,
+  198 |       delay: `${Math.random() * 6}s`,                                                                                                 react-hooks/purity
+  196:15  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  194 |       id: i,
+  195 |       left: `${Math.random() * 100}%`,
+> 196 |       top: `${Math.random() * 100}%`,
+      |               ^^^^^^^^^^^^^ Cannot call impure function
+  197 |       size: Math.random() * 4 + 2,
+  198 |       delay: `${Math.random() * 6}s`,
+  199 |       dur: `${3 + Math.random() * 4}s`,                                                                                              react-hooks/purity
+  197:13  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  195 |       left: `${Math.random() * 100}%`,
+  196 |       top: `${Math.random() * 100}%`,
+> 197 |       size: Math.random() * 4 + 2,
+      |             ^^^^^^^^^^^^^ Cannot call impure function
+  198 |       delay: `${Math.random() * 6}s`,
+  199 |       dur: `${3 + Math.random() * 4}s`,
+  200 |     })), []);                                                                                               react-hooks/purity
+  198:17  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  196 |       top: `${Math.random() * 100}%`,
+  197 |       size: Math.random() * 4 + 2,
+> 198 |       delay: `${Math.random() * 6}s`,
+      |                 ^^^^^^^^^^^^^ Cannot call impure function
+  199 |       dur: `${3 + Math.random() * 4}s`,
+  200 |     })), []);
+  201 |                                                                                                                                  react-hooks/purity
+  199:19  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  197 |       size: Math.random() * 4 + 2,
+  198 |       delay: `${Math.random() * 6}s`,
+> 199 |       dur: `${3 + Math.random() * 4}s`,
+      |                   ^^^^^^^^^^^^^ Cannot call impure function
+  200 |     })), []);
+  201 |
+  202 |   return (                                                                                                                                                           react-hooks/purity
+  411:20  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  409 |       const colors = ['#A886F4', '#50C878', '#FF66B2', '#e2ff05', '#00faff'];
+  410 |       const color = colors[i % colors.length];
+> 411 |       const size = Math.random() * 5 + 3;
+      |                    ^^^^^^^^^^^^^ Cannot call impure function
+  412 |
+  413 |       // Distribute evenly across 5 columns and 10 rows
+  414 |       const col = i % 5;                                            react-hooks/purity
+  423:29  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  421 |         width: `${size}px`,
+  422 |         height: `${size}px`,
+> 423 |         left: `${leftBase + Math.random() * 15 + 2}%`,
+      |                             ^^^^^^^^^^^^^ Cannot call impure function
+  424 |         top: `${topBase + Math.random() * 8 + 1}%`,
+  425 |         background: color,
+  426 |         boxShadow: `0:0 ${size * 2}px ${size / 2}px ${color}`,                             react-hooks/purity
+  424:27  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  422 |         height: `${size}px`,
+  423 |         left: `${leftBase + Math.random() * 15 + 2}%`,
+> 424 |         top: `${topBase + Math.random() * 8 + 1}%`,
+      |                           ^^^^^^^^^^^^^ Cannot call impure function
+  425 |         background: color,
+  426 |         boxShadow: `0:0 ${size * 2}px ${size / 2}px ${color}`,
+  427 |         animationDuration: `${Math.random() * 10 + 8}s`,  react-hooks/purity
+  427:31  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  425 |         background: color,
+  426 |         boxShadow: `0:0 ${size * 2}px ${size / 2}px ${color}`,
+> 427 |         animationDuration: `${Math.random() * 10 + 8}s`,
+      |                               ^^^^^^^^^^^^^ Cannot call impure function
+  428 |         animationDelay: `${Math.random() * 5}s`
+  429 |       };
+  430 |     });                                                                     react-hooks/purity
+  428:28  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  426 |         boxShadow: `0:0 ${size * 2}px ${size / 2}px ${color}`,
+  427 |         animationDuration: `${Math.random() * 10 + 8}s`,
+> 428 |         animationDelay: `${Math.random() * 5}s`
+      |                            ^^^^^^^^^^^^^ Cannot call impure function
+  429 |       };
+  430 |     });
+  431 |   }, []);                                                                                         react-hooks/purity
+
+C:\Users\shree\Downloads\Emblazon-2k26\src\component\LoadingScreen\LoadingScreen.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\shree\Downloads\Emblazon-2k26\src\component\Navbar\navbar.jsx
+    4:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       no-unused-vars
+  107:5   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  105 |     const el = document.createElement('div');
+  106 |     document.body.appendChild(el);
+> 107 |     setPortalContainer(el);
+      |     ^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  108 |     return () => {
+  109 |       document.body.removeChild(el);
+  110 |       document.body.style.overflow = '';  react-hooks/set-state-in-effect
+
+C:\Users\shree\Downloads\Emblazon-2k26\src\component\footer\Footer.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\shree\Downloads\Emblazon-2k26\src\component\gallery\gallery.jsx
+  5:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+✖ 23 problems (21 errors, 2 warnings)
+

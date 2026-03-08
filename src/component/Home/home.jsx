@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'motion/react';
-import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -62,7 +63,6 @@ const galleryImages = [
   img20, img22, img7, img23, img24
 ];
 
-import starTeaser from '../../assets/fest/starTeaser.png';
 import ajayHoodaImg from '../../assets/star/ajay_hooda.jpg';
 
 const socialLogos = [
@@ -189,7 +189,7 @@ const StarEveningTeaser = () => {
   }, []);
 
   /* Sparkle particles */
-  const sparkles = useMemo(() =>
+  const [sparkles] = useState(() =>
     [...Array(20)].map((_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
@@ -197,7 +197,8 @@ const StarEveningTeaser = () => {
       size: Math.random() * 4 + 2,
       delay: `${Math.random() * 6}s`,
       dur: `${3 + Math.random() * 4}s`,
-    })), []);
+    }))
+  );
 
   return (
     <section id="star-evening" className="star-teaser-section">
@@ -404,7 +405,7 @@ export default function Home() {
     };
   }, []);
 
-  const fireflies = useMemo(() => {
+  const [fireflies] = useState(() => {
     return [...Array(50)].map((_, i) => {
       const colors = ['#A886F4', '#50C878', '#FF66B2', '#e2ff05', '#00faff'];
       const color = colors[i % colors.length];
@@ -428,7 +429,7 @@ export default function Home() {
         animationDelay: `${Math.random() * 5}s`
       };
     });
-  }, []);
+  });
 
   useEffect(() => {
     const targetDate = new Date('2026-03-17T00:00:00');
@@ -543,16 +544,16 @@ export default function Home() {
 
           <div className="about-text-container">
             <p className="about-p">
-              EMBLAZON is the flagship cultural fest of HMR Institute of Technology & Management, celebrating creativity, talent, and passion across music, dance, fashion, art, and innovation.
+              Emblazon is the flagship cultural fest of HMR Institute of Technology & Management (HMRITM), Delhi. The fest celebrates creativity, talent, and passion across music, dance, fashion, art, and innovation.
             </p>
             <p className="about-p">
-              More than just a fest, EMBLAZON is a legacy — a platform where students from across colleges come together to perform, compete, collaborate, and create unforgettable memories.
+              More than just a fest, Emblazon is a legacy - a platform where students from different colleges come together to perform, compete, collaborate, and create unforgettable memories at the HMRITM campus.
             </p>
             <p className="about-p">
-              From electrifying stage performances and fashion parades to rap battles, treasure hunts, and tech-creative showcases, EMBLAZON brings every form of expression under one vibrant celebration.
+              From electrifying stage performances and fashion parades to rap battles, treasure hunts, and creative showcases, Emblazon brings every form of expression together in one vibrant cultural celebration.
             </p>
             <p className="about-p">
-              Every year, EMBLAZON lights up the HMRITM campus with energy, talent, and excitement — making it one of the most awaited events of the season.
+              Every year, Emblazon lights up the HMR Institute of Technology & Management (HMRITM) campus in Delhi with energy, talent, and excitement, making it one of the most awaited events of the season.
             </p>
 
             <div className="about-buttons-wrapper">

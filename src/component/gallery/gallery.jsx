@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import { Flip, ScrollTrigger } from 'gsap/all';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'motion/react';
 import DotGrid from '../DotGrid';
 import './gallery.css';

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'motion/react';
 import emblazonLogo from '../../assets/fest/logo.svg';
 import './Footer.css';

@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'motion/react';
 import './TextCursor.css';
 
@@ -14,10 +15,10 @@ const TextCursor = ({
 }) => {
     const [trail, setTrail] = useState([]);
     const containerRef = useRef(null);
-    const lastMoveTimeRef = useRef(Date.now());
+    const lastMoveTimeRef = useRef(0);
     const idCounter = useRef(0);
 
-    const handleMouseMove = e => {
+    const handleMouseMove = useCallback(e => {
         const mouseX = e.clientX;
         const mouseY = e.clientY;
 
@@ -74,12 +75,12 @@ const TextCursor = ({
         });
 
         lastMoveTimeRef.current = Date.now();
-    };
+    }, [spacing, followMouseDirection, randomFloat, maxPoints]);
 
     useEffect(() => {
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, []);
+    }, [handleMouseMove]);
 
     useEffect(() => {
         const interval = setInterval(() => {
