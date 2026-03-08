@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { LayoutGroup, AnimatePresence } from 'motion/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import ScrollToTop from './component/ScrollToTop';
 import Navbar from './component/Navbar/navbar';
 import Home from './component/Home/home';
