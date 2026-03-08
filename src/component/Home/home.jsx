@@ -37,6 +37,13 @@ import img3 from '../../assets/fest/fest_memory_03.JPG';
 import img4 from '../../assets/fest/fest_memory_04.JPG';
 import img5 from '../../assets/fest/fest_memory_05.JPG';
 import img6 from '../../assets/fest/fest_memory_06.jpg';
+import img16 from '../../assets/fest/fest_memory_16.jpeg';
+import img17 from '../../assets/fest/fest_memory_17.jpeg';
+import img18 from '../../assets/fest/fest_memory_18.jpeg';
+import img19 from '../../assets/fest/fest_memory_19.jpeg';
+
+const galleryImages = [img1, img2, img3, img4, img5, img6, img16, img17, img18, img19];
+
 import starTeaser from '../../assets/fest/starTeaser.png';
 import ajayHoodaImg from '../../assets/star/ajay_hooda.jpg';
 
@@ -139,7 +146,7 @@ const FeaturedEventsScroll = () => {
 const StarEveningTeaser = () => {
   const detailItems = [
     { icon: <Calendar18Icon />, label: 'DATE', value: 'March 18, 2026' },
-    { icon: '🕑', label: 'TIME', value: '1:00 PM — 3:00 PM' },
+    { icon: '🕑', label: 'TIME', value: '1:00 PM - 3:00 PM' },
     { icon: '📍', label: 'VENUE', value: 'Main Stage' },
   ];
 
@@ -316,6 +323,45 @@ export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: '00', hours: '00', minutes: '00', seconds: '00' });
   const aboutTextRef = useRef(null);
   const containerRef = useRef(null);
+  const marqueeContainerRef = useRef(null);
+
+  // Gallery Marquee native scroll with touch swipe support
+  useEffect(() => {
+    const container = marqueeContainerRef.current;
+    if (!container) return;
+
+    let animId;
+    let isInteracting = false;
+    const speed = 1.2;
+
+    const scroll = () => {
+      if (!isInteracting) {
+        container.scrollLeft += speed;
+        // Reset seamlessly when 1 full set is scrolled
+        if (container.scrollLeft >= container.scrollWidth / 2) {
+          container.scrollLeft = 0;
+        }
+      }
+      animId = requestAnimationFrame(scroll);
+    };
+    animId = requestAnimationFrame(scroll);
+
+    const pause = () => { isInteracting = true; };
+    const play = () => { isInteracting = false; };
+
+    container.addEventListener('touchstart', pause, { passive: true });
+    container.addEventListener('touchend', play);
+    container.addEventListener('mouseenter', pause);
+    container.addEventListener('mouseleave', play);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      container.removeEventListener('touchstart', pause);
+      container.removeEventListener('touchend', play);
+      container.removeEventListener('mouseenter', pause);
+      container.removeEventListener('mouseleave', play);
+    };
+  }, []);
 
   // Auto-refresh ScrollTriggers on any layout changes
   useEffect(() => {
@@ -452,12 +498,12 @@ export default function Home() {
 
       </section >
 
-      <div className="gallery-marquee-wrap">
+      <div className="gallery-marquee-wrap mobile-draggable" ref={marqueeContainerRef}>
         <div className="gallery-marquee-inner">
           {[...Array(2)].map((_, loopIndex) => (
-            <div key={loopIndex} className="gallery-marquee-track">
-              {[img5, img6, img1, img2, img3, img4, img5, img6].map((src, i) => (
-                <img key={i} src={src} className="gal-mq-img" alt="Gallery" />
+            <div key={loopIndex} className="gallery-marquee-track native-scroll-track">
+              {galleryImages.map((src, i) => (
+                <img key={i} src={src} className="gal-mq-img" alt="Emblazon Fest Memory" loading="lazy" />
               ))}
             </div>
           ))}

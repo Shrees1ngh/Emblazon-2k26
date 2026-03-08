@@ -604,6 +604,23 @@
   will-change: transform;
 }
 
+.native-scroll-track {
+  animation: none !important;
+  /* Managed by JS scrollLeft for touch interaction! */
+}
+
+.gallery-marquee-wrap.mobile-draggable {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+
+.gallery-marquee-wrap.mobile-draggable::-webkit-scrollbar {
+  display: none;
+}
+
 .gal-mq-img {
   width: clamp(200px, 20vw, 300px);
   height: clamp(150px, 15vw, 220px);
