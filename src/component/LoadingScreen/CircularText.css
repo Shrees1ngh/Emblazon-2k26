@@ -4,11 +4,21 @@
     position: relative;
     font-weight: 900;
     color: #fff;
-    cursor: pointer;
+    cursor: default;
     border-radius: 50%;
     transform-origin: center center;
-    will-change: transform;
     transform: translateZ(0);
+    animation: circularTextSpin var(--spin-duration, 20s) linear infinite;
+}
+
+@keyframes circularTextSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .circular-text span {
@@ -18,5 +28,4 @@
     bottom: 0;
     transform-origin: center center;
     text-align: center;
-    will-change: transform;
 }
