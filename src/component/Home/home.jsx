@@ -45,6 +45,17 @@ const socialLogos = [
   { src: facebookLogo, alt: "Facebook", href: "https://facebook.com/emblazon_2k25/" },
 ];
 
+const Calendar18Icon = () => (
+  <svg viewBox="0 0 24 24" className="calendar-18-icon" aria-hidden="true">
+    <rect x="3" y="4" width="18" height="17" rx="3" fill="#eef2ff" />
+    <rect x="3" y="4" width="18" height="5" rx="3" fill="#2f73ff" />
+    <circle cx="8" cy="11" r="1" fill="#c7d2fe" />
+    <circle cx="12" cy="11" r="1" fill="#c7d2fe" />
+    <circle cx="16" cy="11" r="1" fill="#c7d2fe" />
+    <text x="12" y="18" textAnchor="middle" fontSize="8" fontWeight="700" fill="#0f172a">18</text>
+  </svg>
+);
+
 gsap.registerPlugin(ScrollTrigger);
 
 const FeaturedEventsScroll = () => {
@@ -127,7 +138,7 @@ const FeaturedEventsScroll = () => {
 
 const StarEveningTeaser = () => {
   const detailItems = [
-    { icon: '📅', label: 'DATE', value: 'March 18, 2026' },
+    { icon: <Calendar18Icon />, label: 'DATE', value: 'March 18, 2026' },
     { icon: '🕑', label: 'TIME', value: '2:00 PM — 4:00 PM' },
     { icon: '📍', label: 'VENUE', value: 'Main Stage' },
   ];
