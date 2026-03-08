@@ -31,18 +31,36 @@ import sargamLogo from '../../assets/sponsors/sargam electronics.png';
 import zebronicsLogo from '../../assets/sponsors/zebronics.webp';
 
 /* Gallery marquee images */
-import img1 from '../../assets/fest/fest_memory_01.JPG';
-import img2 from '../../assets/fest/fest_memory_02.JPG';
-import img3 from '../../assets/fest/fest_memory_03.JPG';
-import img4 from '../../assets/fest/fest_memory_04.JPG';
-import img5 from '../../assets/fest/fest_memory_05.JPG';
-import img6 from '../../assets/fest/fest_memory_06.jpg';
-import img16 from '../../assets/fest/fest_memory_16.jpeg';
-import img17 from '../../assets/fest/fest_memory_17.jpeg';
-import img18 from '../../assets/fest/fest_memory_18.jpeg';
-import img19 from '../../assets/fest/fest_memory_19.jpeg';
+import img1 from '../../assets/fest/fest_img1.JPG';
+import img2 from '../../assets/fest/fest_img2.jpeg';
+import img3 from '../../assets/fest/fest_img3.JPG';
+import img4 from '../../assets/fest/fest_img4.jpeg';
+import img5 from '../../assets/fest/fest_img5.JPG';
+import img6 from '../../assets/fest/fest_img6.jpeg';
+import img7 from '../../assets/fest/fest_img7.JPG';
+import img8 from '../../assets/fest/fest_img8.JPG';
+import img9 from '../../assets/fest/fest_img9.jpg';
+import img10 from '../../assets/fest/fest_img10.jpeg';
+import img11 from '../../assets/fest/fest_img11.jpg';
+import img12 from '../../assets/fest/fest_img12.jpg';
+import img13 from '../../assets/fest/fest_img13.jpg';
+import img14 from '../../assets/fest/fest_img14.jpeg';
+import img15 from '../../assets/fest/fest_img15.jpg';
+import img16 from '../../assets/fest/fest_img16.jpeg';
+import img17 from '../../assets/fest/fest_img17.png';
+import img18 from '../../assets/fest/fest_img18.jpg';
+import img19 from '../../assets/fest/fest_img19.jpg';
+import img20 from '../../assets/fest/fest_img20.jpeg';
+import img21 from '../../assets/fest/fest_img21.jpeg';
+import img22 from '../../assets/fest/fest_img22.jpeg';
+import img23 from '../../assets/fest/fest_img23.jpeg';
+import img24 from '../../assets/fest/fest_img24.jpeg';
 
-const galleryImages = [img1, img2, img3, img4, img5, img6, img16, img17, img18, img19];
+const galleryImages = [
+  img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
+  img11, img12, img13, img14, img15, img16, img17, img18, img19,
+  img20, img21, img22, img23, img24
+];
 
 import starTeaser from '../../assets/fest/starTeaser.png';
 import ajayHoodaImg from '../../assets/star/ajay_hooda.jpg';
