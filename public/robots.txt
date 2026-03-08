@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://emblazon-2k26.vercel.app/sitemap.xml
