@@ -11,6 +11,7 @@ import Team from './component/Team/team';
 import Sponsors from './component/sponsors/sponsors';
 import LoadingScreen from './component/LoadingScreen/LoadingScreen';
 import Footer from './component/footer/Footer';
+import { Analytics } from '@vercel/analytics/react';
 
 function AppContent() {
   const [appState, setAppState] = useState('loading');
@@ -41,6 +42,7 @@ function App() {
   return (
     <Router>
       <AppContent />
+      <Analytics />
     </Router>
   );
 }
