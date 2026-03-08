@@ -8,54 +8,56 @@ import './gallery.css';
 import DomeGallery from './DomeGallery';
 import Starfield from './Starfield';
 
-import fest01 from '../../assets/fest/fest_memory_01.JPG';
-import fest03 from '../../assets/fest/fest_memory_03.JPG';
-import fest04 from '../../assets/fest/fest_memory_04.JPG';
-import fest05 from '../../assets/fest/fest_memory_05.JPG';
-import fest06 from '../../assets/fest/fest_memory_06.jpg';
-import fest07 from '../../assets/fest/fest_memory_07.jpg';
-import fest08 from '../../assets/fest/fest_memory_08.jpg';
-import fest09 from '../../assets/fest/fest_memory_09.jpg';
-import fest010 from '../../assets/fest/fest_memory_010.jpg';
-import fest011 from '../../assets/fest/fest_memory_011.jpeg';
-import fest012 from '../../assets/fest/fest_memory_012.png';
-import fest013 from '../../assets/fest/fest_memory_013.jpg';
-import fest014 from '../../assets/fest/fest_memory_014.jpg';
-import fest015 from '../../assets/fest/fest_memory_015.jpeg';
-import fest1 from '../../assets/fest/fest_memory_1.jpeg';
-import fest2 from '../../assets/fest/fest_memory_2.jpeg';
-import fest3 from '../../assets/fest/fest_memory_3.jpeg';
-import fest6 from '../../assets/fest/fest_memory_6.jpeg';
-import fest9 from '../../assets/fest/fest_memory_9.jpeg';
-import fest16 from '../../assets/fest/fest_memory_16.jpeg';
-import fest17 from '../../assets/fest/fest_memory_17.jpeg';
-import fest18 from '../../assets/fest/fest_memory_18.jpeg';
-import fest19 from '../../assets/fest/fest_memory_19.jpeg';
+import img1 from '../../assets/fest/fest_img1.JPG';
+import img2 from '../../assets/fest/fest_img2.jpeg';
+import img3 from '../../assets/fest/fest_img3.JPG';
+import img4 from '../../assets/fest/fest_img4.jpeg';
+import img5 from '../../assets/fest/fest_img5.JPG';
+import img6 from '../../assets/fest/fest_img6.jpeg';
+import img7 from '../../assets/fest/fest_img7.JPG';
+import img8 from '../../assets/fest/fest_img8.JPG';
+import img9 from '../../assets/fest/fest_img9.jpg';
+import img10 from '../../assets/fest/fest_img10.jpeg';
+import img11 from '../../assets/fest/fest_img11.jpg';
+import img12 from '../../assets/fest/fest_img12.jpg';
+import img13 from '../../assets/fest/fest_img13.jpg';
+import img14 from '../../assets/fest/fest_img14.jpeg';
+import img15 from '../../assets/fest/fest_img15.jpg';
+import img16 from '../../assets/fest/fest_img16.jpeg';
+import img17 from '../../assets/fest/fest_img17.png';
+import img18 from '../../assets/fest/fest_img18.jpg';
+import img19 from '../../assets/fest/fest_img19.jpg';
+import img20 from '../../assets/fest/fest_img20.jpeg';
+import img21 from '../../assets/fest/fest_img21.jpeg';
+import img22 from '../../assets/fest/fest_img22.jpeg';
+import img23 from '../../assets/fest/fest_img23.jpeg';
+import img24 from '../../assets/fest/fest_img24.jpeg';
 
 const domeImages = [
-  { src: fest01, alt: 'Emblazon fest' },
-  { src: fest03, alt: 'Emblazon fest' },
-  { src: fest04, alt: 'Emblazon fest' },
-  { src: fest05, alt: 'Emblazon fest' },
-  { src: fest06, alt: 'Emblazon fest' },
-  { src: fest07, alt: 'Emblazon fest' },
-  { src: fest08, alt: 'Emblazon fest' },
-  { src: fest09, alt: 'Emblazon fest' },
-  { src: fest010, alt: 'Emblazon fest' },
-  { src: fest011, alt: 'Emblazon fest' },
-  { src: fest012, alt: 'Emblazon fest' },
-  { src: fest013, alt: 'Emblazon fest' },
-  { src: fest014, alt: 'Emblazon fest' },
-  { src: fest015, alt: 'Emblazon fest' },
-  { src: fest1, alt: 'Emblazon fest' },
-  { src: fest2, alt: 'Emblazon fest' },
-  { src: fest3, alt: 'Emblazon fest' },
-  { src: fest6, alt: 'Emblazon fest' },
-  { src: fest9, alt: 'Emblazon fest' },
-  { src: fest16, alt: 'Emblazon fest' },
-  { src: fest17, alt: 'Emblazon fest' },
-  { src: fest18, alt: 'Emblazon fest' },
-  { src: fest19, alt: 'Emblazon fest' },
+  { src: img1, alt: 'Emblazon fest memory' },
+  { src: img2, alt: 'Emblazon fest memory' },
+  { src: img3, alt: 'Emblazon fest memory' },
+  { src: img4, alt: 'Emblazon fest memory' },
+  { src: img5, alt: 'Emblazon fest memory' },
+  { src: img6, alt: 'Emblazon fest memory' },
+  { src: img7, alt: 'Emblazon fest memory' },
+  { src: img8, alt: 'Emblazon fest memory' },
+  { src: img9, alt: 'Emblazon fest memory' },
+  { src: img10, alt: 'Emblazon fest memory' },
+  { src: img11, alt: 'Emblazon fest memory' },
+  { src: img12, alt: 'Emblazon fest memory' },
+  { src: img13, alt: 'Emblazon fest memory' },
+  { src: img14, alt: 'Emblazon fest memory' },
+  { src: img15, alt: 'Emblazon fest memory' },
+  { src: img16, alt: 'Emblazon fest memory' },
+  { src: img17, alt: 'Emblazon fest memory' },
+  { src: img18, alt: 'Emblazon fest memory' },
+  { src: img19, alt: 'Emblazon fest memory' },
+  { src: img20, alt: 'Emblazon fest memory' },
+  { src: img21, alt: 'Emblazon fest memory' },
+  { src: img22, alt: 'Emblazon fest memory' },
+  { src: img23, alt: 'Emblazon fest memory' },
+  { src: img24, alt: 'Emblazon fest memory' },
 ];
 
 gsap.registerPlugin(Flip, ScrollTrigger);
