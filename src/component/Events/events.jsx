@@ -311,33 +311,25 @@ const Event = () => {
     const el = heroRef.current;
     if (!el) return;
 
-    const title = el.querySelector('.ev-hero__title');
-    const sub = el.querySelector('.ev-hero__sub');
-    const divider = el.querySelector('.ev-hero__line');
+    let ctx = gsap.context(() => {
+      const title = el.querySelector('.ev-hero__title');
+      const sub = el.querySelector('.ev-hero__sub');
+      const divider = el.querySelector('.ev-hero__line');
 
-    gsap.set([title, sub], { opacity: 0, y: 40 });
-    if (divider) gsap.set(divider, { scaleX: 0 });
+      gsap.set([title, sub], { opacity: 0, y: 40 });
+      if (divider) gsap.set(divider, { scaleX: 0 });
 
-    const tl = gsap.timeline({ delay: 0.2 });
-    tl.to(title, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' });
-    tl.to(sub, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
-    if (divider) {
-      tl.to(divider, { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.3');
-    }
+      const tl = gsap.timeline({ delay: 0.2 });
+      tl.to(title, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' });
+      tl.to(sub, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
+      if (divider) {
+        tl.to(divider, { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.3');
+      }
+    }, el);
 
-    return () => tl.kill();
+    return () => ctx.revert();
   }, []);
-  // Cleanup only event-page ScrollTriggers on unmount
-  useEffect(() => {
-    return () => {
-      // Kill only ScrollTriggers created within the events page
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.vars?.trigger?.closest?.('.ev-page')) {
-          t.kill();
-        }
-      });
-    };
-  }, []);
+
 
   const mainEvents = filterByDay(events.filter((e) => e.category === 'Cultural' || e.category === 'Fun' || e.category === 'Drama'));
   const literaryEvents = filterByDay(events.filter((e) => e.category === 'Literary/Fine Arts'));

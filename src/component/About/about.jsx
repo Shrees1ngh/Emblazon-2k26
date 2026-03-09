@@ -13,29 +13,27 @@ export default function About() {
     const el = contentRef.current;
     if (!el) return;
 
-    const children = el.querySelectorAll('.about-animate');
+    let ctx = gsap.context(() => {
+      const children = el.querySelectorAll('.about-animate');
 
-    gsap.set(children, { opacity: 0, y: 60 });
+      gsap.set(children, { opacity: 0, y: 60 });
 
-    gsap.to(children, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      stagger: 0.15,
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 80%',
-        end: 'top 30%',
-        toggleActions: 'play none none reverse',
-      },
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === el) t.kill();
+      gsap.to(children, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 80%',
+          end: 'top 30%',
+          toggleActions: 'play none none reverse',
+        },
       });
-    };
+    }, el);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -138,7 +136,7 @@ export default function About() {
             HMR Institute of Technology &amp; Management was established in the year 2002. It is spread over a sprawling lush green campus of 5 acres of land in the heart of Delhi.
           </p>
           <p className="about-animate" style={{ marginBottom: '1.2rem', color: 'rgba(255, 255, 255, 0.75)' }}>
-            <strong style={{ color: '#ffc107' }}>Nurturing the Technical Spirit</strong> – Conceived as a premier hub for engineering excellence, the HMR Institute of Technology and Management boasts of being among the reputed institutes. We recognize the absolute necessity for bringing up a new-age cerebral workforce in today's highly competitive environment.
+            Nurturing the Technical Spirit - Conceived as a premier hub for engineering excellence, the HMR Institute of Technology and Management boasts of being among the reputed institutes. We recognize the absolute necessity for bringing up a new-age cerebral workforce in today's highly competitive environment.
           </p>
           <p className="about-animate" style={{ marginBottom: '1.2rem', color: 'rgba(255, 255, 255, 0.75)' }}>
             The name HMR stands for the visionaries behind this institution: Late Sh. Hiralal, Late Smt. Mohan Devi, and Late Smt. Rita Gupta. The Institute provides an atmosphere ensuring rigorous academic excellence and unrivaled industry exposure. We equip our students with raw technical skills and profound emotional intelligence to grapple with the complexities of a dynamic technology-driven environment.

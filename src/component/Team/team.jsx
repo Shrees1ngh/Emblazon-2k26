@@ -94,7 +94,7 @@ const coreTeamMembers = [
     name: 'Rachit Sharma',
     role: 'Decoration Team',
     image: Rachit,
-    socials: { linkedin: '#', instagram: 'https://www.instagram.com/reel/DU3HVELk4yX/?igsh=MTkxbzNvbzJhM2g5bw==', email: '#' },
+    socials: { linkedin: 'https://www.linkedin.com/in/rachit-sharma-0ba93720a', instagram: 'https://www.instagram.com/raac____', email: 'rachit28005@gmail.com' },
   },
   {
     id: 8,
@@ -318,19 +318,21 @@ export default function Team() {
     const el = headerRef.current;
     if (!el) return;
 
-    const title = el.querySelector('.tm-hero__title');
-    const sub = el.querySelector('.tm-hero__sub');
-    const line = el.querySelector('.tm-hero__line');
+    let ctx = gsap.context(() => {
+      const title = el.querySelector('.tm-hero__title');
+      const sub = el.querySelector('.tm-hero__sub');
+      const line = el.querySelector('.tm-hero__line');
 
-    gsap.set([title, sub], { opacity: 0, y: 50 });
-    gsap.set(line, { scaleX: 0 });
+      gsap.set([title, sub], { opacity: 0, y: 50 });
+      gsap.set(line, { scaleX: 0 });
 
-    const tl = gsap.timeline({ delay: 0.15 });
-    tl.to(title, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' });
-    tl.to(sub, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
-    tl.to(line, { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.2');
+      const tl = gsap.timeline({ delay: 0.15 });
+      tl.to(title, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' });
+      tl.to(sub, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
+      tl.to(line, { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.2');
+    }, el);
 
-    return () => tl.kill();
+    return () => ctx.revert();
   }, []);
 
   // Animate cards on scroll
@@ -338,24 +340,26 @@ export default function Team() {
     const el = gridRef.current;
     if (!el) return;
 
-    const cards = el.querySelectorAll('.tm-card');
-    gsap.set(cards, { opacity: 0, y: 60, scale: 0.92 });
+    let ctx = gsap.context(() => {
+      const cards = el.querySelectorAll('.tm-card');
+      gsap.set(cards, { opacity: 0, y: 60, scale: 0.92 });
 
-    gsap.to(cards, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.7,
-      ease: 'back.out(1.4)',
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse',
-      },
-    });
+      gsap.to(cards, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: 'back.out(1.4)',
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+    }, el);
 
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+    return () => ctx.revert();
   }, []);
 
   const webGridRef = useRef(null);
@@ -365,24 +369,26 @@ export default function Team() {
     const el = webGridRef.current;
     if (!el) return;
 
-    const cards = el.querySelectorAll('.tm-card');
-    gsap.set(cards, { opacity: 0, y: 60, scale: 0.92 });
+    let ctx = gsap.context(() => {
+      const cards = el.querySelectorAll('.tm-card');
+      gsap.set(cards, { opacity: 0, y: 60, scale: 0.92 });
 
-    gsap.to(cards, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.7,
-      ease: 'back.out(1.4)',
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse',
-      },
-    });
+      gsap.to(cards, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: 'back.out(1.4)',
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      });
+    }, el);
 
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill());
+    return () => ctx.revert();
   }, []);
 
   return (

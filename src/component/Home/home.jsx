@@ -181,6 +181,8 @@ const StarEveningTeaser = () => {
           mins: Math.floor((diff / 60000) % 60).toString().padStart(2, '0'),
           secs: Math.floor((diff / 1000) % 60).toString().padStart(2, '0'),
         });
+      } else {
+        setEventCountdown({ days: '00', hours: '00', mins: '00', secs: '00' });
       }
     };
     tick();
@@ -432,7 +434,7 @@ export default function Home() {
   });
 
   useEffect(() => {
-    const targetDate = new Date('2026-03-17T00:00:00');
+    const targetDate = new Date('2026-03-17T00:00:00+05:30');
     const interval = setInterval(() => {
       const difference = +targetDate - +new Date();
       if (difference > 0) {
@@ -442,6 +444,9 @@ export default function Home() {
           minutes: Math.floor((difference / 1000 / 60) % 60).toString().padStart(2, '0'),
           seconds: Math.floor((difference / 1000) % 60).toString().padStart(2, '0'),
         });
+      } else {
+        setTimeLeft({ days: '00', hours: '00', minutes: '00', seconds: '00' });
+        clearInterval(interval);
       }
     }, 1000);
     return () => clearInterval(interval);

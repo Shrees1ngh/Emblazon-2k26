@@ -74,32 +74,34 @@ export default function Gallery() {
     const section = sectionRef.current;
     if (!gallery || !section) return;
 
-    // Exact same logic as the reference site
-    const galleryItems = document.querySelectorAll('.gallery-page .gallery div');
+    let ctx = gsap.context(() => {
+      // Exact same logic as the reference site
+      const galleryItems = document.querySelectorAll('.gallery-page .gallery div');
 
-    galleryItems.forEach((el) => el.classList.add('flip'));
+      galleryItems.forEach((el) => el.classList.add('flip'));
 
-    const state = Flip.getState(
-      ['.gallery-page .gallery div', '.gallery-page .gallery div .img'],
-      { props: 'borderRadius' }
-    );
+      const state = Flip.getState(
+        ['.gallery-page .gallery div', '.gallery-page .gallery div .img'],
+        { props: 'borderRadius' }
+      );
 
-    galleryItems.forEach((el) => el.classList.remove('flip'));
+      galleryItems.forEach((el) => el.classList.remove('flip'));
 
-    Flip.to(state, {
-      scale: true,
-      simple: true,
-      scrollTrigger: {
-        trigger: section,
-        start: 'center center',
-        end: '+=300%',
-        scrub: 2,
-        pin: true,
-      },
+      Flip.to(state, {
+        scale: true,
+        simple: true,
+        scrollTrigger: {
+          trigger: section,
+          start: 'center center',
+          end: '+=300%',
+          scrub: 2,
+          pin: true,
+        },
+      });
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill(true));
+      ctx.revert();
       // Remove residual inline styles GSAP Flip sets on gallery items + .img
       const items = document.querySelectorAll('.gallery-page .gallery div');
       items.forEach((el) => {
