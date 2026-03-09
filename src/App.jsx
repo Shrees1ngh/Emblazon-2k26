@@ -12,6 +12,7 @@ import Team from './component/Team/team';
 import Sponsors from './component/sponsors/sponsors';
 import LoadingScreen from './component/LoadingScreen/LoadingScreen';
 import Footer from './component/footer/Footer';
+import StarToast from './component/StarToast/StarToast';
 
 function AppContent() {
   const [appState, setAppState] = useState('loading');
@@ -25,6 +26,7 @@ function AppContent() {
         )}
       </AnimatePresence>
       <Navbar appState={appState} />
+      <StarToast appState={appState} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

@@ -13,11 +13,11 @@
 
 @keyframes circularTextSpin {
     from {
-        transform: rotate(0deg);
+        transform: translateZ(0) rotate(0deg);
     }
 
     to {
-        transform: rotate(360deg);
+        transform: translateZ(0) rotate(360deg);
     }
 }
 
@@ -28,4 +28,5 @@
     bottom: 0;
     transform-origin: center center;
     text-align: center;
+    will-change: transform;
 }

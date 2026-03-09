@@ -58,13 +58,7 @@ const DotGrid = ({
     const baseRgb = useMemo(() => hexToRgb(baseColor), [baseColor]);
     const activeRgb = useMemo(() => hexToRgb(activeColor), [activeColor]);
 
-    const circlePath = useMemo(() => {
-        if (typeof window === 'undefined' || !window.Path2D) return null;
 
-        const p = new Path2D();
-        p.arc(0, 0, dotSize / 2, 0, Math.PI * 2);
-        return p;
-    }, [dotSize]);
 
     const buildGrid = useCallback(() => {
         const wrap = wrapperRef.current;
@@ -106,7 +100,6 @@ const DotGrid = ({
     }, [dotSize, gap]);
 
     useEffect(() => {
-        if (!circlePath) return;
 
         let rafId;
         const proxSq = proximity * proximity;
@@ -119,6 +112,12 @@ const DotGrid = ({
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             const { x: px, y: py } = pointerRef.current;
+            const halfSize = dotSize / 2;
+            const activeDots = [];
+
+            // Batch draw all base dots first
+            ctx.fillStyle = baseColor;
+            ctx.beginPath();
 
             for (const dot of dotsRef.current) {
                 const ox = dot.cx + dot.xOffset;
@@ -127,21 +126,21 @@ const DotGrid = ({
                 const dy = dot.cy - py;
                 const dsq = dx * dx + dy * dy;
 
-                let style = baseColor;
                 if (dsq <= proxSq) {
-                    const dist = Math.sqrt(dsq);
-                    const t = 1 - dist / proximity;
-                    const r = Math.round(baseRgb.r + (activeRgb.r - baseRgb.r) * t);
-                    const g = Math.round(baseRgb.g + (activeRgb.g - baseRgb.g) * t);
-                    const b = Math.round(baseRgb.b + (activeRgb.b - baseRgb.b) * t);
-                    style = `rgb(${r},${g},${b})`;
+                    activeDots.push({ ox, oy, t: 1 - Math.sqrt(dsq) / proximity });
+                } else {
+                    ctx.rect(ox - halfSize, oy - halfSize, dotSize, dotSize);
                 }
+            }
+            ctx.fill();
 
-                ctx.save();
-                ctx.translate(ox, oy);
-                ctx.fillStyle = style;
-                ctx.fill(circlePath);
-                ctx.restore();
+            // Draw active/hovered dots individually
+            for (const act of activeDots) {
+                const r = Math.round(baseRgb.r + (activeRgb.r - baseRgb.r) * act.t);
+                const g = Math.round(baseRgb.g + (activeRgb.g - baseRgb.g) * act.t);
+                const b = Math.round(baseRgb.b + (activeRgb.b - baseRgb.b) * act.t);
+                ctx.fillStyle = `rgb(${r},${g},${b})`;
+                ctx.fillRect(act.ox - halfSize, act.oy - halfSize, dotSize, dotSize);
             }
 
             rafId = requestAnimationFrame(draw);
@@ -149,7 +148,7 @@ const DotGrid = ({
 
         draw();
         return () => cancelAnimationFrame(rafId);
-    }, [proximity, baseColor, activeRgb, baseRgb, circlePath]);
+    }, [proximity, baseColor, activeRgb, baseRgb, dotSize]);
 
     useEffect(() => {
         buildGrid();
