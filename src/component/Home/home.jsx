@@ -294,6 +294,32 @@ const StarEveningTeaser = () => {
             <br /><em>Brace yourself for the biggest performance of the year!</em>
           </motion.p>
 
+          <motion.div
+            className="star-warning-text"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            style={{
+              marginTop: '1.2rem',
+              padding: '12px 16px',
+              backgroundColor: 'rgba(255, 30, 30, 0.15)',
+              border: '1px solid rgba(255, 60, 60, 0.4)',
+              borderLeft: '4px solid #ff3c3c',
+              borderRadius: '6px',
+              color: '#fff',
+              fontSize: '1rem',
+              fontWeight: '600',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              boxShadow: '0 4px 15px rgba(255, 30, 30, 0.1)'
+            }}
+          >
+            <span style={{ fontSize: '1.2rem' }}>⚠️</span>
+            <span>Entry is strictly allowed only for students with a valid college ID card.</span>
+          </motion.div>
+
           <div className="star-details-grid">
             {detailItems.map((item, i) => (
               <motion.div
