@@ -4,121 +4,100 @@ import { ScrollTrigger } from 'gsap/all';
 import DotGrid from '../DotGrid';
 import './sponsors.css';
 import infoStechnologiesLogo from '../../assets/sponsors/infoStechnologies.png';
+import karunamritLogo from '../../assets/sponsors/karunamrit.jpeg';
+import laPinozLogo from "../../assets/sponsors/La Pino'z Pizza.jpeg";
+import PetroLogo from '../../assets/sponsors/petro.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const sponsorsData = {
-  title: [
-    {
-      name: 'InfoS Technologies',
-      logo: infoStechnologiesLogo,
-      description: 'INFO S TECHNOLOGIES',
-    },
-  ],
-  gold: [
-    { name: 'Gold Sponsor 1', logo: '' },
-    { name: 'Gold Sponsor 2', logo: '' },
-  ],
-  silver: [
-    { name: 'Silver Sponsor 1', logo: '' },
-    { name: 'Silver Sponsor 2', logo: '' },
-    { name: 'Silver Sponsor 3', logo: '' },
-  ],
-  partners: [
-    { name: 'Media Partner', logo: '' },
-    { name: 'Food Partner', logo: '' },
-    { name: 'Tech Partner', logo: '' },
-    { name: 'Merch Partner', logo: '' },
-  ],
-};
+const sponsorsList = [
+  {
+    name: 'InfoS Technologies',
+    logo: infoStechnologiesLogo,
+    tagline: 'Powering innovation through cutting-edge IT solutions',
+    badge: 'Technology Partner',
+  },
+  {
+    name: 'Karunamrit',
+    logo: karunamritLogo,
+    tagline: 'Empowering youth through child development and skill-building across India',
+    badge: 'Social Impact Partner',
+  },
+  {
+    name: "La Pino'z Pizza",
+    logo: laPinozLogo,
+    tagline: 'Fueling the fest with the tastiest pizzas in town',
+    badge: 'Food Partner',
+  },
+  {
+    name: 'Petro Photo Booth',
+    logo: PetroLogo,
+    tagline: 'Capturing every unforgettable moment of Emblazon',
+    badge: 'Photography Partner',
+  },
+];
 
-const tierConfig = {
-  title: { label: 'TITLE SPONSOR', accent: '#FFD700', icon: '👑' },
-  gold: { label: 'GOLD SPONSORS', accent: '#FFA500', icon: '🥇' },
-  silver: { label: 'SILVER SPONSORS', accent: '#C0C0C0', icon: '🥈' },
-  partners: { label: 'PARTNERS', accent: '#7dd3fc', icon: '🤝' },
-};
-
-function SponsorCard({ sponsor, tier, index }) {
+function SponsorCard({ sponsor, index }) {
   const cardRef = useRef(null);
-  const config = tierConfig[tier];
-
-  return (
-    <div
-      ref={cardRef}
-      className={`sponsor-card sponsor-card--${tier}`}
-      style={{ '--accent': config.accent, '--delay': `${index * 0.1}s` }}
-    >
-      <div className="sponsor-card__glow" />
-      <div className="sponsor-card__inner">
-        <div className="sponsor-card__logo-wrap">
-          {sponsor.logo ? (
-            <img src={sponsor.logo} alt={sponsor.name} className="sponsor-card__logo" />
-          ) : (
-            <div className="sponsor-card__placeholder">
-              <span className="sponsor-card__placeholder-icon">{config.icon}</span>
-              <span className="sponsor-card__placeholder-text">{sponsor.name}</span>
-            </div>
-          )}
-        </div>
-        {sponsor.description && (
-          <p className="sponsor-card__desc">{sponsor.description}</p>
-        )}
-        <div className="sponsor-card__shine" />
-      </div>
-    </div>
-  );
-}
-
-function SponsorTier({ tier, sponsors }) {
-  const tierRef = useRef(null);
-  const config = tierConfig[tier];
 
   useEffect(() => {
-    const el = tierRef.current;
-    if (!el) return;
+    const card = cardRef.current;
+    if (!card) return;
 
-    const heading = el.querySelector('.sponsor-tier__heading');
-    const cards = el.querySelectorAll('.sponsor-card');
-    const line = el.querySelector('.sponsor-tier__line');
-
-    gsap.set([heading, ...cards], { opacity: 0, y: 50 });
-    if (line) gsap.set(line, { scaleX: 0 });
+    gsap.set(card, { opacity: 0, y: 80 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
+        trigger: card,
+        start: 'top 88%',
         toggleActions: 'play none none reverse',
       },
     });
 
-    if (line) {
-      tl.to(line, { scaleX: 1, duration: 0.6, ease: 'power2.out' });
-    }
+    tl.to(card, {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      ease: 'power3.out',
+    });
 
-    tl.to(heading, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '<0.1');
-    tl.to(cards, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out', stagger: 0.12 }, '<0.2');
-
-    return () => {
-      tl.kill();
-    };
+    return () => tl.kill();
   }, []);
 
-  if (!sponsors || sponsors.length === 0) return null;
+  const num = String(index + 1).padStart(2, '0');
 
   return (
-    <div ref={tierRef} className={`sponsor-tier sponsor-tier--${tier}`}>
-      <div className="sponsor-tier__line" style={{ background: config.accent }} />
-      <h2 className="sponsor-tier__heading" style={{ color: config.accent }}>
-        <span className="sponsor-tier__icon">{config.icon}</span>
-        {config.label}
-      </h2>
-      <div className={`sponsor-tier__grid sponsor-tier__grid--${tier}`}>
-        {sponsors.map((sponsor, i) => (
-          <SponsorCard key={sponsor.name} sponsor={sponsor} tier={tier} index={i} />
-        ))}
+    <div
+      ref={cardRef}
+      className="sponsor-card"
+      style={{ '--card-accent': '#FFD700' }}
+    >
+      {/* Logo Visual Side */}
+      <div className="sponsor-card__visual">
+        <div className="sponsor-card__rings" />
+        <img
+          src={sponsor.logo}
+          alt={sponsor.name}
+          className="sponsor-card__logo"
+          loading="lazy"
+        />
       </div>
+
+      {/* Vertical Divider */}
+      <div className="sponsor-card__divider" />
+
+      {/* Info Side */}
+      <div className="sponsor-card__info">
+        <span className="sponsor-card__number">{num}</span>
+        <h3 className="sponsor-card__name">{sponsor.name}</h3>
+        <p className="sponsor-card__tagline">{sponsor.tagline}</p>
+        <div className="sponsor-card__badge">
+          ✦ {sponsor.badge}
+        </div>
+      </div>
+
+      {/* Shine sweep */}
+      <div className="sponsor-card__shine" />
     </div>
   );
 }
@@ -126,29 +105,28 @@ function SponsorTier({ tier, sponsors }) {
 export default function Sponsors() {
   const heroRef = useRef(null);
 
-  // Hero text animation
   useEffect(() => {
     const el = heroRef.current;
     if (!el) return;
 
+    const eyebrow = el.querySelector('.sponsors-hero__eyebrow');
     const title = el.querySelector('.sponsors-hero__title');
     const sub = el.querySelector('.sponsors-hero__sub');
-    const divider = el.querySelector('.sponsors-hero__divider');
 
-    gsap.set([title, sub], { opacity: 0, y: 40 });
-    gsap.set(divider, { scaleX: 0 });
+    gsap.set([eyebrow, title, sub], { opacity: 0, y: 30 });
 
-    const tl = gsap.timeline({ delay: 0.2 });
-    tl.to(title, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' });
+    const tl = gsap.timeline({ delay: 0.3 });
+    tl.to(eyebrow, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
+    tl.to(title, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.2');
     tl.to(sub, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
-    tl.to(divider, { scaleX: 1, duration: 0.8, ease: 'power2.out' }, '-=0.3');
 
     return () => tl.kill();
   }, []);
 
   return (
     <div className="sponsors-page">
-      <div style={{ position: 'fixed', inset: 0, zIndex: 0 }}>
+      {/* Background layers */}
+      <div className="sponsors-bg-grid">
         <DotGrid
           dotSize={5}
           gap={20}
@@ -161,24 +139,36 @@ export default function Sponsors() {
           returnDuration={1.5}
         />
       </div>
+      <div className="sponsors-bg-gradient" />
 
+      {/* Hero */}
       <div ref={heroRef} className="sponsors-hero">
+        <div className="sponsors-hero__eyebrow">
+          <span className="sponsors-hero__eyebrow-icon">★</span>
+          <span className="sponsors-hero__eyebrow-text">Emblazon 2K26</span>
+        </div>
         <h1 className="sponsors-hero__title">
           Our <span>Sponsors</span>
         </h1>
         <p className="sponsors-hero__sub">
           The incredible partners who make Emblazon 2K26 possible
         </p>
-        <div className="sponsors-hero__divider" />
       </div>
 
-      <div className="sponsors-content">
-        <SponsorTier tier="title" sponsors={sponsorsData.title} />
-        <SponsorTier tier="gold" sponsors={sponsorsData.gold} />
-        <SponsorTier tier="silver" sponsors={sponsorsData.silver} />
-        <SponsorTier tier="partners" sponsors={sponsorsData.partners} />
+      {/* Sponsor Showcase */}
+      <div className="sponsors-showcase">
+        {sponsorsList.map((sponsor, i) => (
+          <SponsorCard key={sponsor.name} sponsor={sponsor} index={i} />
+        ))}
       </div>
 
+      {/* Bottom */}
+      <div className="sponsors-bottom">
+        <div className="sponsors-bottom__line" />
+        <p style={{ color: "white"}} className="sponsors-bottom__text">
+          Interested in partnering with us? Reach out at emblazon@hmritm.ac.in
+        </p>
+      </div>
     </div>
   );
 }
