@@ -14,25 +14,21 @@ const sponsorsList = [
   {
     name: 'InfoS Technologies',
     logo: infoStechnologiesLogo,
-    tagline: 'Powering innovation through cutting-edge IT solutions',
     badge: 'Technology Partner',
   },
   {
     name: 'Karunamrit',
     logo: karunamritLogo,
-    tagline: 'Empowering youth through child development and skill-building across India',
-    badge: 'Social Impact Partner',
+    badge: 'Gifting Sponsor',
   },
   {
     name: "La Pino'z Pizza",
     logo: laPinozLogo,
-    tagline: 'Fueling the fest with the tastiest pizzas in town',
-    badge: 'Food Partner',
+    badge: 'Food Sponsor',
   },
   {
     name: 'Petro Photo Booth',
     logo: PetroLogo,
-    tagline: 'Capturing every unforgettable moment of Emblazon',
     badge: 'Photography Partner',
   },
 ];
@@ -44,7 +40,7 @@ function SponsorCard({ sponsor, index }) {
     const card = cardRef.current;
     if (!card) return;
 
-    gsap.set(card, { opacity: 0, y: 80 });
+    gsap.set(card, { opacity: 0, y: 60, scale: 0.95 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -57,24 +53,30 @@ function SponsorCard({ sponsor, index }) {
     tl.to(card, {
       opacity: 1,
       y: 0,
-      duration: 0.9,
+      scale: 1,
+      duration: 0.8,
+      delay: index * 0.12,
       ease: 'power3.out',
     });
 
     return () => tl.kill();
-  }, []);
-
-  const num = String(index + 1).padStart(2, '0');
+  }, [index]);
 
   return (
     <div
       ref={cardRef}
       className="sponsor-card"
-      style={{ '--card-accent': '#FFD700' }}
     >
-      {/* Logo Visual Side */}
-      <div className="sponsor-card__visual">
-        <div className="sponsor-card__rings" />
+      {/* Floating particles */}
+      <div className="sponsor-card__particles">
+        <div className="sponsor-card__particle" />
+        <div className="sponsor-card__particle" />
+        <div className="sponsor-card__particle" />
+      </div>
+
+      {/* Logo */}
+      <div className="sponsor-card__logo-wrap">
+        <div className="sponsor-card__glow" />
         <img
           src={sponsor.logo}
           alt={sponsor.name}
@@ -83,17 +85,12 @@ function SponsorCard({ sponsor, index }) {
         />
       </div>
 
-      {/* Vertical Divider */}
-      <div className="sponsor-card__divider" />
+      {/* Name */}
+      <h3 className="sponsor-card__name">{sponsor.name}</h3>
 
-      {/* Info Side */}
-      <div className="sponsor-card__info">
-        <span className="sponsor-card__number">{num}</span>
-        <h3 className="sponsor-card__name">{sponsor.name}</h3>
-        <p className="sponsor-card__tagline">{sponsor.tagline}</p>
-        <div className="sponsor-card__badge">
-          ✦ {sponsor.badge}
-        </div>
+      {/* Badge */}
+      <div className="sponsor-card__badge">
+        ✦ {sponsor.badge}
       </div>
 
       {/* Shine sweep */}
@@ -155,7 +152,7 @@ export default function Sponsors() {
         </p>
       </div>
 
-      {/* Sponsor Showcase */}
+      {/* Sponsor Showcase – 2×2 Grid */}
       <div className="sponsors-showcase">
         {sponsorsList.map((sponsor, i) => (
           <SponsorCard key={sponsor.name} sponsor={sponsor} index={i} />
