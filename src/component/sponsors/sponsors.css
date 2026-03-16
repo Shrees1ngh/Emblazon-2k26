@@ -111,13 +111,21 @@
     max-width: 1100px;
     margin: 0 auto;
     padding: 3rem 2rem 6rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 2rem;
+}
+
+.sponsor-card {
+    width: calc(50% - 1rem);
+    box-sizing: border-box;
 }
 
 /* ── Individual Card ── */
 .sponsor-card {
+    width: calc(50% - 1rem);
+    box-sizing: border-box;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -219,11 +227,11 @@
 .sponsor-card__logo {
     position: relative;
     z-index: 2;
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
     object-fit: contain;
     background: #fff;
-    padding: 1.2rem;
+    padding: 1rem;
     border-radius: 22px;
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.25),
@@ -374,9 +382,12 @@
         padding: 12vh 1.5rem 2rem;
     }
 
-    .sponsors-showcase {
-        grid-template-columns: 1fr;
+    .sponsor-card {
+        width: 100%;
         max-width: 480px;
+    }
+
+    .sponsors-showcase {
         gap: 1.6rem;
     }
 }

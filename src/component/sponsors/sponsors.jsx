@@ -7,6 +7,8 @@ import infoStechnologiesLogo from '../../assets/sponsors/infoStechnologies.png';
 import karunamritLogo from '../../assets/sponsors/karunamrit.jpeg';
 import laPinozLogo from "../../assets/sponsors/La Pino'z Pizza.jpeg";
 import PetroLogo from '../../assets/sponsors/petro.jpeg';
+import cakery from '../../assets/sponsors/cakery.jpg';
+import smaaash from '../../assets/sponsors/smaaash.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -30,6 +32,16 @@ const sponsorsList = [
     name: 'Petro Photo Booth',
     logo: PetroLogo,
     badge: 'Photography Partner',
+  },
+  {
+    name: 'Cakery',
+    logo: cakery,
+    badge: 'Sweet Partner',
+  },
+  {
+    name: 'Smaaash',
+    logo: smaaash,
+    badge: 'Entertainment Partner',
   },
 ];
 
