@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/all';
 import DotGrid from '../DotGrid';
 import './sponsors.css';
 import infoStechnologiesLogo from '../../assets/sponsors/infoStechnologies.png';
@@ -9,8 +8,8 @@ import laPinozLogo from "../../assets/sponsors/La Pino'z Pizza.jpeg";
 import PetroLogo from '../../assets/sponsors/petro.jpeg';
 import cakery from '../../assets/sponsors/cakery.jpg';
 import smaaash from '../../assets/sponsors/smaaash.jpg';
-
-gsap.registerPlugin(ScrollTrigger);
+import skippi from '../../assets/sponsors/Skippi.webp';
+import WowMomo from '../../assets/sponsors/Wow_Momo.jpg';
 
 const sponsorsList = [
   {
@@ -36,48 +35,30 @@ const sponsorsList = [
   {
     name: 'Cakery',
     logo: cakery,
-    badge: 'Sweet Partner',
+    badge: 'Gifting sponsor',
   },
   {
     name: 'Smaaash',
     logo: smaaash,
     badge: 'Entertainment Partner',
   },
+  {
+    name: 'Skippi',
+    logo: skippi,
+    badge: 'Refreshing Partner',
+  },
+  {
+    name: 'Wow Momo',
+    logo: WowMomo,
+    badge: 'Taste Partner',
+  },
 ];
 
 function SponsorCard({ sponsor, index }) {
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
-
-    gsap.set(card, { opacity: 0, y: 60, scale: 0.95 });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 88%',
-        toggleActions: 'play none none reverse',
-      },
-    });
-
-    tl.to(card, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.8,
-      delay: index * 0.12,
-      ease: 'power3.out',
-    });
-
-    return () => tl.kill();
-  }, [index]);
-
   return (
     <div
-      ref={cardRef}
       className="sponsor-card"
+      style={{ '--delay': `${0.15 + index * 0.1}s` }}
     >
       {/* Floating particles */}
       <div className="sponsor-card__particles">
@@ -122,12 +103,12 @@ export default function Sponsors() {
     const title = el.querySelector('.sponsors-hero__title');
     const sub = el.querySelector('.sponsors-hero__sub');
 
-    gsap.set([eyebrow, title, sub], { opacity: 0, y: 30 });
+    gsap.set([eyebrow, title, sub], { opacity: 0, y: 24 });
 
-    const tl = gsap.timeline({ delay: 0.3 });
-    tl.to(eyebrow, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' });
-    tl.to(title, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.2');
-    tl.to(sub, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
+    const tl = gsap.timeline({ delay: 0.2 });
+    tl.to(eyebrow, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' });
+    tl.to(title, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.25');
+    tl.to(sub, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.25');
 
     return () => tl.kill();
   }, []);
@@ -164,7 +145,7 @@ export default function Sponsors() {
         </p>
       </div>
 
-      {/* Sponsor Showcase – 2×2 Grid */}
+      {/* Sponsor Showcase */}
       <div className="sponsors-showcase">
         {sponsorsList.map((sponsor, i) => (
           <SponsorCard key={sponsor.name} sponsor={sponsor} index={i} />
@@ -174,7 +155,7 @@ export default function Sponsors() {
       {/* Bottom */}
       <div className="sponsors-bottom">
         <div className="sponsors-bottom__line" />
-        <p style={{ color: "white"}} className="sponsors-bottom__text">
+        <p style={{ color: "white" }} className="sponsors-bottom__text">
           Interested in partnering with us? Reach out at emblazon@hmritm.ac.in
         </p>
       </div>
